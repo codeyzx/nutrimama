@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "19593461042",
+    "project_id": "nutrimama-ee696",
+    "storage_bucket": "nutrimama-ee696.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19593461042:android:37490ca3f75c3b0c082b2b",
+        "android_client_info": {
+          "package_name": "com.nutrimama"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrFhtHpWf2P6dFVb1kmSEz1OnxlX6CV6o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
