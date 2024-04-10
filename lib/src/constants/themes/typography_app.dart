@@ -117,4 +117,32 @@ class TypographyApp {
     fontWeight: FontWeight.w500,
     fontSize: 14.sp,
   );
+
+  static TextStyle whiteOnBtnSmall = TextStyle(
+    fontSize: 13.sp,
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle homeDetName = TextStyle(
+    color: ColorApp.secondary,
+    fontWeight: FontWeight.w700,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle profileJob = TextStyle(
+    color: ColorApp.primary,
+    fontWeight: FontWeight.w500,
+    fontSize: 14.sp,
+  );
+  static TextStyle profileItemTitle = TextStyle(
+    color: Colors.black.withOpacity(0.70),
+    fontWeight: FontWeight.w600,
+    fontSize: 14.sp,
+  );
+  static TextStyle profileItem = TextStyle(
+    color: HexColor('#231F20'),
+    fontWeight: FontWeight.w500,
+    fontSize: 16.sp,
+  );
 }

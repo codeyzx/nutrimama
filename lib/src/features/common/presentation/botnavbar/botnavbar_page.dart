@@ -32,8 +32,8 @@ class BotNavBarPage extends ConsumerWidget {
           child: FittedBox(
             child: FloatingActionButton(
               shape: const CircleBorder(),
-              backgroundColor: ColorApp.black,
-              child: Assets.icons.icScan.svg(
+              backgroundColor: ColorApp.primary,
+              child: Assets.icons.icChatbot.svg(
                 width: 28.w,
                 height: 28.h,
               ),
@@ -44,8 +44,10 @@ class BotNavBarPage extends ConsumerWidget {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
+          selectedItemColor: ColorApp.black,
+          unselectedItemColor: Colors.grey,
+          selectedFontSize: 10.0.sp,
+          unselectedFontSize: 10.0.sp,
           type: BottomNavigationBarType.fixed,
           iconSize: 24.0.sp,
           currentIndex: currentIndex,
@@ -53,28 +55,28 @@ class BotNavBarPage extends ConsumerWidget {
           items: [
             BottomNavigationBarItem(
               icon: !state.isHomeActive
-                  ? Assets.icons.icHomeDeactive.svg()
-                  : Assets.icons.icHomeActive.svg(),
-              label: '',
+                  ? Assets.icons.icHomeOff.svg()
+                  : Assets.icons.icHomeOn.svg(),
+              label: 'Beranda',
             ),
             BottomNavigationBarItem(
-              icon: !state.isAnalyzeActive
-                  ? Assets.icons.icAnalyzeDeactive.svg()
-                  : Assets.icons.icAnalyzeActive.svg(),
-              label: '',
+              icon: !state.isCommunityActive
+                  ? Assets.icons.icCommunityOff.svg()
+                  : Assets.icons.icCommunityOn.svg(),
+              label: 'Komunitas',
             ),
             BottomNavigationBarItem(icon: SizedBox(width: 40.w), label: ''),
             BottomNavigationBarItem(
-              icon: !state.isRecycleActive
-                  ? Assets.icons.icRecycleDeactive.svg()
-                  : Assets.icons.icRecycleActive.svg(),
-              label: '',
+              icon: !state.isEduActive
+                  ? Assets.icons.icEduOff.svg()
+                  : Assets.icons.icEduOn.svg(),
+              label: 'Edukasi',
             ),
             BottomNavigationBarItem(
               icon: !state.isProfileActive
-                  ? Assets.icons.icProfileDeactive.svg()
-                  : Assets.icons.icProfileActive.svg(),
-              label: '',
+                  ? Assets.icons.icProfileOff.svg()
+                  : Assets.icons.icProfileOn.svg(),
+              label: 'Profil',
             ),
           ],
         ),

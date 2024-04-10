@@ -49,6 +49,7 @@ dependencies:
   hexcolor: ^3.0.1
   intl: ^0.19.0
   logger: ^2.2.0
+  quickalert: ^1.1.0
   riverpod_annotation: ^2.3.5
   smooth_page_indicator: ^1.1.0
 

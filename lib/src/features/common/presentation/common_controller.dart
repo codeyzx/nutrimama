@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nutrimama/src/features/common/data/common_repository.dart';
 import 'package:nutrimama/src/features/common/presentation/common_state.dart';
+import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_screen.dart';
 import 'package:nutrimama/src/features/home/presentation/home_screen.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -54,8 +55,8 @@ class CommonController extends _$CommonController {
       currentIndex: index,
       currentScreen: _getScreen(index),
       isHomeActive: index == 0,
-      isAnalyzeActive: index == 1,
-      isRecycleActive: index == 3,
+      isCommunityActive: index == 1,
+      isEduActive: index == 3,
       isProfileActive: index == 4,
     );
   }
@@ -69,7 +70,7 @@ class CommonController extends _$CommonController {
       case 3:
         return const HomeScreen();
       case 4:
-        return const HomeScreen();
+        return const ProfileScreen();
       default:
         return const HomeScreen();
     }

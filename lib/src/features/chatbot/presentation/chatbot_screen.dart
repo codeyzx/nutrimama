@@ -5,6 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/features/chatbot/presentation/widgets/chat_input_box.dart';
 
+//TODO: Terjadi error ketika chat lebih dari 2x
 class ChatbotScreen extends StatefulWidget {
   const ChatbotScreen({super.key});
 

@@ -34,83 +34,70 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
-  /// File path: assets/icons/ic_analyze_active.svg
-  SvgGenImage get icAnalyzeActive =>
-      const SvgGenImage('assets/icons/ic_analyze_active.svg');
+  /// File path: assets/icons/ic_chatbot.svg
+  SvgGenImage get icChatbot => const SvgGenImage('assets/icons/ic_chatbot.svg');
 
-  /// File path: assets/icons/ic_analyze_deactive.svg
-  SvgGenImage get icAnalyzeDeactive =>
-      const SvgGenImage('assets/icons/ic_analyze_deactive.svg');
+  /// File path: assets/icons/ic_community_off.svg
+  SvgGenImage get icCommunityOff =>
+      const SvgGenImage('assets/icons/ic_community_off.svg');
 
-  /// File path: assets/icons/ic_compare.svg
-  SvgGenImage get icCompare => const SvgGenImage('assets/icons/ic_compare.svg');
+  /// File path: assets/icons/ic_community_on.svg
+  SvgGenImage get icCommunityOn =>
+      const SvgGenImage('assets/icons/ic_community_on.svg');
 
-  /// File path: assets/icons/ic_dollar.png
-  AssetGenImage get icDollar =>
-      const AssetGenImage('assets/icons/ic_dollar.png');
+  /// File path: assets/icons/ic_edu_off.svg
+  SvgGenImage get icEduOff => const SvgGenImage('assets/icons/ic_edu_off.svg');
 
-  /// File path: assets/icons/ic_home_active.svg
-  SvgGenImage get icHomeActive =>
-      const SvgGenImage('assets/icons/ic_home_active.svg');
+  /// File path: assets/icons/ic_edu_on.svg
+  SvgGenImage get icEduOn => const SvgGenImage('assets/icons/ic_edu_on.svg');
 
-  /// File path: assets/icons/ic_home_deactive.svg
-  SvgGenImage get icHomeDeactive =>
-      const SvgGenImage('assets/icons/ic_home_deactive.svg');
+  /// File path: assets/icons/ic_home_off.svg
+  SvgGenImage get icHomeOff =>
+      const SvgGenImage('assets/icons/ic_home_off.svg');
+
+  /// File path: assets/icons/ic_home_on.svg
+  SvgGenImage get icHomeOn => const SvgGenImage('assets/icons/ic_home_on.svg');
 
   /// File path: assets/icons/ic_launcher.png
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/icons/ic_launcher.png');
 
-  /// File path: assets/icons/ic_profile_active.svg
-  SvgGenImage get icProfileActive =>
-      const SvgGenImage('assets/icons/ic_profile_active.svg');
+  /// File path: assets/icons/ic_profile_off.svg
+  SvgGenImage get icProfileOff =>
+      const SvgGenImage('assets/icons/ic_profile_off.svg');
 
-  /// File path: assets/icons/ic_profile_deactive.svg
-  SvgGenImage get icProfileDeactive =>
-      const SvgGenImage('assets/icons/ic_profile_deactive.svg');
-
-  /// File path: assets/icons/ic_recycle_active.svg
-  SvgGenImage get icRecycleActive =>
-      const SvgGenImage('assets/icons/ic_recycle_active.svg');
-
-  /// File path: assets/icons/ic_recycle_deactive.svg
-  SvgGenImage get icRecycleDeactive =>
-      const SvgGenImage('assets/icons/ic_recycle_deactive.svg');
-
-  /// File path: assets/icons/ic_scan.svg
-  SvgGenImage get icScan => const SvgGenImage('assets/icons/ic_scan.svg');
-
-  /// File path: assets/icons/nutrimama_logo.svg
-  SvgGenImage get nutrimamaLogo =>
-      const SvgGenImage('assets/icons/nutrimama_logo.svg');
+  /// File path: assets/icons/ic_profile_on.svg
+  SvgGenImage get icProfileOn =>
+      const SvgGenImage('assets/icons/ic_profile_on.svg');
 
   /// List of all assets
   List<dynamic> get values => [
-        icAnalyzeActive,
-        icAnalyzeDeactive,
-        icCompare,
-        icDollar,
-        icHomeActive,
-        icHomeDeactive,
+        icChatbot,
+        icCommunityOff,
+        icCommunityOn,
+        icEduOff,
+        icEduOn,
+        icHomeOff,
+        icHomeOn,
         icLauncher,
-        icProfileActive,
-        icProfileDeactive,
-        icRecycleActive,
-        icRecycleDeactive,
-        icScan,
-        nutrimamaLogo
+        icProfileOff,
+        icProfileOn
       ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/nutrimama_logo.svg
+  SvgGenImage get nutrimamaLogo =>
+      const SvgGenImage('assets/images/nutrimama_logo.svg');
+
   /// File path: assets/images/profile_default_img.png
   AssetGenImage get profileDefaultImg =>
       const AssetGenImage('assets/images/profile_default_img.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [profileDefaultImg];
+  List<dynamic> get values => [nutrimamaLogo, profileDefaultImg];
 }
 
 class Assets {

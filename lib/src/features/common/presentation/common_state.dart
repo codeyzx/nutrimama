@@ -5,8 +5,8 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class CommonState {
   final bool isHomeActive;
-  final bool isAnalyzeActive;
-  final bool isRecycleActive;
+  final bool isCommunityActive;
+  final bool isEduActive;
   final bool isProfileActive;
   final bool isLastPage;
   final int currentIndex;
@@ -20,8 +20,8 @@ class CommonState {
 
   CommonState({
     this.isHomeActive = true,
-    this.isAnalyzeActive = false,
-    this.isRecycleActive = false,
+    this.isCommunityActive = false,
+    this.isEduActive = false,
     this.isProfileActive = false,
     this.isOverlayVisible = false,
     this.isLastPage = false,
@@ -35,8 +35,8 @@ class CommonState {
 
   CommonState copyWith({
     bool? isHomeActive,
-    bool? isAnalyzeActive,
-    bool? isRecycleActive,
+    bool? isCommunityActive,
+    bool? isEduActive,
     bool? isProfileActive,
     bool? isLastPage,
     int? currentIndex,
@@ -49,8 +49,8 @@ class CommonState {
   }) {
     return CommonState(
       isHomeActive: isHomeActive ?? this.isHomeActive,
-      isAnalyzeActive: isAnalyzeActive ?? this.isAnalyzeActive,
-      isRecycleActive: isRecycleActive ?? this.isRecycleActive,
+      isCommunityActive: isCommunityActive ?? this.isCommunityActive,
+      isEduActive: isEduActive ?? this.isEduActive,
       isProfileActive: isProfileActive ?? this.isProfileActive,
       isLastPage: isLastPage ?? this.isLastPage,
       currentIndex: currentIndex ?? this.currentIndex,

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:nutrimama/src/features/auth/domain/request_login.dart';
 import 'package:nutrimama/src/features/auth/domain/request_register.dart';
+import 'package:nutrimama/src/features/auth/domain/request_user.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/services/services.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,6 +16,13 @@ class AuthRepository {
   final userDb = FirebaseFirestore.instance.collection('user').withConverter(
         fromFirestore: (snapshot, _) => User.fromJson(snapshot.data()!),
         toFirestore: (User user, _) => user.toJson(),
+      );
+
+  final requestUserDb = FirebaseFirestore.instance
+      .collection('user')
+      .withConverter(
+        fromFirestore: (snapshot, _) => RequestUser.fromJson(snapshot.data()!),
+        toFirestore: (RequestUser user, _) => user.toJson(),
       );
 
   Future<Result> login(RequestLogin requestLogin) async {
@@ -64,6 +72,24 @@ class AuthRepository {
     } catch (e, stackTrace) {
       return Result.failure(
           NetworkExceptions.getFirebaseException(e), stackTrace);
+    }
+  }
+
+  Future<Result> updateProfile(RequestUser user) async {
+    try {
+      await requestUserDb.doc(user.id).update(user.toJson());
+      return const Result.success(true);
+    } catch (e, st) {
+      return Result.failure(NetworkExceptions.getFirebaseException(e), st);
+    }
+  }
+
+  Future<Result> logout() async {
+    try {
+      await _auth.signOut();
+      return const Result.success(true);
+    } catch (e, st) {
+      return Result.failure(NetworkExceptions.getFirebaseException(e), st);
     }
   }
 }
