@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nutrimama/src/features/auth/presentation/login/login_page.dart';
 import 'package:nutrimama/src/features/auth/presentation/register/register_page.dart';
+import 'package:nutrimama/src/features/chatbot/presentation/chatbot_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/botnavbar/botnavbar_page.dart';
 import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
@@ -16,6 +17,7 @@ enum Routes {
   register,
   login,
   botNavBar,
+  chatbot,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -53,6 +55,11 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/botNavBar',
         name: Routes.botNavBar.name,
         builder: (context, state) => const BotNavBarPage(),
+      ),
+      GoRoute(
+        path: '/chatbot',
+        name: Routes.chatbot.name,
+        builder: (context, state) => const ChatbotScreen(),
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(

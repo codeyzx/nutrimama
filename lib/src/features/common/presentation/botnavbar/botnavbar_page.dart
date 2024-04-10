@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
+import 'package:nutrimama/src/routes/app_routes.dart';
 
 class BotNavBarPage extends ConsumerWidget {
   const BotNavBarPage({super.key});
@@ -36,7 +37,9 @@ class BotNavBarPage extends ConsumerWidget {
                 width: 28.w,
                 height: 28.h,
               ),
-              onPressed: () {},
+              onPressed: () {
+                ref.read(goRouterProvider).pushNamed(Routes.chatbot.name);
+              },
             ),
           ),
         ),
