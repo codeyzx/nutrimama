@@ -8,6 +8,8 @@
 // ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter/services.dart';
 
 class $AssetsFontsGen {
   const $AssetsFontsGen();
@@ -32,12 +34,72 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/ic_analyze_active.svg
+  SvgGenImage get icAnalyzeActive =>
+      const SvgGenImage('assets/icons/ic_analyze_active.svg');
+
+  /// File path: assets/icons/ic_analyze_deactive.svg
+  SvgGenImage get icAnalyzeDeactive =>
+      const SvgGenImage('assets/icons/ic_analyze_deactive.svg');
+
+  /// File path: assets/icons/ic_compare.svg
+  SvgGenImage get icCompare => const SvgGenImage('assets/icons/ic_compare.svg');
+
+  /// File path: assets/icons/ic_dollar.png
+  AssetGenImage get icDollar =>
+      const AssetGenImage('assets/icons/ic_dollar.png');
+
+  /// File path: assets/icons/ic_home_active.svg
+  SvgGenImage get icHomeActive =>
+      const SvgGenImage('assets/icons/ic_home_active.svg');
+
+  /// File path: assets/icons/ic_home_deactive.svg
+  SvgGenImage get icHomeDeactive =>
+      const SvgGenImage('assets/icons/ic_home_deactive.svg');
+
   /// File path: assets/icons/ic_launcher.png
   AssetGenImage get icLauncher =>
       const AssetGenImage('assets/icons/ic_launcher.png');
 
+  /// File path: assets/icons/ic_profile_active.svg
+  SvgGenImage get icProfileActive =>
+      const SvgGenImage('assets/icons/ic_profile_active.svg');
+
+  /// File path: assets/icons/ic_profile_deactive.svg
+  SvgGenImage get icProfileDeactive =>
+      const SvgGenImage('assets/icons/ic_profile_deactive.svg');
+
+  /// File path: assets/icons/ic_recycle_active.svg
+  SvgGenImage get icRecycleActive =>
+      const SvgGenImage('assets/icons/ic_recycle_active.svg');
+
+  /// File path: assets/icons/ic_recycle_deactive.svg
+  SvgGenImage get icRecycleDeactive =>
+      const SvgGenImage('assets/icons/ic_recycle_deactive.svg');
+
+  /// File path: assets/icons/ic_scan.svg
+  SvgGenImage get icScan => const SvgGenImage('assets/icons/ic_scan.svg');
+
+  /// File path: assets/icons/nutrimama_logo.svg
+  SvgGenImage get nutrimamaLogo =>
+      const SvgGenImage('assets/icons/nutrimama_logo.svg');
+
   /// List of all assets
-  List<AssetGenImage> get values => [icLauncher];
+  List<dynamic> get values => [
+        icAnalyzeActive,
+        icAnalyzeDeactive,
+        icCompare,
+        icDollar,
+        icHomeActive,
+        icHomeDeactive,
+        icLauncher,
+        icProfileActive,
+        icProfileDeactive,
+        icRecycleActive,
+        icRecycleDeactive,
+        icScan,
+        nutrimamaLogo
+      ];
 }
 
 class $AssetsImagesGen {
@@ -125,6 +187,59 @@ class AssetGenImage {
       _assetName,
       bundle: bundle,
       package: package,
+    );
+  }
+
+  String get path => _assetName;
+
+  String get keyName => _assetName;
+}
+
+class SvgGenImage {
+  const SvgGenImage(this._assetName);
+
+  final String _assetName;
+
+  SvgPicture svg({
+    Key? key,
+    bool matchTextDirection = false,
+    AssetBundle? bundle,
+    String? package,
+    double? width,
+    double? height,
+    BoxFit fit = BoxFit.contain,
+    AlignmentGeometry alignment = Alignment.center,
+    bool allowDrawingOutsideViewBox = false,
+    WidgetBuilder? placeholderBuilder,
+    String? semanticsLabel,
+    bool excludeFromSemantics = false,
+    SvgTheme theme = const SvgTheme(),
+    ColorFilter? colorFilter,
+    Clip clipBehavior = Clip.hardEdge,
+    @deprecated Color? color,
+    @deprecated BlendMode colorBlendMode = BlendMode.srcIn,
+    @deprecated bool cacheColorFilter = false,
+  }) {
+    return SvgPicture.asset(
+      _assetName,
+      key: key,
+      matchTextDirection: matchTextDirection,
+      bundle: bundle,
+      package: package,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: alignment,
+      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+      placeholderBuilder: placeholderBuilder,
+      semanticsLabel: semanticsLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      theme: theme,
+      colorFilter: colorFilter,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      clipBehavior: clipBehavior,
+      cacheColorFilter: cacheColorFilter,
     );
   }
 
