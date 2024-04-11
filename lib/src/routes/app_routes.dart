@@ -7,6 +7,9 @@ import 'package:nutrimama/src/features/common/presentation/botnavbar/botnavbar_p
 import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/add_fetal_record_screen.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/add_mother_record_screen.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/medical_record_screen.dart';
 import 'package:nutrimama/src/routes/error_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -20,6 +23,9 @@ enum Routes {
   botNavBar,
   chatbot,
   profileEdit,
+  medicalRecord,
+  addFetalRecord,
+  addMotherRecord,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -67,6 +73,21 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/profileEdit',
         name: Routes.profileEdit.name,
         builder: (context, state) => const ProfileEditScreen(),
+      ),
+      GoRoute(
+        path: '/medicalRecord',
+        name: Routes.medicalRecord.name,
+        builder: (context, state) => const MedicalRecordScreen(),
+      ),
+      GoRoute(
+        path: '/addFetalRecord',
+        name: Routes.addFetalRecord.name,
+        builder: (context, state) => const AddFetalRecordScreen(),
+      ),
+      GoRoute(
+        path: '/addMotherRecord',
+        name: Routes.addMotherRecord.name,
+        builder: (context, state) => const AddMotherRecordScreen(),
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(

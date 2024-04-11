@@ -113,7 +113,7 @@ final _appTheme = ThemeData(
     bodyMedium: TextStyle(
         fontSize: ScreenUtil().setSp(14),
         fontWeight: FontWeight.w600,
-        color: ColorApp.grey),
+        color: ColorApp.black),
     labelLarge: TextStyle(
         fontSize: ScreenUtil().setSp(14),
         fontWeight: FontWeight.w600,

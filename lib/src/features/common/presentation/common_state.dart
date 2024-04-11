@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
-import 'package:nutrimama/src/features/home/presentation/home_screen.dart';
+import 'package:nutrimama/src/features/common/presentation/home/home_screen.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class CommonState {

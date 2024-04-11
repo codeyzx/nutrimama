@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:nutrimama/src/features/common/data/common_repository.dart';
 import 'package:nutrimama/src/features/common/presentation/common_state.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_screen.dart';
-import 'package:nutrimama/src/features/home/presentation/home_screen.dart';
+import 'package:nutrimama/src/features/common/presentation/home/home_screen.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
@@ -30,10 +29,11 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  FirebaseAuth.instance.signOut();
-                  ref.read(goRouterProvider).goNamed(Routes.login.name);
+                  ref
+                      .read(goRouterProvider)
+                      .pushNamed(Routes.medicalRecord.name);
                 },
-                child: const Text('Logout'),
+                child: const Text('Medical Record'),
               ),
             ],
           );
