@@ -10,7 +10,7 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final userState = ref.watch(commonControllerProvider);
+    final commonState = ref.watch(commonControllerProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -20,7 +20,7 @@ class HomeScreen extends ConsumerWidget {
       ),
       body: Center(
           child: AsyncValueWidget(
-        value: userState.userValue,
+        value: commonState.userValue,
         data: (data) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,

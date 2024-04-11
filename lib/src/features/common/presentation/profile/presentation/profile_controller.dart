@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nutrimama/src/features/auth/data/auth_repository.dart';
 import 'package:nutrimama/src/features/auth/domain/request_user.dart';
-import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/common/data/common_repository.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -11,18 +10,17 @@ part 'profile_controller.g.dart';
 @riverpod
 class ProfileController extends _$ProfileController {
   @override
-  UserState build() {
+  ProfileState build() {
     getProfile();
-    return UserState(
+    return ProfileState(
       nameController: TextEditingController(),
     );
   }
 
-  void setData(User user) {
-    state.nameController.text = user.name;
-
+  void setTextFieldValue() {
     state = state.copyWith(
-      user: AsyncData(user),
+      nameController: state.nameController
+        ..text = state.user.asData?.value?.name ?? '',
     );
   }
 

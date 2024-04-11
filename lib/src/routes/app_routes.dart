@@ -5,6 +5,7 @@ import 'package:nutrimama/src/features/auth/presentation/register/register_page.
 import 'package:nutrimama/src/features/chatbot/presentation/chatbot_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/botnavbar/botnavbar_page.dart';
 import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.dart';
+import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
 import 'package:nutrimama/src/routes/error_page.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -18,6 +19,7 @@ enum Routes {
   login,
   botNavBar,
   chatbot,
+  profileEdit,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -60,6 +62,11 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/chatbot',
         name: Routes.chatbot.name,
         builder: (context, state) => const ChatbotScreen(),
+      ),
+      GoRoute(
+        path: '/profileEdit',
+        name: Routes.profileEdit.name,
+        builder: (context, state) => const ProfileEditScreen(),
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(

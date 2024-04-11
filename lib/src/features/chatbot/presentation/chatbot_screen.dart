@@ -4,6 +4,7 @@ import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/features/chatbot/presentation/widgets/chat_input_box.dart';
+import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
 //TODO: Terjadi error ketika chat lebih dari 2x
 class ChatbotScreen extends StatefulWidget {
@@ -25,10 +26,11 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
 
   @override
   void initState() {
-    gemini = Gemini.init(
-        apiKey: "AIzaSyANwYBDnOPQG7Dg_I9yfKxwFilDN7DHlZo",
-        enableDebugging: true);
-
+    safeRebuild(() {
+      gemini = Gemini.init(
+          apiKey: "AIzaSyANwYBDnOPQG7Dg_I9yfKxwFilDN7DHlZo",
+          enableDebugging: true);
+    });
     super.initState();
   }
 

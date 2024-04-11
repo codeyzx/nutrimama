@@ -145,4 +145,30 @@ class TypographyApp {
     fontWeight: FontWeight.w500,
     fontSize: 16.sp,
   );
+  static TextStyle homeAppbarSmall = TextStyle(
+    color: ColorApp.secondary,
+    fontWeight: FontWeight.w700,
+    fontSize: 16.sp,
+  );
+  static TextStyle eprofileBlueBtn = TextStyle(
+    color: ColorApp.blue,
+    fontWeight: FontWeight.w500,
+    fontSize: 14.sp,
+  );
+  static TextStyle eprofileLabel = TextStyle(
+    color: ColorApp.black,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.sp,
+  );
+  static TextStyle eprofileValue = TextStyle(
+    color: HexColor('231F20'),
+    fontWeight: FontWeight.w400,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle homeOnBtn = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    fontSize: 16.sp,
+  );
 }
