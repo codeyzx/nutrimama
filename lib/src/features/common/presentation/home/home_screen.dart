@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
+import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
+import 'package:nutrimama/src/routes/routes.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -29,9 +31,14 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  ref
-                      .read(goRouterProvider)
-                      .pushNamed(Routes.medicalRecord.name);
+                  ref.read(goRouterProvider).pushNamed(
+                        Routes.medicalRecord.name,
+                        extra: Extras(
+                          datas: {
+                            ExtrasKey.user: data,
+                          },
+                        ),
+                      );
                 },
                 child: const Text('Medical Record'),
               ),

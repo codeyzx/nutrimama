@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nutrimama/src/constants/constants.dart';
+import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/auth/presentation/login/login_page.dart';
 import 'package:nutrimama/src/features/auth/presentation/register/register_page.dart';
 import 'package:nutrimama/src/features/chatbot/presentation/chatbot_screen.dart';
@@ -10,7 +12,7 @@ import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.
 import 'package:nutrimama/src/features/medical_record/presentation/add_fetal_record_screen.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/add_mother_record_screen.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_screen.dart';
-import 'package:nutrimama/src/routes/error_page.dart';
+import 'package:nutrimama/src/routes/routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_routes.g.dart';
@@ -77,7 +79,11 @@ GoRouter goRouter(GoRouterRef ref) {
       GoRoute(
         path: '/medicalRecord',
         name: Routes.medicalRecord.name,
-        builder: (context, state) => const MedicalRecordScreen(),
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final user = extras.datas[ExtrasKey.user] as User;
+          return MedicalRecordScreen(user: user);
+        },
       ),
       GoRoute(
         path: '/addFetalRecord',

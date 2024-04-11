@@ -3,5 +3,4 @@ class ExtrasKey {
   static const index = 'index';
   static const home = 'home';
   static const user = 'user';
-  static const isCompare = 'isCompare';
 }

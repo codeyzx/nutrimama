@@ -6,6 +6,7 @@ import 'package:nutrimama/src/features/common/presentation/profile/presentation/
 import 'package:nutrimama/src/features/common/presentation/home/home_screen.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:logger/logger.dart';
 
 part 'common_controller.g.dart';
 
@@ -84,6 +85,7 @@ class CommonController extends _$CommonController {
     final result = await ref.read(commonRepositoryProvider).getProfile();
     result.when(
       success: (data) {
+        Logger().i(data.toJson());
         state = state.copyWith(
           userValue: AsyncData(data),
         );

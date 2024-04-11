@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'common_controller.dart';
+part of 'medical_record_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$commonControllerHash() => r'183f33afbdb7ecc59750fc1db13bbe4900f5a46c';
+String _$medicalRecordRepositoryHash() =>
+    r'c2d413ec21d2f549bf4047c3c439ee03f920bf2d';
 
-/// See also [CommonController].
-@ProviderFor(CommonController)
-final commonControllerProvider =
-    NotifierProvider<CommonController, CommonState>.internal(
-  CommonController.new,
-  name: r'commonControllerProvider',
+/// See also [medicalRecordRepository].
+@ProviderFor(medicalRecordRepository)
+final medicalRecordRepositoryProvider =
+    Provider<MedicalRecordRepository>.internal(
+  medicalRecordRepository,
+  name: r'medicalRecordRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$commonControllerHash,
+      : _$medicalRecordRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$CommonController = Notifier<CommonState>;
+typedef MedicalRecordRepositoryRef = ProviderRef<MedicalRecordRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

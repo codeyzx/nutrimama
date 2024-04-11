@@ -1,13 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart';
+import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
+import 'package:nutrimama/src/features/auth/domain/user.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/medical_record_state.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
+import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
-class MedicalRecordScreen extends ConsumerWidget {
-  const MedicalRecordScreen({super.key});
+class MedicalRecordScreen extends ConsumerStatefulWidget {
+  final User user;
+  const MedicalRecordScreen({super.key, required this.user});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<MedicalRecordScreen> createState() =>
+      _MedicalRecordScreenState();
+}
+
+class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
+  MedicalRecordState get state => ref.watch(medicalRecordControllerProvider);
+  MedicalRecordController get controller =>
+      ref.read(medicalRecordControllerProvider.notifier);
+
+  @override
+  void initState() {
+    controller.getFetal(widget.user);
+    controller.getMother(widget.user);
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Medikal Record'),
@@ -50,149 +74,155 @@ class MedicalRecordScreen extends ConsumerWidget {
                 ],
               ),
             ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.0,
+            AsyncValueWidget(
+              value: state.mother,
+              data: (data) => InkWell(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                margin: const EdgeInsets.all(20.0),
-                padding: const EdgeInsets.all(20.0),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Data Ibu',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Berat Badan',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        Text(
-                          '68 Kg',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Tekanan Darah',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        Text(
-                          '110/80 (mm/hg)',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Tanggal Periksa',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        Text(
-                          '20 Januari 2024',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ],
-                    ),
-                  ],
+                  margin: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Data Ibu',
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Berat Badan',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          Text(
+                            '${data?.weight ?? '0'} kg', // Change '0' to appropriate default value
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Tekanan Darah',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          Text(
+                            '${data?.bloodPressure ?? '0'} (mm/hg)', // Change '0' to appropriate default value
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Tanggal Periksa',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          Text(
+                            data?.date.dateMonthYear ?? "-",
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {},
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.0,
+            AsyncValueWidget(
+              value: state.fetal,
+              data: (data) => InkWell(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                margin: const EdgeInsets.all(20.0),
-                padding: const EdgeInsets.all(20.0),
-                child: const Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Data Janin',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Berat',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        Text(
-                          '100 g',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Panjang',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                        Text(
-                          '15 cm',
-                          style: TextStyle(fontSize: 16.0),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Detak Jantung/Menit',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          '120',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Tanggal Periksa',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        Text(
-                          '20 Januari 2024',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                  ],
+                  margin: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Data Janin',
+                        style: TextStyle(
+                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Berat',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          Text(
+                            '${data?.weight ?? '0'} kg', // Change '0' to appropriate default value
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Panjang',
+                            style: TextStyle(fontSize: 16.0),
+                          ),
+                          Text(
+                            '${data?.length ?? '0'} cm', // Change '0' to appropriate default value
+                            style: const TextStyle(fontSize: 16.0),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Detak Jantung/Menit',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            '${data?.heartRate ?? '0'}', // Change '0' to appropriate default value
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 10.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Tanggal Periksa',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Text(
+                            data?.date.dateMonthYear ?? "-",
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

@@ -28,11 +28,15 @@ class User {
   final String id;
   final String name;
   final String email;
+  final String photoUrl;
+  final String fetalId;
 
-  User({
+  const User({
     required this.id,
     required this.name,
     required this.email,
+    required this.photoUrl,
+    required this.fetalId,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -40,6 +44,8 @@ class User {
       id: json['id'] ?? '',
       name: json['name'] ?? '',
       email: json['email'] ?? '',
+      photoUrl: json['photoUrl'] ?? '',
+      fetalId: json['fetalId'] ?? '',
     );
   }
 
@@ -48,6 +54,8 @@ class User {
       'id': id,
       'name': name,
       'email': email,
+      'photoUrl': photoUrl,
+      'fetalId': fetalId,
     };
   }
 
@@ -55,11 +63,15 @@ class User {
     String? id,
     String? name,
     String? email,
+    String? photoUrl,
+    String? fetalId,
   }) {
     return User(
       id: id ?? this.id,
       name: name ?? this.name,
       email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
+      fetalId: fetalId ?? this.fetalId,
     );
   }
 }
