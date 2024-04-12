@@ -7,6 +7,7 @@ import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_state.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
+import 'package:nutrimama/src/routes/extras.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
 class MedicalRecordScreen extends ConsumerStatefulWidget {
@@ -77,7 +78,13 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
             AsyncValueWidget(
               value: state.mother,
               data: (data) => InkWell(
-                onTap: () {},
+                onTap: () {
+                  ref.read(goRouterProvider).pushNamed(Routes.motherRecord.name,
+                      extra: Extras(datas: {
+                        ExtrasKey.mothers: state.mothers.asData?.value ?? [],
+                        ExtrasKey.mother: data,
+                      }));
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -105,7 +112,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
-                            '${data?.weight ?? '0'} kg', // Change '0' to appropriate default value
+                            '${data?.weight ?? '0'} kg',
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         ],
@@ -119,7 +126,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
-                            '${data?.bloodPressure ?? '0'} (mm/hg)', // Change '0' to appropriate default value
+                            '${data?.bloodPressure ?? '0'} (mm/hg)',
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         ],
@@ -146,7 +153,13 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
             AsyncValueWidget(
               value: state.fetal,
               data: (data) => InkWell(
-                onTap: () {},
+                onTap: () {
+                  ref.read(goRouterProvider).pushNamed(Routes.fetalRecord.name,
+                      extra: Extras(datas: {
+                        ExtrasKey.fetals: state.fetals.asData?.value ?? [],
+                        ExtrasKey.fetal: data,
+                      }));
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -174,7 +187,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
-                            '${data?.weight ?? '0'} kg', // Change '0' to appropriate default value
+                            '${data?.weight ?? '0'} kg',
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         ],
@@ -188,7 +201,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                             style: TextStyle(fontSize: 16.0),
                           ),
                           Text(
-                            '${data?.length ?? '0'} cm', // Change '0' to appropriate default value
+                            '${data?.length ?? '0'} cm',
                             style: const TextStyle(fontSize: 16.0),
                           ),
                         ],
@@ -202,7 +215,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                             style: TextStyle(fontSize: 16),
                           ),
                           Text(
-                            '${data?.heartRate ?? '0'}', // Change '0' to appropriate default value
+                            '${data?.heartRate ?? '0'}',
                             style: const TextStyle(fontSize: 16),
                           ),
                         ],
@@ -234,23 +247,36 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
               context: context,
               builder: (context) {
                 return Container(
-                  padding: const EdgeInsets.all(20.0),
-                  height: 200.0,
+                  padding: const EdgeInsets.only(
+                    top: 30.0,
+                    left: 20.0,
+                    right: 20.0,
+                  ),
+                  height: 180.0,
                   width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // button tambah data ibu dan janin width 100%
                       SizedBox(
                         width: double.infinity,
+                        height: 56,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorApp.green,
+                            shape: const BeveledRectangleBorder(),
                           ),
                           onPressed: () {
-                            ref
-                                .read(goRouterProvider)
-                                .pushNamed(Routes.addMotherRecord.name);
+                            ref.read(goRouterProvider).pushNamed(
+                                  Routes.addMotherRecord.name,
+                                  extra: Extras(
+                                    datas: {
+                                      ExtrasKey.user: widget.user,
+                                    },
+                                  ),
+                                );
                           },
                           child: const Text(
                             'Tambah Data Ibu',
@@ -261,17 +287,24 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 10.0),
+                      const SizedBox(height: 12.0),
                       SizedBox(
                         width: double.infinity,
+                        height: 56,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorApp.primary,
+                            shape: const BeveledRectangleBorder(),
                           ),
                           onPressed: () {
-                            ref
-                                .read(goRouterProvider)
-                                .pushNamed(Routes.addFetalRecord.name);
+                            ref.read(goRouterProvider).pushNamed(
+                                  Routes.addFetalRecord.name,
+                                  extra: Extras(
+                                    datas: {
+                                      ExtrasKey.user: widget.user,
+                                    },
+                                  ),
+                                );
                           },
                           child: const Text(
                             'Tambah Data Janin',

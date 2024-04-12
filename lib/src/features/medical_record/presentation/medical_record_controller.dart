@@ -16,6 +16,8 @@ class MedicalRecordController extends _$MedicalRecordController {
     return MedicalRecordState(
       weightController: TextEditingController(),
       bloodPressureController: TextEditingController(),
+      lengthController: TextEditingController(),
+      heartRateController: TextEditingController(),
     );
   }
 
@@ -27,6 +29,7 @@ class MedicalRecordController extends _$MedicalRecordController {
         for (var element in data) {
           Logger().i(element.toJson());
         }
+        data.sort((a, b) => b.date.compareTo(a.date));
         state = state.copyWith(
           allFetals: AsyncData(data),
           fetals: AsyncData(getFetalsById(user.fetalId, data)),
@@ -41,7 +44,22 @@ class MedicalRecordController extends _$MedicalRecordController {
     );
   }
 
-  Future<void> addFetal(Fetal fetal, User user) async {
+  Future<void> addFetal(User user) async {
+    state = state.copyWith(
+      fetals: const AsyncLoading(),
+    );
+
+    final fetal = Fetal(
+      id: '',
+      fetalId: user.fetalId,
+      weight: double.tryParse(state.weightController.text) ?? 0.0,
+      date: state.date == null
+          ? DateTime.now()
+          : DateTime.parse(state.date.toString()),
+      length: double.tryParse(state.lengthController.text) ?? 0.0,
+      heartRate: int.tryParse(state.heartRateController.text) ?? 0,
+    );
+
     final result =
         await ref.read(medicalRecordRepositoryProvider).addFetal(fetal, user);
     result.when(
@@ -75,9 +93,10 @@ class MedicalRecordController extends _$MedicalRecordController {
         for (var element in data) {
           Logger().i(element.toJson());
         }
+        data.sort((a, b) => b.date.compareTo(a.date));
         state = state.copyWith(
           mothers: AsyncData(data),
-          mother: AsyncData(getLatestMother(data)),
+          mother: AsyncData(data.first),
         );
       },
       failure: (error, stackTrace) {
@@ -88,14 +107,19 @@ class MedicalRecordController extends _$MedicalRecordController {
     );
   }
 
-  // TODO: ga usah pake mother param
-  Future<void> addMother(Mother mother, User user) async {
-    // final mother = Mother(
-    //   id: '',
-    //   date: state.date,
-    //   weight: state.weightController.text,
-    //   bloodPressure: state.bloodPressureController.text,
-    // );
+  Future<void> addMother(User user) async {
+    state = state.copyWith(
+      mothers: const AsyncLoading(),
+    );
+
+    final mother = Mother(
+      id: '',
+      date: state.date == null
+          ? DateTime.now()
+          : DateTime.parse(state.date.toString()),
+      weight: double.tryParse(state.weightController.text) ?? 0.0,
+      bloodPressure: state.bloodPressureController.text,
+    );
 
     final result =
         await ref.read(medicalRecordRepositoryProvider).addMother(mother, user);

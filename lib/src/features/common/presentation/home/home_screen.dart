@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
-import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 
 class HomeScreen extends ConsumerWidget {

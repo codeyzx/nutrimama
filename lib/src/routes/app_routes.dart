@@ -9,9 +9,13 @@ import 'package:nutrimama/src/features/common/presentation/botnavbar/botnavbar_p
 import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
+import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
+import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/add_fetal_record_screen.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/add_mother_record_screen.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/fetal_record_screen.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_screen.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/mother_record_screen.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -28,6 +32,8 @@ enum Routes {
   medicalRecord,
   addFetalRecord,
   addMotherRecord,
+  motherRecord,
+  fetalRecord,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -88,12 +94,40 @@ GoRouter goRouter(GoRouterRef ref) {
       GoRoute(
         path: '/addFetalRecord',
         name: Routes.addFetalRecord.name,
-        builder: (context, state) => const AddFetalRecordScreen(),
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final user = extras.datas[ExtrasKey.user] as User;
+          return AddFetalRecordScreen(user: user);
+        },
       ),
       GoRoute(
         path: '/addMotherRecord',
         name: Routes.addMotherRecord.name,
-        builder: (context, state) => const AddMotherRecordScreen(),
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final user = extras.datas[ExtrasKey.user] as User;
+          return AddMotherRecordScreen(user: user);
+        },
+      ),
+      GoRoute(
+        path: '/motherRecord',
+        name: Routes.motherRecord.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final mothers = extras.datas[ExtrasKey.mothers] as List<Mother>;
+          final mother = extras.datas[ExtrasKey.mother] as Mother;
+          return MotherRecordScreen(mothers: mothers, mother: mother);
+        },
+      ),
+      GoRoute(
+        path: '/fetalRecord',
+        name: Routes.fetalRecord.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final fetals = extras.datas[ExtrasKey.fetals] as List<Fetal>;
+          final fetal = extras.datas[ExtrasKey.fetal] as Fetal;
+          return FetalRecordScreen(fetals: fetals, fetal: fetal);
+        },
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(

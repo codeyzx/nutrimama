@@ -3,4 +3,8 @@ class ExtrasKey {
   static const index = 'index';
   static const home = 'home';
   static const user = 'user';
+  static const mother = 'mother';
+  static const mothers = 'mothers';
+  static const fetal = 'fetal';
+  static const fetals = 'fetals';
 }

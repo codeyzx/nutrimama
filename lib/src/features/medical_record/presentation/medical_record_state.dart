@@ -4,6 +4,7 @@ import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
 
 class MedicalRecordState {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final AsyncValue<List<Mother>?> mothers;
   final AsyncValue<List<Fetal>?> fetals;
   final AsyncValue<List<Fetal>?> allFetals;
@@ -11,6 +12,8 @@ class MedicalRecordState {
   final AsyncValue<Fetal?> fetal;
   final TextEditingController weightController;
   final TextEditingController bloodPressureController;
+  final TextEditingController lengthController;
+  final TextEditingController heartRateController;
   final String? date;
 
   MedicalRecordState({
@@ -21,6 +24,8 @@ class MedicalRecordState {
     this.fetal = const AsyncLoading(),
     required this.weightController,
     required this.bloodPressureController,
+    required this.lengthController,
+    required this.heartRateController,
     this.date,
   });
 
@@ -32,6 +37,8 @@ class MedicalRecordState {
     AsyncValue<Fetal?>? fetal,
     TextEditingController? weightController,
     TextEditingController? bloodPressureController,
+    TextEditingController? lengthController,
+    TextEditingController? heartRateController,
     String? date,
   }) {
     return MedicalRecordState(
@@ -43,6 +50,8 @@ class MedicalRecordState {
       weightController: weightController ?? this.weightController,
       bloodPressureController:
           bloodPressureController ?? this.bloodPressureController,
+      lengthController: lengthController ?? this.lengthController,
+      heartRateController: heartRateController ?? this.heartRateController,
       date: date ?? this.date,
     );
   }

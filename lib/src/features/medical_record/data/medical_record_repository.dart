@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:logger/web.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
@@ -33,7 +32,9 @@ class MedicalRecordRepository {
 
   Future<Result<String>> addFetal(Fetal fetal, User user) async {
     try {
-      await userDb.doc(user.id).collection('fetal').add(fetal.toJson());
+      final ref = userDb.doc(user.id).collection('fetal').doc();
+      final temp = fetal.copyWith(id: ref.id);
+      await ref.set(temp.toJson());
       return const Result.success('Success');
     } catch (e) {
       return Result.failure(
@@ -60,7 +61,9 @@ class MedicalRecordRepository {
 
   Future<Result<String>> addMother(Mother mother, User user) async {
     try {
-      await userDb.doc(user.id).collection('mother').add(mother.toJson());
+      final ref = userDb.doc(user.id).collection('mother').doc();
+      final temp = mother.copyWith(id: ref.id);
+      await ref.set(temp.toJson());
       return const Result.success('Success');
     } catch (e) {
       return Result.failure(
