@@ -8,6 +8,7 @@ import 'package:nutrimama/src/features/chatbot/presentation/chatbot_screen.dart'
 import 'package:nutrimama/src/features/common/presentation/botnavbar/botnavbar_page.dart';
 import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
+import 'package:nutrimama/src/features/common/presentation/question/question_page.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
@@ -24,6 +25,7 @@ part 'app_routes.g.dart';
 enum Routes {
   splash,
   onboard,
+  question,
   register,
   login,
   botNavBar,
@@ -61,6 +63,11 @@ GoRouter goRouter(GoRouterRef ref) {
         path: '/register',
         name: Routes.register.name,
         builder: (context, state) => const RegisterPage(),
+      ),
+      GoRoute(
+        path: '/question',
+        name: Routes.question.name,
+        builder: (context, state) => const QuestionPage(),
       ),
       GoRoute(
         path: '/login',

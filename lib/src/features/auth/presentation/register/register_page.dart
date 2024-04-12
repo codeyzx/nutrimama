@@ -19,7 +19,7 @@ class RegisterPage extends ConsumerWidget {
         state.registerValue.whenOrNull(
           data: (message) {
             if (message != null) {
-              context.goNamed(Routes.botNavBar.name);
+              ref.read(goRouterProvider).goNamed(Routes.question.name);
             }
           },
           error: (error, stackTrace) {

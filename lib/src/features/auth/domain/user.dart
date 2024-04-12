@@ -30,6 +30,7 @@ class User {
   final String email;
   final String photoUrl;
   final String fetalId;
+  final bool isSuccessRegister;
 
   const User({
     required this.id,
@@ -37,6 +38,7 @@ class User {
     required this.email,
     required this.photoUrl,
     required this.fetalId,
+    required this.isSuccessRegister,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -46,6 +48,7 @@ class User {
       email: json['email'] ?? '',
       photoUrl: json['photoUrl'] ?? '',
       fetalId: json['fetalId'] ?? '',
+      isSuccessRegister: json['isSuccessRegister'] ?? false,
     );
   }
 
@@ -56,6 +59,7 @@ class User {
       'email': email,
       'photoUrl': photoUrl,
       'fetalId': fetalId,
+      'isSuccessRegister': isSuccessRegister,
     };
   }
 
@@ -65,6 +69,7 @@ class User {
     String? email,
     String? photoUrl,
     String? fetalId,
+    bool? isSuccessRegister,
   }) {
     return User(
       id: id ?? this.id,
@@ -72,6 +77,7 @@ class User {
       email: email ?? this.email,
       photoUrl: photoUrl ?? this.photoUrl,
       fetalId: fetalId ?? this.fetalId,
+      isSuccessRegister: isSuccessRegister ?? this.isSuccessRegister,
     );
   }
 }

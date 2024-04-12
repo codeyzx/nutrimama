@@ -96,8 +96,26 @@ class $AssetsImagesGen {
   AssetGenImage get profileDefaultImg =>
       const AssetGenImage('assets/images/profile_default_img.png');
 
+  /// File path: assets/images/question_img_1.png
+  AssetGenImage get questionImg1 =>
+      const AssetGenImage('assets/images/question_img_1.png');
+
+  /// File path: assets/images/question_img_2.png
+  AssetGenImage get questionImg2 =>
+      const AssetGenImage('assets/images/question_img_2.png');
+
+  /// File path: assets/images/question_img_3.png
+  AssetGenImage get questionImg3 =>
+      const AssetGenImage('assets/images/question_img_3.png');
+
   /// List of all assets
-  List<dynamic> get values => [nutrimamaLogo, profileDefaultImg];
+  List<dynamic> get values => [
+        nutrimamaLogo,
+        profileDefaultImg,
+        questionImg1,
+        questionImg2,
+        questionImg3
+      ];
 }
 
 class Assets {

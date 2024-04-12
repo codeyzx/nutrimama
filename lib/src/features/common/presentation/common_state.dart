@@ -11,11 +11,7 @@ class CommonState {
   final bool isLastPage;
   final int currentIndex;
   final Widget currentScreen;
-  final String gender;
-  final String age;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final AsyncValue<bool?> isGetLoading;
-  final bool isOverlayVisible;
   final AsyncValue<User> userValue;
 
   CommonState({
@@ -23,13 +19,9 @@ class CommonState {
     this.isCommunityActive = false,
     this.isEduActive = false,
     this.isProfileActive = false,
-    this.isOverlayVisible = false,
     this.isLastPage = false,
     this.currentIndex = 0,
     this.currentScreen = const HomeScreen(),
-    this.gender = "Male",
-    this.age = "10",
-    this.isGetLoading = const AsyncData(false),
     this.userValue = const AsyncLoading(),
   });
 
@@ -41,10 +33,6 @@ class CommonState {
     bool? isLastPage,
     int? currentIndex,
     Widget? currentScreen,
-    String? gender,
-    String? age,
-    AsyncValue<bool?>? isGetLoading,
-    bool? isOverlayVisible,
     AsyncValue<User>? userValue,
   }) {
     return CommonState(
@@ -55,10 +43,6 @@ class CommonState {
       isLastPage: isLastPage ?? this.isLastPage,
       currentIndex: currentIndex ?? this.currentIndex,
       currentScreen: currentScreen ?? this.currentScreen,
-      gender: gender ?? this.gender,
-      age: age ?? this.age,
-      isGetLoading: isGetLoading ?? this.isGetLoading,
-      isOverlayVisible: isOverlayVisible ?? this.isOverlayVisible,
       userValue: userValue ?? this.userValue,
     );
   }

@@ -41,7 +41,13 @@ class CommonController extends _$CommonController {
         final isLogin = ref.read(commonRepositoryProvider).isLogin();
         if (isLogin) {
           await getProfile();
-          ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
+          final isSuccessRegister =
+              state.userValue.asData?.value.isSuccessRegister ?? false;
+          if (isSuccessRegister) {
+            ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
+          } else {
+            ref.read(goRouterProvider).goNamed(Routes.question.name);
+          }
         } else {
           ref.read(goRouterProvider).goNamed(Routes.login.name);
         }

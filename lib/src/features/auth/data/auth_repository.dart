@@ -45,6 +45,7 @@ class AuthRepository {
     }
   }
 
+//TODO: ketika register maka set sub collection
   Future<Result> register(RequestRegister requestRegister) async {
     try {
       final emailAddress = requestRegister.email;
