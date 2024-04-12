@@ -45,7 +45,6 @@ class AuthRepository {
     }
   }
 
-//TODO: ketika register maka set sub collection
   Future<Result> register(RequestRegister requestRegister) async {
     try {
       final emailAddress = requestRegister.email;
@@ -62,6 +61,10 @@ class AuthRepository {
         'id': credUser!.uid,
         'name': requestRegister.name,
         'email': requestRegister.email,
+        'photoUrl': '',
+        'fetalId': '',
+        'isSuccessRegister': false,
+        'fetalDate': null,
       };
 
       await FirebaseFirestore.instance

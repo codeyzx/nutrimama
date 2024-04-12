@@ -30,6 +30,7 @@ class User {
   final String email;
   final String photoUrl;
   final String fetalId;
+  final DateTime? fetalDate;
   final bool isSuccessRegister;
 
   const User({
@@ -38,6 +39,7 @@ class User {
     required this.email,
     required this.photoUrl,
     required this.fetalId,
+    required this.fetalDate,
     required this.isSuccessRegister,
   });
 
@@ -48,6 +50,9 @@ class User {
       email: json['email'] ?? '',
       photoUrl: json['photoUrl'] ?? '',
       fetalId: json['fetalId'] ?? '',
+      fetalDate: json['fetalDate'] == null
+          ? null
+          : DateTime.fromMillisecondsSinceEpoch(json['fetalDate']),
       isSuccessRegister: json['isSuccessRegister'] ?? false,
     );
   }
@@ -59,6 +64,7 @@ class User {
       'email': email,
       'photoUrl': photoUrl,
       'fetalId': fetalId,
+      'fetalDate': fetalDate?.millisecondsSinceEpoch,
       'isSuccessRegister': isSuccessRegister,
     };
   }
@@ -69,6 +75,7 @@ class User {
     String? email,
     String? photoUrl,
     String? fetalId,
+    DateTime? fetalDate,
     bool? isSuccessRegister,
   }) {
     return User(
@@ -77,6 +84,7 @@ class User {
       email: email ?? this.email,
       photoUrl: photoUrl ?? this.photoUrl,
       fetalId: fetalId ?? this.fetalId,
+      fetalDate: fetalDate ?? this.fetalDate,
       isSuccessRegister: isSuccessRegister ?? this.isSuccessRegister,
     );
   }

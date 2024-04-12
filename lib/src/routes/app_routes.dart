@@ -104,7 +104,8 @@ GoRouter goRouter(GoRouterRef ref) {
         builder: (context, state) {
           final extras = state.extra as Extras;
           final user = extras.datas[ExtrasKey.user] as User;
-          return AddFetalRecordScreen(user: user);
+          final isNewFetal = extras.datas[ExtrasKey.isNewFetal] as bool;
+          return AddFetalRecordScreen(user: user, isNewFetal: isNewFetal);
         },
       ),
       GoRoute(

@@ -30,10 +30,28 @@ class MedicalRecordRepository {
     }
   }
 
+  Future<Result<String>> addNewFetal(Fetal fetal, User user) async {
+    try {
+      final ref = userDb.doc(user.id).collection('fetal').doc();
+      Fetal temp = fetal.copyWith(id: ref.id);
+      String fetalId = 'fetal-${DateTime.now().millisecondsSinceEpoch}';
+      temp = temp.copyWith(fetalId: fetalId);
+      await userDb.doc(user.id).update({
+        'fetalId': fetalId,
+        'fetalDate': fetal.fetalDate.millisecondsSinceEpoch
+      });
+      await ref.set(temp.toJson());
+      return const Result.success('Success');
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
+
   Future<Result<String>> addFetal(Fetal fetal, User user) async {
     try {
       final ref = userDb.doc(user.id).collection('fetal').doc();
-      final temp = fetal.copyWith(id: ref.id, fetalId: 'fetal-${ref.id}');
+      Fetal temp = fetal.copyWith(id: ref.id);
       await ref.set(temp.toJson());
       return const Result.success('Success');
     } catch (e) {

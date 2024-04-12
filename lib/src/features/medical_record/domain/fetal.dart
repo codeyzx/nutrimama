@@ -4,7 +4,9 @@ class Fetal {
   final double weight;
   final double length;
   final int heartRate;
-  final DateTime date;
+  final DateTime? date;
+  final DateTime fetalDate;
+  final bool isBorn;
 
   Fetal({
     required this.id,
@@ -13,6 +15,8 @@ class Fetal {
     required this.length,
     required this.heartRate,
     required this.date,
+    required this.fetalDate,
+    this.isBorn = false,
   });
 
   factory Fetal.fromJson(Map<String, dynamic> json) {
@@ -23,8 +27,12 @@ class Fetal {
       length: json['length'] == null ? 0 : json['length'].toDouble(),
       heartRate: json['heartRate'] ?? 0,
       date: json['date'] == null
-          ? DateTime.now()
+          ? null
           : DateTime.fromMillisecondsSinceEpoch(json['date']),
+      fetalDate: json['fetalDate'] == null
+          ? DateTime.now()
+          : DateTime.fromMillisecondsSinceEpoch(json['fetalDate']),
+      isBorn: json['isBorn'] ?? false,
     );
   }
 
@@ -35,7 +43,9 @@ class Fetal {
       'weight': weight,
       'length': length,
       'heartRate': heartRate,
-      'date': date.millisecondsSinceEpoch,
+      'date': date?.millisecondsSinceEpoch,
+      'fetalDate': fetalDate.millisecondsSinceEpoch,
+      'isBorn': isBorn,
     };
   }
 
@@ -46,6 +56,8 @@ class Fetal {
     double? length,
     int? heartRate,
     DateTime? date,
+    DateTime? fetalDate,
+    bool? isBorn,
   }) {
     return Fetal(
       id: id ?? this.id,
@@ -54,6 +66,8 @@ class Fetal {
       length: length ?? this.length,
       heartRate: heartRate ?? this.heartRate,
       date: date ?? this.date,
+      fetalDate: fetalDate ?? this.fetalDate,
+      isBorn: isBorn ?? this.isBorn,
     );
   }
 }

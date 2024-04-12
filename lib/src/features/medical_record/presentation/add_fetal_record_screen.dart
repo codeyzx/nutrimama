@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
+import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
@@ -10,7 +11,12 @@ import 'package:quickalert/quickalert.dart';
 
 class AddFetalRecordScreen extends ConsumerWidget {
   final User user;
-  const AddFetalRecordScreen({super.key, required this.user});
+  final bool isNewFetal;
+  const AddFetalRecordScreen({
+    super.key,
+    required this.user,
+    required this.isNewFetal,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -108,9 +114,11 @@ class AddFetalRecordScreen extends ConsumerWidget {
                     style: TextStyle(fontSize: 12.0, color: Colors.grey),
                   ),
                   const SizedBox(height: 20.0),
-                  const Text(
-                    'Tanggal',
-                    style: TextStyle(fontSize: 16.0),
+                  Text(
+                    isNewFetal
+                        ? 'Tanggal Mengandung Janin'
+                        : 'Tanggal Pemeriksaan',
+                    style: const TextStyle(fontSize: 16.0),
                   ),
                   const SizedBox(height: 10.0),
                   // using date picker not text field
@@ -176,7 +184,10 @@ class AddFetalRecordScreen extends ConsumerWidget {
                       }
                       await ref
                           .read(medicalRecordControllerProvider.notifier)
-                          .addFetal(user);
+                          .addFetal(user, isNewFetal);
+                      await ref
+                          .read(commonControllerProvider.notifier)
+                          .getProfile();
                       Future.delayed(const Duration(seconds: 1), () {
                         QuickAlert.show(
                             context: context,

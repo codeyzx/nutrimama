@@ -94,7 +94,7 @@ class FetalRecordScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16.0),
                     ),
                     Text(
-                      fetal?.date.dateMonthYear ?? "-",
+                      fetal?.date?.dateMonthYear ?? "-",
                       style: const TextStyle(fontSize: 16.0),
                     ),
                   ],
@@ -187,7 +187,7 @@ class FetalRecordScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16.0),
                         ),
                         Text(
-                          fetal?.date.dateMonthYear ?? "-",
+                          fetal?.date?.dateMonthYear ?? "-",
                           style: const TextStyle(fontSize: 16.0),
                         ),
                       ],

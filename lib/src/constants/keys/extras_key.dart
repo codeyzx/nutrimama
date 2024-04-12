@@ -7,4 +7,5 @@ class ExtrasKey {
   static const mothers = 'mothers';
   static const fetal = 'fetal';
   static const fetals = 'fetals';
+  static const isNewFetal = 'isNewFetal';
 }

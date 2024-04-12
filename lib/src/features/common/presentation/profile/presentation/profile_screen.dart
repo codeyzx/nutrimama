@@ -382,6 +382,9 @@ class ProfileScreen extends ConsumerWidget {
                           confirmBtnColor: HexColor('#DB3F3F'),
                           onConfirmBtnTap: () {
                             controller.logout();
+                            ref
+                                .read(goRouterProvider)
+                                .goNamed(Routes.login.name);
                           });
                     },
                     child: Row(

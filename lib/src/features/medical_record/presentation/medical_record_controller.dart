@@ -4,6 +4,7 @@ import 'package:nutrimama/src/features/medical_record/data/medical_record_reposi
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_state.dart';
+import 'package:nutrimama/src/services/remote/remote.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart';
 
@@ -29,7 +30,15 @@ class MedicalRecordController extends _$MedicalRecordController {
         for (var element in data) {
           Logger().i(element.toJson());
         }
-        data.sort((a, b) => b.date.compareTo(a.date));
+        data.sort((a, b) {
+          if (a.date == null) {
+            return 1;
+          } else if (b.date == null) {
+            return -1;
+          } else {
+            return b.date!.compareTo(a.date!);
+          }
+        });
         state = state.copyWith(
           allFetals: AsyncData(data),
           fetals: AsyncData(getFetalsById(user.fetalId, data)),
@@ -44,24 +53,44 @@ class MedicalRecordController extends _$MedicalRecordController {
     );
   }
 
-  Future<void> addFetal(User user) async {
+  Future<void> addFetal(User user, bool isNewFetal) async {
     state = state.copyWith(
       fetals: const AsyncLoading(),
     );
 
-    final fetal = Fetal(
-      id: '',
-      fetalId: user.fetalId,
-      weight: double.tryParse(state.weightController.text) ?? 0.0,
-      date: state.date == null
-          ? DateTime.now()
-          : DateTime.parse(state.date.toString()),
-      length: double.tryParse(state.lengthController.text) ?? 0.0,
-      heartRate: int.tryParse(state.heartRateController.text) ?? 0,
-    );
+    Fetal fetal;
+    Result<String> result;
+    if (isNewFetal) {
+      fetal = Fetal(
+        id: '',
+        fetalId: '',
+        weight: double.tryParse(state.weightController.text) ?? 0.0,
+        fetalDate: state.date == null
+            ? DateTime.now()
+            : DateTime.parse(state.date.toString()),
+        length: double.tryParse(state.lengthController.text) ?? 0.0,
+        heartRate: int.tryParse(state.heartRateController.text) ?? 0,
+        date: null,
+      );
+      result = await ref
+          .read(medicalRecordRepositoryProvider)
+          .addNewFetal(fetal, user);
+    } else {
+      fetal = Fetal(
+        id: '',
+        fetalId: user.fetalId,
+        fetalDate: user.fetalDate ?? DateTime.now(),
+        weight: double.tryParse(state.weightController.text) ?? 0.0,
+        date: state.date == null
+            ? DateTime.now()
+            : DateTime.parse(state.date.toString()),
+        length: double.tryParse(state.lengthController.text) ?? 0.0,
+        heartRate: int.tryParse(state.heartRateController.text) ?? 0,
+      );
+      result =
+          await ref.read(medicalRecordRepositoryProvider).addFetal(fetal, user);
+    }
 
-    final result =
-        await ref.read(medicalRecordRepositoryProvider).addFetal(fetal, user);
     result.when(
       success: (data) {
         getFetal(user);
@@ -81,7 +110,11 @@ class MedicalRecordController extends _$MedicalRecordController {
   Fetal? getLatestFetal(String fetalId, List<Fetal> fetals) {
     final fetalsById = getFetalsById(fetalId, fetals);
     if (fetalsById.isEmpty) return null;
-    fetalsById.sort((a, b) => a.date.compareTo(b.date));
+    fetalsById.sort((a, b) => a.date == null
+        ? 1
+        : b.date == null
+            ? -1
+            : b.date!.compareTo(a.date!));
     return fetalsById.last;
   }
 
@@ -96,7 +129,7 @@ class MedicalRecordController extends _$MedicalRecordController {
         data.sort((a, b) => b.date.compareTo(a.date));
         state = state.copyWith(
           mothers: AsyncData(data),
-          mother: AsyncData(data.first),
+          mother: AsyncData(data.isEmpty ? null : data.first),
         );
       },
       failure: (error, stackTrace) {
