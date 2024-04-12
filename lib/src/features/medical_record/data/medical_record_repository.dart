@@ -33,7 +33,7 @@ class MedicalRecordRepository {
   Future<Result<String>> addFetal(Fetal fetal, User user) async {
     try {
       final ref = userDb.doc(user.id).collection('fetal').doc();
-      final temp = fetal.copyWith(id: ref.id);
+      final temp = fetal.copyWith(id: ref.id, fetalId: 'fetal-${ref.id}');
       await ref.set(temp.toJson());
       return const Result.success('Success');
     } catch (e) {

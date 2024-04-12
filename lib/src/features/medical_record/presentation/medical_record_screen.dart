@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:logger/logger.dart';
 import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
+import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_state.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
@@ -151,94 +153,115 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
               ),
             ),
             AsyncValueWidget(
-              value: state.fetal,
-              data: (data) => InkWell(
-                onTap: () {
-                  ref.read(goRouterProvider).pushNamed(Routes.fetalRecord.name,
-                      extra: Extras(datas: {
-                        ExtrasKey.fetals: state.fetals.asData?.value ?? [],
-                        ExtrasKey.fetal: data,
-                      }));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  margin: const EdgeInsets.all(20.0),
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Data Janin',
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Berat',
-                            style: TextStyle(fontSize: 16.0),
+                value: state.allFetals,
+                data: (data) {
+                  final fetals = _groupAndSelectLatestFetals(data ?? []);
+                  return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: fetals.length,
+                    reverse: true,
+                    itemBuilder: (context, index) {
+                      final fetal = data![index];
+                      return InkWell(
+                        onTap: () {
+                          ref.read(goRouterProvider).pushNamed(
+                              Routes.fetalRecord.name,
+                              extra: Extras(datas: {
+                                ExtrasKey.fetals: state.allFetals.asData?.value
+                                        ?.where(
+                                            (e) => e.fetalId == fetal.fetalId)
+                                        .toList() ??
+                                    [],
+                                ExtrasKey.fetal: fetal,
+                              }));
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(10.0),
                           ),
-                          Text(
-                            '${data?.weight ?? '0'} kg',
-                            style: const TextStyle(fontSize: 16.0),
+                          margin: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Data Janin ${fetals.length == 1 ? '' : fetals.length - index}',
+                                style: const TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              const SizedBox(height: 10.0),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Berat Badan',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                  Text(
+                                    '${fetal.weight} kg',
+                                    style: const TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10.0),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Panjang',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                  Text(
+                                    '${fetal.length} cm',
+                                    style: const TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10.0),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Detak Jantung',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                  Text(
+                                    '${fetal.heartRate} bpm',
+                                    style: const TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 10.0),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'Tanggal Periksa',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                  Text(
+                                    fetal.date.dateMonthYear,
+                                    style: const TextStyle(fontSize: 16.0),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Panjang',
-                            style: TextStyle(fontSize: 16.0),
-                          ),
-                          Text(
-                            '${data?.length ?? '0'} cm',
-                            style: const TextStyle(fontSize: 16.0),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Detak Jantung/Menit',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                            '${data?.heartRate ?? '0'}',
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10.0),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Tanggal Periksa',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                            data?.date.dateMonthYear ?? "-",
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+                        ),
+                      );
+                    },
+                  );
+                }),
           ],
         ),
         floatingActionButton: FloatingActionButton(
@@ -325,4 +348,25 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
           child: const Icon(Icons.add),
         ));
   }
+}
+
+List<Fetal> _groupAndSelectLatestFetals(List<Fetal> data) {
+  final List<Fetal> groupedFetals = [];
+  final Map<String, List<Fetal>> grouped = {};
+
+  // Grouping fetals by fetalId
+  for (var fetal in data) {
+    if (!grouped.containsKey(fetal.fetalId)) {
+      grouped[fetal.fetalId] = [];
+    }
+    grouped[fetal.fetalId]!.add(fetal);
+  }
+
+  // Selecting the latest fetal for each group
+  grouped.forEach((key, value) {
+    final latestFetal = value.reduce((a, b) => a.date.isAfter(b.date) ? a : b);
+    groupedFetals.add(latestFetal);
+  });
+
+  return groupedFetals;
 }
