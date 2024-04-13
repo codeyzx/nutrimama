@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'common_controller.dart';
+part of 'nutrition_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$commonControllerHash() => r'7f60f978d2945f7a7340ec2accb23da2773a7362';
+String _$nutritionControllerHash() =>
+    r'a86afa0d82c5e6c8aea979734f393cb8866dfef0';
 
-/// See also [CommonController].
-@ProviderFor(CommonController)
-final commonControllerProvider =
-    NotifierProvider<CommonController, CommonState>.internal(
-  CommonController.new,
-  name: r'commonControllerProvider',
+/// See also [NutritionController].
+@ProviderFor(NutritionController)
+final nutritionControllerProvider =
+    NotifierProvider<NutritionController, NutritionState>.internal(
+  NutritionController.new,
+  name: r'nutritionControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$commonControllerHash,
+      : _$nutritionControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$CommonController = Notifier<CommonState>;
+typedef _$NutritionController = Notifier<NutritionState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

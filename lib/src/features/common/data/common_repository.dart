@@ -20,6 +20,10 @@ class CommonRepository {
         toFirestore: (RequestUser user, _) => user.toJson(),
       );
 
+  String? getUid() {
+    return auth.FirebaseAuth.instance.currentUser?.uid;
+  }
+
   Future<Result<User>> getProfile() async {
     String? uid = auth.FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) {
@@ -39,15 +43,6 @@ class CommonRepository {
 
   bool isLogin() {
     return auth.FirebaseAuth.instance.currentUser != null;
-  }
-
-  Future<Result<String?>> updateDiet(Map<String, dynamic> user) async {
-    try {
-      await userDb.doc(user['id']).update(user);
-      return const Result.success('Success');
-    } catch (e, st) {
-      return Result.failure(NetworkExceptions.getFirebaseException(e), st);
-    }
   }
 
   Future<Result<String>> updateProfile(RequestUser user) async {

@@ -16,6 +16,18 @@ class QuestionController extends _$QuestionController {
     );
   }
 
+  void setLoading() {
+    state = state.copyWith(
+      loadingValue: const AsyncLoading(),
+    );
+  }
+
+  void setSuccess() {
+    state = state.copyWith(
+      loadingValue: const AsyncData(true),
+    );
+  }
+
   void setLastPage(bool value) {
     state = state.copyWith(
       isLastPage: value,

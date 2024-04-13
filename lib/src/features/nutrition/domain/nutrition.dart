@@ -1,16 +1,18 @@
 class Nutrition {
+  final String id;
   final int age;
   final double weight;
   final double height;
-  final double calories;
-  final double carbs;
-  final double fat;
-  final double protein;
-  final double iron;
-  final double calcium;
-  final double folate;
+  final int calories;
+  final int carbs;
+  final int fat;
+  final int protein;
+  final int iron;
+  final int calcium;
+  final int sugars;
 
   Nutrition({
+    required this.id,
     required this.age,
     required this.weight,
     required this.height,
@@ -20,26 +22,28 @@ class Nutrition {
     required this.protein,
     required this.iron,
     required this.calcium,
-    required this.folate,
+    required this.sugars,
   });
 
   factory Nutrition.fromJson(Map<String, dynamic> json) {
     return Nutrition(
+      id: json['id'] ?? '',
       age: json['age'] ?? 0,
       weight: json['weight'] == null ? 0 : json['weight'].toDouble(),
       height: json['height'] == null ? 0 : json['height'].toDouble(),
-      calories: json['calories'] == null ? 0 : json['calories'].toDouble(),
-      carbs: json['carbs'] == null ? 0 : json['carbs'].toDouble(),
-      fat: json['fat'] == null ? 0 : json['fat'].toDouble(),
-      protein: json['protein'] == null ? 0 : json['protein'].toDouble(),
-      iron: json['iron'] == null ? 0 : json['iron'].toDouble(),
-      calcium: json['calcium'] == null ? 0 : json['calcium'].toDouble(),
-      folate: json['folate'] == null ? 0 : json['folate'].toDouble(),
+      calories: json['calories'] ?? 0,
+      carbs: json['carbs'] ?? 0,
+      fat: json['fat'] ?? 0,
+      protein: json['protein'] ?? 0,
+      iron: json['iron'] ?? 0,
+      calcium: json['calcium'] ?? 0,
+      sugars: json['sugars'] ?? 0,
     );
   }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'id': id,
       'age': age,
       'weight': weight,
       'height': height,
@@ -49,23 +53,25 @@ class Nutrition {
       'protein': protein,
       'iron': iron,
       'calcium': calcium,
-      'folate': folate,
+      'sugars': sugars,
     };
   }
 
   Nutrition copyWith({
+    String? id,
     int? age,
     double? weight,
     double? height,
-    double? calories,
-    double? carbs,
-    double? fat,
-    double? protein,
-    double? iron,
-    double? calcium,
-    double? folate,
+    int? calories,
+    int? carbs,
+    int? fat,
+    int? protein,
+    int? iron,
+    int? calcium,
+    int? sugars,
   }) {
     return Nutrition(
+      id: id ?? this.id,
       age: age ?? this.age,
       height: height ?? this.height,
       weight: weight ?? this.weight,
@@ -75,7 +81,7 @@ class Nutrition {
       protein: protein ?? this.protein,
       iron: iron ?? this.iron,
       calcium: calcium ?? this.calcium,
-      folate: folate ?? this.folate,
+      sugars: sugars ?? this.sugars,
     );
   }
 }

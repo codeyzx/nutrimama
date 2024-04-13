@@ -4,11 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/common_widgets/input_form/dropdown_form_widget.dart';
 import 'package:nutrimama/src/constants/constants.dart';
+import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/common/presentation/question/question_controller.dart';
+import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
-// TODO: INI BELUM BERES, KETIKA SELESAI QUESTION SET FIREBASE TERUS BIKIN FIELD BUAT NARO DATA DIET
 class QuestionPage extends ConsumerWidget {
   const QuestionPage({super.key});
 
@@ -54,24 +55,6 @@ class QuestionPage extends ConsumerWidget {
                             children: [
                               Gap.h28,
                               Text(
-                                'Your Weight (kg)',
-                                style: TextStyle(
-                                  color: ColorApp.black,
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              Gap.h8,
-                              InputFormWidget(
-                                controller: state.weightController,
-                                onChanged: (value) {},
-                                hintText: 'Weight',
-                                prefixIcon: Icons.monitor_weight,
-                                validator: controller.validateWeight,
-                                isWeight: true,
-                              ),
-                              Gap.h20,
-                              Text(
                                 'Your Height (cm)',
                                 style: TextStyle(
                                   color: ColorApp.black,
@@ -87,6 +70,24 @@ class QuestionPage extends ConsumerWidget {
                                 prefixIcon: Icons.leaderboard,
                                 validator: controller.validateHeight,
                                 isHeight: true,
+                              ),
+                              Gap.h20,
+                              Text(
+                                'Your Weight (kg)',
+                                style: TextStyle(
+                                  color: ColorApp.black,
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                              Gap.h8,
+                              InputFormWidget(
+                                controller: state.weightController,
+                                onChanged: (value) {},
+                                hintText: 'Weight',
+                                prefixIcon: Icons.monitor_weight,
+                                validator: controller.validateWeight,
+                                isWeight: true,
                               ),
                             ],
                           )),
@@ -129,46 +130,59 @@ class QuestionPage extends ConsumerWidget {
                               backgroundColor:
                                   MaterialStateProperty.all(ColorApp.primary),
                             ),
-                            onPressed: () async {
-                              if (state.heightController.text.isEmpty ||
-                                  state.weightController.text.isEmpty) {
-                                hideSnackBar(context);
-                                appSnackBar(
-                                    context, Colors.red, 'Field do not empty');
-                              } else {
-                                //   final resultCalculate =
-                                //       controller.calculateDiet(
-                                //     gender: state.gender,
-                                //     weight: double.parse(
-                                //         controller.weightController.text),
-                                //     height: double.parse(
-                                //         controller.heightController.text),
-                                //     age: int.tryParse(state.age) ?? 0,
-                                //     weightGoal: state.weightGoal!,
-                                //     activity: state.activity!,
-                                //   );
-                                //   resultCalculate['id'] = FirebaseAuth
-                                //       .instance.currentUser!.uid
-                                //       .toString();
-//
-                                //   resultCalculate['isSuccessRegister'] = true;
-//
-                                //   await controller.updateDiet(resultCalculate);
-//
-                                //   await controller.getProfile();
+                            onPressed: state.loadingValue is AsyncLoading
+                                ? () {}
+                                : () async {
+                                    if (state.heightController.text.isEmpty ||
+                                        state.weightController.text.isEmpty) {
+                                      hideSnackBar(context);
+                                      appSnackBar(context, Colors.red,
+                                          'Field do not empty');
+                                    } else {
+                                      controller.setLoading();
+                                      final resultCalculate = ref
+                                          .read(nutritionControllerProvider
+                                              .notifier)
+                                          .calculateNutrition(
+                                              weight: double.parse(
+                                                  state.weightController.text),
+                                              height: double.parse(
+                                                  state.heightController.text),
+                                              age: int.parse(state.age));
 
-                                Future.delayed(const Duration(seconds: 1)).then(
-                                    (value) => ref
-                                        .read(goRouterProvider)
-                                        .goNamed(Routes.botNavBar.name));
-                              }
-                            },
-                            child: Text(
-                              'Start',
-                              style: TypographyApp.onBoardBtnText.copyWith(
-                                fontSize: 18.sp,
-                              ),
-                            ),
+                                      String uid = ref
+                                          .read(
+                                              commonControllerProvider.notifier)
+                                          .getUid();
+
+                                      await ref
+                                          .read(nutritionControllerProvider
+                                              .notifier)
+                                          .updateNutrition(
+                                              resultCalculate, uid);
+
+                                      await ref
+                                          .read(
+                                              commonControllerProvider.notifier)
+                                          .getProfile();
+
+                                      controller.setSuccess();
+
+                                      Future.delayed(const Duration(seconds: 1))
+                                          .then((value) => ref
+                                              .read(goRouterProvider)
+                                              .goNamed(Routes.botNavBar.name));
+                                    }
+                                  },
+                            child: state.loadingValue is AsyncLoading
+                                ? const LoadingWidget()
+                                : Text(
+                                    'Start',
+                                    style:
+                                        TypographyApp.onBoardBtnText.copyWith(
+                                      fontSize: 18.sp,
+                                    ),
+                                  ),
                           ),
                         ),
                       ),
