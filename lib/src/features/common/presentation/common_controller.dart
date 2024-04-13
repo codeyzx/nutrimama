@@ -43,7 +43,7 @@ class CommonController extends _$CommonController {
           await getProfile();
           final isSuccessRegister =
               state.userValue.asData?.value.isSuccessRegister ?? false;
-          if (isSuccessRegister) {
+          if (!isSuccessRegister) {
             ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
           } else {
             ref.read(goRouterProvider).goNamed(Routes.question.name);

@@ -10,7 +10,6 @@ class QuestionController extends _$QuestionController {
   @override
   QuestionState build() {
     return QuestionState(
-      nameController: TextEditingController(),
       weightController: TextEditingController(),
       heightController: TextEditingController(),
       ageController: TextEditingController(),
