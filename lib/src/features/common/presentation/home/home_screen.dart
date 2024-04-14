@@ -41,6 +41,13 @@ class HomeScreen extends ConsumerWidget {
                 },
                 child: const Text('Medical Record'),
               ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(goRouterProvider).pushNamed(Routes.searchFood.name);
+                },
+                child: const Text('Search Food'),
+              ),
             ],
           );
         },

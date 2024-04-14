@@ -10,6 +10,7 @@ import 'package:nutrimama/src/features/common/presentation/profile/presentation/
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:quickalert/quickalert.dart';
 
+// TODO: tambahin field buat input weight, age, height (update profile) dan gunain logic update nutrition
 class ProfileEditScreen extends ConsumerWidget {
   const ProfileEditScreen({super.key});
 

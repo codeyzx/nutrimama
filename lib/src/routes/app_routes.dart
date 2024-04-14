@@ -10,6 +10,8 @@ import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/question/question_page.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
+import 'package:nutrimama/src/features/food/presentation/detail_food_screen.dart';
+import 'package:nutrimama/src/features/food/presentation/search_food_screen.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/add_fetal_record_screen.dart';
@@ -36,6 +38,8 @@ enum Routes {
   addMotherRecord,
   motherRecord,
   fetalRecord,
+  detailFood,
+  searchFood,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -135,6 +139,20 @@ GoRouter goRouter(GoRouterRef ref) {
           final fetals = extras.datas[ExtrasKey.fetals] as List<Fetal>;
           final fetal = extras.datas[ExtrasKey.fetal] as Fetal;
           return FetalRecordScreen(fetals: fetals, fetal: fetal);
+        },
+      ),
+      GoRoute(
+        path: '/searchFood',
+        name: Routes.searchFood.name,
+        builder: (context, state) => const SearchFoodScreen(),
+      ),
+      GoRoute(
+        path: '/detailFood',
+        name: Routes.detailFood.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final food = extras.datas[ExtrasKey.food];
+          return DetailFoodScreen(food: food);
         },
       ),
     ],

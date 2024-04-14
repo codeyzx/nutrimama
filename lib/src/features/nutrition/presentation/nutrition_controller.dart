@@ -1,5 +1,5 @@
 import 'package:nutrimama/src/features/nutrition/data/nutrition_repository.dart';
-import 'package:nutrimama/src/features/nutrition/presentation/common_state.dart';
+import 'package:nutrimama/src/features/nutrition/presentation/nutrition_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'nutrition_controller.g.dart';
