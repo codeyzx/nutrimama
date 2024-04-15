@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/shared/extensions/date_time.dart';
 
@@ -15,10 +14,9 @@ class FetalRecordScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Medikal Record Janin'),
-        backgroundColor: ColorApp.primary,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          color: Colors.white,
+          color: Colors.black,
           onPressed: () {
             context.pop();
           },

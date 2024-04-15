@@ -38,10 +38,9 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Medikal Record'),
-          backgroundColor: ColorApp.primary,
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
-            color: Colors.white,
+            color: Colors.black,
             onPressed: () {
               ref.read(goRouterProvider).pop();
             },

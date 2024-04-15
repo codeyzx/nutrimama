@@ -88,11 +88,11 @@ final _appTheme = ThemeData(
   dividerColor: Colors.transparent,
   fontFamily: 'Poppins',
   appBarTheme: AppBarTheme(
-    elevation: 1,
+    backgroundColor: ColorApp.white,
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontFamily: 'Poppins',
-      color: Colors.white,
+      color: ColorApp.black,
       fontSize: ScreenUtil().setSp(18),
       fontWeight: FontWeight.w600,
     ),

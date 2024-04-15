@@ -1,32 +1,32 @@
 class Instructions {
-  final String tile;
+  final String title;
   final String description;
 
   Instructions({
-    required this.tile,
+    required this.title,
     required this.description,
   });
 
   factory Instructions.fromJson(Map<String, dynamic> json) {
     return Instructions(
-      tile: json['tile'] ?? '',
+      title: json['title'] ?? '',
       description: json['description'] ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'tile': tile,
+      'title': title,
       'description': description,
     };
   }
 
   Instructions copyWith({
-    String? tile,
+    String? title,
     String? description,
   }) {
     return Instructions(
-      tile: tile ?? this.tile,
+      title: title ?? this.title,
       description: description ?? this.description,
     );
   }

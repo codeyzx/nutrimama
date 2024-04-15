@@ -12,46 +12,45 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final commonState = ref.watch(commonControllerProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        centerTitle: true,
-        backgroundColor: Theme.of(context).colorScheme.primary,
+    return StatusBarWidget(
+      child: Scaffold(
+        body: Center(
+            child: AsyncValueWidget(
+          value: commonState.userValue,
+          data: (data) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Welcome ${data.name}',
+                    style: Theme.of(context).textTheme.headlineLarge),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    ref.read(goRouterProvider).pushNamed(
+                          Routes.medicalRecord.name,
+                          extra: Extras(
+                            datas: {
+                              ExtrasKey.user: data,
+                            },
+                          ),
+                        );
+                  },
+                  child: const Text('Medical Record'),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    ref
+                        .read(goRouterProvider)
+                        .pushNamed(Routes.searchFood.name);
+                  },
+                  child: const Text('Search Food'),
+                ),
+              ],
+            );
+          },
+        )),
       ),
-      body: Center(
-          child: AsyncValueWidget(
-        value: commonState.userValue,
-        data: (data) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Welcome ${data.name}',
-                  style: Theme.of(context).textTheme.headlineLarge),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(goRouterProvider).pushNamed(
-                        Routes.medicalRecord.name,
-                        extra: Extras(
-                          datas: {
-                            ExtrasKey.user: data,
-                          },
-                        ),
-                      );
-                },
-                child: const Text('Medical Record'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  ref.read(goRouterProvider).pushNamed(Routes.searchFood.name);
-                },
-                child: const Text('Search Food'),
-              ),
-            ],
-          );
-        },
-      )),
     );
   }
 }

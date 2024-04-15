@@ -10,6 +10,8 @@ import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/question/question_page.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
+import 'package:nutrimama/src/features/community/presentation/add_post_screen.dart';
+import 'package:nutrimama/src/features/community/presentation/detail_post_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/detail_food_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/search_food_screen.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
@@ -40,6 +42,8 @@ enum Routes {
   fetalRecord,
   detailFood,
   searchFood,
+  detailPost,
+  addPost,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -153,6 +157,24 @@ GoRouter goRouter(GoRouterRef ref) {
           final extras = state.extra as Extras;
           final food = extras.datas[ExtrasKey.food];
           return DetailFoodScreen(food: food);
+        },
+      ),
+      GoRoute(
+        path: '/detailPost',
+        name: Routes.detailPost.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final post = extras.datas[ExtrasKey.post];
+          return DetailPostScreen(post: post);
+        },
+      ),
+      GoRoute(
+        path: '/addPost',
+        name: Routes.addPost.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final user = extras.datas[ExtrasKey.user] as User;
+          return AddPostScreen(user: user);
         },
       ),
     ],

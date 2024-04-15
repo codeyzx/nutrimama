@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
+import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart';
+import 'package:nutrimama/src/constants/constants.dart';
+import 'package:nutrimama/src/features/food/domain/food.dart';
 import 'package:nutrimama/src/features/food/presentation/food_controller.dart';
+import 'package:nutrimama/src/routes/app_routes.dart';
+import 'package:nutrimama/src/routes/extras.dart';
 
 class SearchFoodScreen extends ConsumerWidget {
   const SearchFoodScreen({super.key});
@@ -20,6 +25,10 @@ class SearchFoodScreen extends ConsumerWidget {
           Padding(
             padding: const EdgeInsets.all(20),
             child: TextField(
+              controller: state.searchController,
+              onChanged: (value) {
+                controller.searchFoods();
+              },
               decoration: InputDecoration(
                 hintText: 'Cari makanan',
                 prefixIcon: const Icon(Icons.search),
@@ -29,32 +38,35 @@ class SearchFoodScreen extends ConsumerWidget {
               ),
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              controller.addFood();
+          // ElevatedButton(
+          //   onPressed: () {
+          //     controller.addFood();
+          //   },
+          //   child: const Text('Add Food'),
+          // ),
+          AsyncValueWidget(
+            value: state.searchFoods,
+            data: (foods) {
+              return Column(
+                children: foods!.map((food) {
+                  return FoodItem(food);
+                }).toList(),
+              );
             },
-            child: const Text('Add Food'),
           ),
-          const FoodItem('Salad Buah', 270),
-          const FoodItem('Semangkuk Salad', 270),
-          const FoodItem('Salad Buah-Buahan Lengkap', 120),
-          const FoodItem('Semangkuk Salad', 270),
-          const FoodItem('Salad Campur', 220),
-          const FoodItem('Salad Buah-Buahan Lengkap', 120),
         ],
       ),
     );
   }
 }
 
-class FoodItem extends StatelessWidget {
-  final String saladName;
-  final int calories;
+class FoodItem extends ConsumerWidget {
+  final Food food;
 
-  const FoodItem(this.saladName, this.calories, {super.key});
+  const FoodItem(this.food, {super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
@@ -69,11 +81,20 @@ class FoodItem extends StatelessWidget {
         ],
       ),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          ref.read(goRouterProvider).pushNamed(
+                Routes.detailFood.name,
+                extra: Extras(
+                  datas: {
+                    ExtrasKey.food: food,
+                  },
+                ),
+              );
+        },
         child: ListTile(
           leading: Assets.images.nutrimamaLogo.svg(width: 50, height: 50),
-          title: Text(saladName),
-          subtitle: Text('$calories Kkal'),
+          title: Text(food.name),
+          subtitle: Text('${food.calories} kalori'),
         ),
       ),
     );

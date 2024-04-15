@@ -1,26 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'common_controller.dart';
+part of 'community_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$commonControllerHash() => r'746f287cbcd04699c7049a46dab7d0c6fcb28e8d';
+String _$communityControllerHash() =>
+    r'8d130b846a1924b4821d2de2d4590e9dd79f8b69';
 
-/// See also [CommonController].
-@ProviderFor(CommonController)
-final commonControllerProvider =
-    NotifierProvider<CommonController, CommonState>.internal(
-  CommonController.new,
-  name: r'commonControllerProvider',
+/// See also [CommunityController].
+@ProviderFor(CommunityController)
+final communityControllerProvider =
+    NotifierProvider<CommunityController, CommunityState>.internal(
+  CommunityController.new,
+  name: r'communityControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$commonControllerHash,
+      : _$communityControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$CommonController = Notifier<CommonState>;
+typedef _$CommunityController = Notifier<CommunityState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

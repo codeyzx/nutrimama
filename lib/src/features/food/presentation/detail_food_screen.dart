@@ -36,9 +36,9 @@ class DetailFoodScreen extends ConsumerWidget {
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              "Salad Buah-Buahan Lengkap",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            Text(
+              food.name,
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             // btn tambahkan sarapan
@@ -93,67 +93,81 @@ class DetailFoodScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5)),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     "Nutrisi",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Kalori"),
-                      Text("270/330 Kkal"),
+                      const Text("Kalori"),
+                      Text(
+                        "${food.calories}/2000kcal",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Protein"),
-                      Text("80/140g"),
+                      const Text("Protein"),
+                      Text(
+                        "${food.protein}/50g",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Karbohidrat"),
-                      Text("200/310g"),
+                      const Text("Karbohidrat"),
+                      Text(
+                        "${food.carbs}/300g",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Lemak"),
-                      Text("34/140g"),
+                      const Text("Lemak"),
+                      Text(
+                        "${food.fat}/70g",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Folat"),
-                      Text("..."),
+                      const Text("Gula"),
+                      Text(
+                        "${food.sugars}/50g",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Zat Besi"),
-                      Text("..."),
+                      const Text("Zat Besi"),
+                      Text(
+                        "${food.iron}/18mg",
+                      ),
                     ],
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Kalsium"),
-                      Text("..."),
+                      const Text("Kalsium"),
+                      Text(
+                        "${food.calcium}/1000mg",
+                      ),
                     ],
                   ),
                 ],
@@ -167,48 +181,75 @@ class DetailFoodScreen extends ConsumerWidget {
               decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey),
                   borderRadius: BorderRadius.circular(5)),
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
+                    "Bahan-bahan",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 10),
+                  food.ingredients.isNotEmpty
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: food.ingredients
+                              .map((ingredient) => Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // ingredient has name and amount
+                                      Text(
+                                        ingredient.name,
+                                        style: const TextStyle(fontSize: 14),
+                                      ),
+                                      const SizedBox(height: 5),
+                                      Text(
+                                        ingredient.total,
+                                        style: const TextStyle(fontSize: 14),
+                                      ),
+                                    ],
+                                  ))
+                              .toList(),
+                        )
+                      : const Text(
+                          "Tidak ada bahan",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                  const SizedBox(height: 10),
+                  const Text(
                     "Panduan",
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    "Panduan Makanan Sehat",
-                    style: TextStyle(fontSize: 16),
-                  ),
+                  const SizedBox(height: 10),
+                  food.instructions.isNotEmpty
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: food.instructions
+                              .map((instruction) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // instruction has title and description
+                                        Text(
+                                          instruction.title,
+                                          style: const TextStyle(fontSize: 14),
+                                        ),
+                                        const SizedBox(height: 5),
+                                        Text(
+                                          instruction.description,
+                                          style: const TextStyle(fontSize: 14),
+                                        ),
+                                      ],
+                                    ),
+                                  ))
+                              .toList(),
+                        )
+                      : const Text(
+                          "Tidak ada panduan",
+                          style: TextStyle(fontSize: 16),
+                        ),
                 ],
               ),
             ),
