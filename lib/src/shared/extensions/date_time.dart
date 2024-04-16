@@ -37,6 +37,13 @@ extension XDateTime on DateTime {
       return '${diff.inHours} jam yang lalu';
     } else if (diff.inDays < 30 && diff.inDays > 0) {
       return '${diff.inDays} hari yang lalu';
+    } else if (year == now.year &&
+        month == now.month &&
+        day == now.day &&
+        diff.inDays == 0 &&
+        diff.inHours == 0 &&
+        diff.inMinutes == 0) {
+      return 'baru saja';
     } else {
       return dateWithDayMonthYear;
     }

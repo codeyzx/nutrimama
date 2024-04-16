@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:logger/logger.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
@@ -10,6 +13,7 @@ import 'package:nutrimama/src/features/common/presentation/profile/presentation/
 import 'package:nutrimama/src/features/community/domain/post.dart';
 import 'package:nutrimama/src/features/community/presentation/community_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
+import 'package:nutrimama/src/shared/extensions/dynamic.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:dotted_border/dotted_border.dart';
 
@@ -54,7 +58,7 @@ class AddPostScreen extends ConsumerWidget {
                 height: 20.h,
               ),
               SizedBox(
-                height: 200, // Customize the height of the placeholder
+                height: 200,
                 child: DottedBorder(
                   borderType: BorderType.RRect,
                   radius: const Radius.circular(12),
@@ -63,32 +67,131 @@ class AddPostScreen extends ConsumerWidget {
                   child: ClipRRect(
                     borderRadius: const BorderRadius.all(Radius.circular(12)),
                     child: InkWell(
-                      onTap: () {},
-                      child: Container(
-                          height: 200,
-                          color: HexColor('#0366DA').withOpacity(.2),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                      onTap: () async {
+                        await showDialog(
+                          context: context,
+                          builder: (ctx) => AlertDialog(
+                            title: const Text('Choose Image',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black,
+                                )),
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                  "Tambahkan Foto",
-                                  style: TextStyle(
-                                    color: ColorApp.primary,
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.bold,
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      Navigator.pop(context);
+                                      try {
+                                        await controller.pickImage(
+                                            isCamera: false);
+                                      } catch (e) {
+                                        Logger().e(e);
+                                        Future.delayed(
+                                            const Duration(milliseconds: 500),
+                                            () => showSnackBar(context,
+                                                Colors.red, e.toString()));
+                                      }
+                                    },
+                                    child: RichText(
+                                      text: const TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child: Icon(
+                                              Icons.image,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                              text: '  From Gallery',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.black,
+                                              )),
+                                        ],
+                                      ),
+                                    ),
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 10.w,
+                                const SizedBox(
+                                  height: 12,
                                 ),
-                                Icon(
-                                  Icons.add,
-                                  color: ColorApp.primary,
-                                )
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: GestureDetector(
+                                    onTap: () async {
+                                      Navigator.pop(context);
+                                      try {
+                                        await controller.pickImage(
+                                            isCamera: true);
+                                      } catch (e) {
+                                        Future.delayed(
+                                            const Duration(milliseconds: 500),
+                                            () => showSnackBar(context,
+                                                ColorApp.red, e.toString()));
+                                      }
+                                    },
+                                    child: RichText(
+                                      text: const TextSpan(
+                                        children: [
+                                          WidgetSpan(
+                                            child: Icon(
+                                              Icons.camera_alt,
+                                            ),
+                                          ),
+                                          TextSpan(
+                                              text: '  From Camera',
+                                              style: TextStyle(
+                                                fontSize: 14,
+                                                color: Colors.black,
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
-                          )),
+                          ),
+                        );
+                      },
+                      child: state.imageUrl != null &&
+                              state.imageUrl!.isNotEmpty
+                          ? SizedBox(
+                              height: 200,
+                              width: 1.sw,
+                              child: Image.file(
+                                File(state.imageUrl!),
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : Container(
+                              height: 200,
+                              color: HexColor('#0366DA').withOpacity(.2),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "Tambahkan Foto",
+                                      style: TextStyle(
+                                        color: ColorApp.primary,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    Icon(
+                                      Icons.add,
+                                      color: ColorApp.primary,
+                                    )
+                                  ],
+                                ),
+                              )),
                     ),
                   ),
                 ),
@@ -101,11 +204,20 @@ class AddPostScreen extends ConsumerWidget {
                 style: TypographyApp.eprofileLabel,
               ),
               Gap.h8,
-              InputFormWidget(
-                controller: state.titleController,
-                onChanged: (value) {},
-                hintText: '',
-                prefixIcon: null,
+              Form(
+                key: state.formKey,
+                child: InputFormWidget(
+                  controller: state.titleController,
+                  onChanged: (value) {},
+                  hintText: '',
+                  prefixIcon: null,
+                  validator: (value) {
+                    if (value.isNull() || value == '') {
+                      return 'Judul tidak boleh kosong';
+                    }
+                    return null;
+                  },
+                ),
               ),
               SizedBox(
                 height: 20.h,
@@ -150,6 +262,9 @@ class AddPostScreen extends ConsumerWidget {
             onPressed: state.posts is AsyncLoading
                 ? null
                 : () async {
+                    if (!state.formKey.currentState!.validate()) {
+                      return;
+                    }
                     await controller.addPost(user);
 
                     Future.delayed(const Duration(seconds: 1), () {

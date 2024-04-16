@@ -65,25 +65,30 @@ class DetailPostScreen extends ConsumerWidget {
               SizedBox(height: 17.h),
               Row(
                 children: [
-                  CachedNetworkImage(
-                    imageUrl: post.userPhoto,
-                    imageBuilder: (context, imageProvider) => Container(
-                      height: 42.h,
-                      width: 42.w,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
+                  post.userPhoto.isNotEmpty
+                      ? CachedNetworkImage(
+                          imageUrl: post.userPhoto,
+                          imageBuilder: (context, imageProvider) => Container(
+                            height: 42.h,
+                            width: 42.w,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        )
+                      : const CircleAvatar(
+                          radius: 20,
+                          child: Icon(Icons.person),
                         ),
-                      ),
-                    ),
-                    placeholder: (context, url) => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
-                  ),
                   SizedBox(width: 8.w),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

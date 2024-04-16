@@ -10,3 +10,8 @@ appSnackBar(BuildContext context, Color color, String label) =>
 
 hideSnackBar(BuildContext context) =>
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
+
+showSnackBar(BuildContext context, Color color, String label) {
+  hideSnackBar(context);
+  appSnackBar(context, color, label);
+}
