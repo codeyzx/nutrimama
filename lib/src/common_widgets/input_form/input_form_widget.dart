@@ -24,6 +24,8 @@ class InputFormWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final bool? isHeight;
   final bool? isWeight;
+  final TextInputType? keyboardType;
+  final int? maxLines;
 
   const InputFormWidget({
     super.key,
@@ -35,6 +37,8 @@ class InputFormWidget extends StatelessWidget {
     this.validator,
     this.isHeight,
     this.isWeight,
+    this.keyboardType,
+    this.maxLines,
   })  : inputFormType = InputFormType.normal,
         isObscure = false,
         readOnly = false,
@@ -48,6 +52,7 @@ class InputFormWidget extends StatelessWidget {
     this.onTap,
     this.errorText,
     this.validator,
+    this.keyboardType,
   })  : inputFormType = InputFormType.button,
         prefixIcon = null,
         isObscure = false,
@@ -55,6 +60,7 @@ class InputFormWidget extends StatelessWidget {
         onChanged = null,
         isHeight = null,
         isWeight = null,
+        maxLines = 1,
         onObscureTap = null;
 
   const InputFormWidget.password({
@@ -67,10 +73,12 @@ class InputFormWidget extends StatelessWidget {
     this.onObscureTap,
     this.errorText,
     this.validator,
+    this.keyboardType,
   })  : inputFormType = InputFormType.password,
         readOnly = false,
         isHeight = null,
         isWeight = null,
+        maxLines = 1,
         onTap = null;
 
   bool get isPassword => inputFormType == InputFormType.password;
@@ -83,8 +91,9 @@ class InputFormWidget extends StatelessWidget {
       obscureText: isObscure,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: validator,
+      maxLines: maxLines ?? 1,
       style: TypographyApp.loginOnInput,
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: keyboardType ?? TextInputType.emailAddress,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 16.h),
         errorText: errorText,

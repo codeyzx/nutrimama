@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutrimama/firebase_options.dart';
@@ -8,6 +9,8 @@ import 'package:nutrimama/src/routes/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -88,11 +91,11 @@ final _appTheme = ThemeData(
   dividerColor: Colors.transparent,
   fontFamily: 'Poppins',
   appBarTheme: AppBarTheme(
-    elevation: 1,
+    backgroundColor: ColorApp.white,
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontFamily: 'Poppins',
-      color: Colors.white,
+      color: ColorApp.black,
       fontSize: ScreenUtil().setSp(18),
       fontWeight: FontWeight.w600,
     ),
@@ -109,11 +112,11 @@ final _appTheme = ThemeData(
     bodyLarge: TextStyle(
         fontSize: ScreenUtil().setSp(14),
         fontWeight: FontWeight.w600,
-        color: Colors.yellow),
+        color: Colors.black),
     bodyMedium: TextStyle(
         fontSize: ScreenUtil().setSp(14),
         fontWeight: FontWeight.w600,
-        color: ColorApp.grey),
+        color: ColorApp.black),
     labelLarge: TextStyle(
         fontSize: ScreenUtil().setSp(14),
         fontWeight: FontWeight.w600,

@@ -27,4 +27,25 @@ extension XDateTime on DateTime {
       return dateWithMonth;
     }
   }
+
+  String get pastDate {
+    final DateTime now = DateTime.now();
+    final Duration diff = now.difference(this);
+    if (diff.inMinutes < 60 && diff.inMinutes > 0) {
+      return '${diff.inMinutes} menit yang lalu';
+    } else if (diff.inHours < 24 && diff.inHours > 0) {
+      return '${diff.inHours} jam yang lalu';
+    } else if (diff.inDays < 30 && diff.inDays > 0) {
+      return '${diff.inDays} hari yang lalu';
+    } else if (year == now.year &&
+        month == now.month &&
+        day == now.day &&
+        diff.inDays == 0 &&
+        diff.inHours == 0 &&
+        diff.inMinutes == 0) {
+      return 'baru saja';
+    } else {
+      return dateWithDayMonthYear;
+    }
+  }
 }
