@@ -46,6 +46,13 @@ class HomeScreen extends ConsumerWidget {
                   },
                   child: const Text('Search Food'),
                 ),
+                // const SizedBox(height: 20),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     ref.read(educationControllerProvider.notifier).addArticle();
+                //   },
+                //   child: const Text('Add Articles'),
+                // ),
               ],
             );
           },

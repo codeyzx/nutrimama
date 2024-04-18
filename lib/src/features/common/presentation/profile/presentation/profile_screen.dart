@@ -18,8 +18,6 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(profileControllerProvider);
     final controller = ref.read(profileControllerProvider.notifier);
-    final nutritionController = ref.read(nutritionControllerProvider.notifier);
-    final nutritionState = ref.watch(nutritionControllerProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -134,14 +132,14 @@ class ProfileScreen extends ConsumerWidget {
                   ),
                   InkWell(
                     onTap: () async {
-                      controller.setTextFieldValue();
+                      final nutritionController =
+                          ref.read(nutritionControllerProvider.notifier);
+
                       await nutritionController
                           .getNutrition(state.user.asData?.value?.id ?? '');
-                      controller.setNutritionValue(ref
-                          .read(nutritionControllerProvider)
-                          .nutrition
-                          .asData
-                          ?.value);
+
+                      nutritionController.setTextFieldValue();
+                      controller.setTextField();
                       ref
                           .read(goRouterProvider)
                           .pushNamed(Routes.profileEdit.name);

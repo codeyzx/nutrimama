@@ -3,7 +3,6 @@ import 'package:nutrimama/src/features/auth/data/auth_repository.dart';
 import 'package:nutrimama/src/features/auth/domain/request_user.dart';
 import 'package:nutrimama/src/features/common/data/common_repository.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_state.dart';
-import 'package:nutrimama/src/features/nutrition/domain/nutrition.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_controller.g.dart';
@@ -15,20 +14,6 @@ class ProfileController extends _$ProfileController {
     getProfile();
     return ProfileState(
       nameController: TextEditingController(),
-      heightController: TextEditingController(),
-      weightController: TextEditingController(),
-    );
-  }
-
-  void setTextFieldValue() {
-    state = state.copyWith(
-      nameController: state.nameController
-        ..text = state.user.asData?.value?.name ?? '',
-      heightController: state.heightController
-        ..text = state.nutrition.asData?.value?.height.toString() ?? '',
-      weightController: state.weightController
-        ..text = state.nutrition.asData?.value?.weight.toString() ?? '',
-      age: state.nutrition.asData?.value?.age.toString() ?? '',
     );
   }
 
@@ -74,15 +59,10 @@ class ProfileController extends _$ProfileController {
     );
   }
 
-  void setNutritionValue(Nutrition? nutrition) {
+  void setTextField() {
     state = state.copyWith(
-      nutrition: AsyncData(nutrition),
-    );
-  }
-
-  void setAge(String? age) {
-    state = state.copyWith(
-      age: age,
+      nameController: state.nameController
+        ..text = state.user.asData?.value?.name ?? '',
     );
   }
 

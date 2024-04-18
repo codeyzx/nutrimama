@@ -12,6 +12,7 @@ import 'package:nutrimama/src/features/common/presentation/question/question_pag
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/add_post_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/detail_post_screen.dart';
+import 'package:nutrimama/src/features/education/presentation/detail_article_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/detail_food_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/search_food_screen.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
@@ -44,6 +45,7 @@ enum Routes {
   searchFood,
   detailPost,
   addPost,
+  detailArticle,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -175,6 +177,15 @@ GoRouter goRouter(GoRouterRef ref) {
           final extras = state.extra as Extras;
           final user = extras.datas[ExtrasKey.user] as User;
           return AddPostScreen(user: user);
+        },
+      ),
+      GoRoute(
+        path: '/detailArticle',
+        name: Routes.detailArticle.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final article = extras.datas[ExtrasKey.article];
+          return DetailArticleScreen(article: article);
         },
       ),
     ],

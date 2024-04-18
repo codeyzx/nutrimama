@@ -10,4 +10,5 @@ class ExtrasKey {
   static const isNewFetal = 'isNewFetal';
   static const food = 'food';
   static const post = 'post';
+  static const article = 'article';
 }

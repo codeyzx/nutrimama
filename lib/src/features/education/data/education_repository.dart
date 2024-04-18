@@ -29,11 +29,12 @@ class EducationRepository {
     }
   }
 
-  Future<Result<String>> addArticle(Article article) async {
+  Future<Result<String>> addArticle(List<Article> articles) async {
     try {
-      final ref = articleDb.doc();
-      article = article.copyWith(id: ref.id);
-      await ref.set(article);
+      for (final article in articles) {
+        final ref = articleDb.doc();
+        await ref.set(article.copyWith(id: ref.id, imageUrl: ''));
+      }
       return const Result.success('Success');
     } catch (e) {
       return Result.failure(

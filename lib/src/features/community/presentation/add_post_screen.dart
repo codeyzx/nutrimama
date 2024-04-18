@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:logger/logger.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
@@ -86,7 +85,6 @@ class AddPostScreen extends ConsumerWidget {
                                         await controller.pickImage(
                                             isCamera: false);
                                       } catch (e) {
-                                        Logger().e(e);
                                         Future.delayed(
                                             const Duration(milliseconds: 500),
                                             () => showSnackBar(context,
