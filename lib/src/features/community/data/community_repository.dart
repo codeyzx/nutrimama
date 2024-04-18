@@ -23,17 +23,6 @@ class CommunityRepository {
     }
   }
 
-  Future<Result<Post>> getPost(String postId) async {
-    try {
-      final resultPost = await postDb.doc(postId).get();
-      final post = resultPost.data();
-      return Result.success(post!);
-    } catch (e) {
-      return Result.failure(
-          NetworkExceptions.getFirebaseException(e), StackTrace.current);
-    }
-  }
-
   Future<Result<String>> addPost(Post post) async {
     try {
       final ref = postDb.doc();

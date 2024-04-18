@@ -1,26 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'profile_controller.dart';
+part of 'journal_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileControllerHash() => r'b179e488c16bf83a0118ce8a6fdfb77eff0039e4';
+String _$journalControllerHash() => r'94c53bc69650e1b4c3190928e291a391ad2a49e0';
 
-/// See also [ProfileController].
-@ProviderFor(ProfileController)
-final profileControllerProvider =
-    AutoDisposeNotifierProvider<ProfileController, ProfileState>.internal(
-  ProfileController.new,
-  name: r'profileControllerProvider',
+/// See also [JournalController].
+@ProviderFor(JournalController)
+final journalControllerProvider =
+    NotifierProvider<JournalController, JournalState>.internal(
+  JournalController.new,
+  name: r'journalControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$profileControllerHash,
+      : _$journalControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ProfileController = AutoDisposeNotifier<ProfileState>;
+typedef _$JournalController = Notifier<JournalState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

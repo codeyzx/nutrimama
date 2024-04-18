@@ -5,9 +5,11 @@ import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
+import 'package:nutrimama/src/common_widgets/input_form/dropdown_form_widget.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
+import 'package:nutrimama/src/shared/extensions/extensions.dart';
 import 'package:quickalert/quickalert.dart';
 
 // TODO: tambahin field buat input weight, age, height (update profile) dan gunain logic update nutrition
@@ -167,70 +169,32 @@ class ProfileEditScreen extends ConsumerWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Text(
-                "Age",
-                style: TypographyApp.eprofileLabel,
-              ),
-              TextFormField(
-                // controller: controller.ageController,
-                decoration: InputDecoration(
-                  border: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: HexColor('#E5E5E5'),
-                      width: 1.w,
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Gap.h20,
+                  Text(
+                    'Age',
+                    style: TextStyle(
+                      color: ColorApp.black,
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: HexColor('#E5E5E5'),
-                      width: 1.w,
-                    ),
+                  DropdownFormWidget(
+                    value: state.age ?? '20',
+                    list: state.ageList,
+                    prefixIcon: Icons.cake,
+                    onChanged: (value) {
+                      if (value.isNotNull()) {
+                        controller.setAge(value.toString());
+                      }
+                    },
                   ),
-                ),
-                style: TypographyApp.eprofileValue,
+                  Gap.h12,
+                ],
               ),
-              SizedBox(
-                height: 20.h,
-              ),
-              // Text(
-              //   "Your Goals",
-              //   style: TypographyApp.eprofileLabel,
-              // ),
-              // Gap.h12,
-              // DropdownFormWidget(
-              //   value: state.weightGoal?.name ?? '',
-              //   list: const [
-              //     {'value': 'gain', 'text': 'Gain weight'},
-              //     {'value': 'maintain', 'text': 'Maintain weight'},
-              //     {'value': 'lose', 'text': 'Lose weight'},
-              //   ],
-              //   prefixIcon: Icons.monitor_weight,
-              //   onChanged: (value) {
-              //     controller.setWeightGoal(value);
-              //   },
-              // ),
-              // SizedBox(
-              //   height: 20.h,
-              // ),
-              // Text(
-              //   "Your Activity",
-              //   style: TypographyApp.eprofileLabel,
-              // ),
-              // Gap.h12,
-              // DropdownFormWidget(
-              //   value: state.activity?.name ?? '',
-              //   list: const [
-              //     {'value': 'rare', 'text': 'Little or no exercise'},
-              //     {'value': 'medium', 'text': '2-3 exercise/weeks'},
-              //     {'value': 'active', 'text': 'Very active'},
-              //   ],
-              //   prefixIcon: Icons.access_time_filled,
-              //   onChanged: (value) {
-              //     if (value.isNotNull()) {
-              //       controller.setActivity(value);
-              //     }
-              //   },
-              // ),
               SizedBox(
                 height: 150.h,
               )

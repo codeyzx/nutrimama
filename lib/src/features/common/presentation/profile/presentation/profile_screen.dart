@@ -7,6 +7,7 @@ import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_controller.dart';
+import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:quickalert/quickalert.dart';
 
@@ -17,6 +18,8 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(profileControllerProvider);
     final controller = ref.read(profileControllerProvider.notifier);
+    final nutritionController = ref.read(nutritionControllerProvider.notifier);
+    final nutritionState = ref.watch(nutritionControllerProvider);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -130,8 +133,15 @@ class ProfileScreen extends ConsumerWidget {
                     height: 18.h,
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: () async {
                       controller.setTextFieldValue();
+                      await nutritionController
+                          .getNutrition(state.user.asData?.value?.id ?? '');
+                      controller.setNutritionValue(ref
+                          .read(nutritionControllerProvider)
+                          .nutrition
+                          .asData
+                          ?.value);
                       ref
                           .read(goRouterProvider)
                           .pushNamed(Routes.profileEdit.name);
