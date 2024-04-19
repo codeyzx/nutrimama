@@ -11,4 +11,5 @@ class ExtrasKey {
   static const food = 'food';
   static const post = 'post';
   static const article = 'article';
+  static const video = 'video';
 }

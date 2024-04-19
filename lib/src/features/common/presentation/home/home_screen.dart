@@ -46,6 +46,13 @@ class HomeScreen extends ConsumerWidget {
                   },
                   child: const Text('Search Food'),
                 ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    ref.read(goRouterProvider).pushNamed(Routes.video.name);
+                  },
+                  child: const Text('Videos'),
+                ),
                 // const SizedBox(height: 20),
                 // ElevatedButton(
                 //   onPressed: () {

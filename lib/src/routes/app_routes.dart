@@ -12,7 +12,9 @@ import 'package:nutrimama/src/features/common/presentation/question/question_pag
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/add_post_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/detail_post_screen.dart';
-import 'package:nutrimama/src/features/education/presentation/detail_article_screen.dart';
+import 'package:nutrimama/src/features/education/presentation/article/detail_article_screen.dart';
+import 'package:nutrimama/src/features/education/presentation/video/detail_video_screen.dart';
+import 'package:nutrimama/src/features/education/presentation/video/video_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/detail_food_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/search_food_screen.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
@@ -46,6 +48,8 @@ enum Routes {
   detailPost,
   addPost,
   detailArticle,
+  video,
+  detailVideo,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -186,6 +190,20 @@ GoRouter goRouter(GoRouterRef ref) {
           final extras = state.extra as Extras;
           final article = extras.datas[ExtrasKey.article];
           return DetailArticleScreen(article: article);
+        },
+      ),
+      GoRoute(
+        path: '/video',
+        name: Routes.video.name,
+        builder: (context, state) => const VideoScreen(),
+      ),
+      GoRoute(
+        path: '/detailVideo',
+        name: Routes.detailVideo.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final video = extras.datas[ExtrasKey.video];
+          return DetailVideoScreen(video: video);
         },
       ),
     ],
