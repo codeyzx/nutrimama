@@ -7,7 +7,7 @@ part of 'nutrition_controller.dart';
 // **************************************************************************
 
 String _$nutritionControllerHash() =>
-    r'2c59cb7bf530c926ba1968c3687246aa03adb94d';
+    r'9874f7aff9eca5ffc8257adb3c10aaa3666186cf';
 
 /// See also [NutritionController].
 @ProviderFor(NutritionController)

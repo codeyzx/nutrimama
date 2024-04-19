@@ -117,15 +117,43 @@ class NutritionController extends _$NutritionController {
     );
   }
 
-  Future<void> updateNutrition(
-      Map<String, dynamic> nutrition, String uid) async {
+  Future<void> setNutrition(Map<String, dynamic> nutrition, String uid) async {
     state = state.copyWith(
       nutrition: const AsyncLoading(),
     );
 
     final result = await ref
         .read(nutritionRepositoryProvider)
-        .updateNutrition(nutrition, uid);
+        .setNutrition(nutrition, uid);
+
+    result.when(
+      success: (data) {
+        state = state.copyWith(
+          nutrition: AsyncData(data),
+        );
+      },
+      failure: (error, stackTrace) {
+        state = state.copyWith(
+          nutrition: AsyncError(error, stackTrace),
+        );
+      },
+    );
+  }
+
+  Future<void> updateNutrition(String uid) async {
+    state = state.copyWith(
+      nutrition: const AsyncLoading(),
+    );
+
+    final nutrition = calculateNutrition(
+      weight: double.parse(state.weightController.text),
+      height: double.parse(state.heightController.text),
+      age: int.parse(state.age.toString()),
+    );
+
+    final result = await ref
+        .read(nutritionRepositoryProvider)
+        .setNutrition(nutrition, uid, isUpdate: true);
 
     result.when(
       success: (data) {

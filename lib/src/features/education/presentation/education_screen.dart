@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
-import 'package:nutrimama/src/features/education/domain/article.dart';
+import 'package:nutrimama/src/features/education/domain/category.dart';
 import 'package:nutrimama/src/features/education/presentation/education_controller.dart';
 import 'package:nutrimama/src/features/education/presentation/widgets/article_widget.dart';
 import 'package:nutrimama/src/features/education/presentation/widgets/chip_bar_widget.dart';
@@ -45,10 +45,11 @@ class EducationScreen extends ConsumerWidget {
                 child: ChipBarWidget(
                   selectedChipIndex: state.selectedIndex,
                   enumValues:
-                      ArticleCategory.values.map((e) => e.value).toList(),
+                      EducationCategory.values.map((e) => e.value).toList(),
                   onChipSelected: controller.onChipSelected,
-                  chips:
-                      ArticleCategory.values.map((e) => Text(e.value)).toList(),
+                  chips: EducationCategory.values
+                      .map((e) => Text(e.value))
+                      .toList(),
                 ),
               ),
               AsyncValueWidget(

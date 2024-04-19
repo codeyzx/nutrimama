@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:nutrimama/src/features/auth/data/auth_repository.dart';
 import 'package:nutrimama/src/features/auth/domain/request_user.dart';
@@ -33,14 +36,19 @@ class ProfileController extends _$ProfileController {
     );
   }
 
+  // TODO: update profile harus ke postingan juga (hal-hal public harus ke write jg)
   FutureOr<void> updateProfile() async {
     state = state.copyWith(
       loadingValue: const AsyncLoading(),
     );
 
+    final imageUrl =
+        state.imageUrl != null ? await uploadImages(state.imageUrl!) : '';
+
     final user = RequestUser(
       name: state.nameController.text,
       id: state.user.asData?.value?.id,
+      photoUrl: imageUrl,
     );
 
     final result = await ref.read(authRepositoryProvider).updateProfile(user);
@@ -63,10 +71,26 @@ class ProfileController extends _$ProfileController {
     state = state.copyWith(
       nameController: state.nameController
         ..text = state.user.asData?.value?.name ?? '',
+      imageUrl: state.user.asData?.value?.photoUrl ?? '',
     );
   }
 
   Future<void> logout() async {
     await ref.read(authRepositoryProvider).logout();
+  }
+
+  void setImageUrl(String imageUrl) {
+    state = state.copyWith(
+      imageUrl: imageUrl,
+    );
+  }
+
+  Future<String> uploadImages(String imagesPath) async {
+    final value = await FirebaseStorage.instance
+        .ref()
+        .child(
+            'users/images/${DateTime.now().millisecondsSinceEpoch}.${imagesPath.split('.').last}')
+        .putFile(File(imagesPath));
+    return value.ref.getDownloadURL();
   }
 }

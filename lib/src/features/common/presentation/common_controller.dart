@@ -12,7 +12,6 @@ import 'package:logger/logger.dart';
 
 part 'common_controller.g.dart';
 
-// TODO: autoset botnavbar jadi index awal sama getprofile buat reload dll
 @Riverpod(keepAlive: true)
 class CommonController extends _$CommonController {
   @override

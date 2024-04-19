@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
-import 'package:nutrimama/src/features/education/domain/article.dart';
-import 'package:nutrimama/src/features/education/domain/video.dart';
+import 'package:nutrimama/src/constants/constants.dart';
+import 'package:nutrimama/src/features/education/domain/category.dart';
 import 'package:nutrimama/src/features/education/presentation/education_controller.dart';
-import 'package:nutrimama/src/features/education/presentation/widgets/article_widget.dart';
 import 'package:nutrimama/src/features/education/presentation/widgets/chip_bar_widget.dart';
 import 'package:nutrimama/src/features/education/presentation/widgets/video_widget.dart';
+import 'package:nutrimama/src/routes/app_routes.dart';
+import 'package:nutrimama/src/routes/extras.dart';
 
 class VideoScreen extends ConsumerWidget {
   const VideoScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(educationControllerProvider.notifier);
+    final controller = ref.watch(educationControllerProvider.notifier);
     final state = ref.watch(educationControllerProvider);
     return Scaffold(
       appBar: AppBar(
@@ -39,51 +41,39 @@ class VideoScreen extends ConsumerWidget {
             ),
           )),
       body: RefreshIndicator(
-        onRefresh: () async {},
+        onRefresh: () async {
+          await controller.getVideos();
+        },
         child: Column(
           children: [
             Container(
               margin: EdgeInsets.only(left: 16.w),
               height: 60.h,
               child: ChipBarWidget(
-                selectedChipIndex: 'Semua',
-                enumValues: ArticleCategory.values.map((e) => e.value).toList(),
-                onChipSelected: (String index) {},
+                selectedChipIndex: state.selectedIndexVideos,
+                enumValues:
+                    EducationCategory.values.map((e) => e.value).toList(),
+                onChipSelected: (index) {
+                  controller.onChipSelected(index, isVideo: true);
+                },
                 chips:
-                    ArticleCategory.values.map((e) => Text(e.value)).toList(),
+                    EducationCategory.values.map((e) => Text(e.value)).toList(),
               ),
             ),
             AsyncValueWidget(
-              value: state.filteredArticles,
+              value: state.filteredVideos,
               data: (data) => Expanded(
                 child: ListView.builder(
-                  itemCount: 3,
+                  itemCount: data!.length,
                   itemBuilder: (context, index) {
-                    List<Video> videos = [
-                      const Video(
-                          id: '1',
-                          title: 'How To',
-                          description: 'lorem ipsum',
-                          videoUrl: '',
-                          imageUrl: '',
-                          category: VideoCategory.kehamilan),
-                      const Video(
-                          id: '2',
-                          title: 'How To',
-                          description: 'lorem ipsum',
-                          videoUrl: '',
-                          imageUrl: '',
-                          category: VideoCategory.kehamilan),
-                      const Video(
-                          id: '3',
-                          title: 'Tips dan Trik Merawat Bayi',
-                          description: 'lorem ipsum',
-                          videoUrl: '',
-                          imageUrl: '',
-                          category: VideoCategory.kehamilan),
-                    ];
-
-                    return VideoWidget(video: videos[index]);
+                    return VideoWidget(
+                      video: data[index],
+                      onTap: () {
+                        context.pushNamed(Routes.detailVideo.name,
+                            extra:
+                                Extras(datas: {ExtrasKey.video: data[index]}));
+                      },
+                    );
                   },
                 ),
               ),

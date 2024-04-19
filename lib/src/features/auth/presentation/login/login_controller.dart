@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nutrimama/src/features/auth/data/auth_repository.dart';
 import 'package:nutrimama/src/features/auth/domain/request_login.dart';
 import 'package:nutrimama/src/features/auth/presentation/login/login_state.dart';
+import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -26,6 +27,8 @@ class LoginController extends _$LoginController {
     state = state.copyWith(
       loginValue: const AsyncLoading(),
     );
+
+    ref.read(commonControllerProvider.notifier).setPage(0);
 
     final requestLogin = RequestLogin(
       email: state.emailController.text,

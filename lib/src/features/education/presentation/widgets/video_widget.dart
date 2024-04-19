@@ -7,19 +7,18 @@ import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/education/domain/video.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/routes/extras.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoWidget extends StatelessWidget {
   final Video video;
+  final void Function() onTap;
 
-  const VideoWidget({super.key, required this.video});
+  const VideoWidget({super.key, required this.video, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        context.pushNamed(Routes.detailVideo.name,
-            extra: Extras(datas: {ExtrasKey.video: video}));
-      },
+      onTap: onTap,
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         padding: EdgeInsets.all(12.w),
@@ -37,12 +36,15 @@ class VideoWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            video.imageUrl.isNotEmpty
+            video.videoUrl.isNotEmpty
                 ? CachedNetworkImage(
-                    imageUrl: video.imageUrl,
+                    imageUrl: YoutubePlayer.getThumbnail(
+                        quality: ThumbnailQuality.max,
+                        videoId:
+                            YoutubePlayer.convertUrlToId(video.videoUrl) ?? ""),
                     imageBuilder: (context, imageProvider) => Container(
                       height: 72.h,
-                      width: 72.w,
+                      width: 80.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
                         image: DecorationImage(
@@ -86,6 +88,7 @@ class VideoWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: 16.sp,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                   SizedBox(

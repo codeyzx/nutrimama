@@ -3,6 +3,7 @@ import 'package:nutrimama/src/features/journal/domain/journal.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 class JournalState {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final AsyncValue<List<Journal>?> journals;
   final TextEditingController titleController;
   final TextEditingController descriptionController;

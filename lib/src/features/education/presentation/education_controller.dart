@@ -1,6 +1,7 @@
 import 'package:logger/logger.dart';
 import 'package:nutrimama/src/features/education/data/education_repository.dart';
 import 'package:nutrimama/src/features/education/domain/article.dart';
+import 'package:nutrimama/src/features/education/domain/category.dart';
 import 'package:nutrimama/src/features/education/domain/video.dart';
 import 'package:nutrimama/src/features/education/presentation/education_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -15,19 +16,34 @@ class EducationController extends _$EducationController {
     return EducationState();
   }
 
-  void onChipSelected(String index) {
-    List<Article>? filteredArticles = [];
-    if (index == 'Semua') {
-      filteredArticles = state.articles.asData?.value;
+  void onChipSelected(String index, {bool isVideo = false}) {
+    if (isVideo) {
+      List<Video>? filteredVideos = [];
+      if (index == 'Semua') {
+        filteredVideos = state.videos.asData?.value;
+      } else {
+        filteredVideos = state.videos.asData?.value
+            ?.where((element) => element.category.value == index)
+            .toList();
+      }
+      state = state.copyWith(
+        selectedIndexVideos: index,
+        filteredVideos: AsyncData(filteredVideos),
+      );
     } else {
-      filteredArticles = state.articles.asData?.value
-          ?.where((element) => element.category.value == index)
-          .toList();
+      List<Article>? filteredArticles = [];
+      if (index == 'Semua') {
+        filteredArticles = state.articles.asData?.value;
+      } else {
+        filteredArticles = state.articles.asData?.value
+            ?.where((element) => element.category.value == index)
+            .toList();
+      }
+      state = state.copyWith(
+        selectedIndex: index,
+        filteredArticles: AsyncData(filteredArticles),
+      );
     }
-    state = state.copyWith(
-      selectedIndex: index,
-      filteredArticles: AsyncData(filteredArticles),
-    );
   }
 
   Future<void> getArticles() async {
@@ -55,11 +71,13 @@ class EducationController extends _$EducationController {
       success: (data) {
         state = state.copyWith(
           videos: AsyncData(data),
+          filteredVideos: AsyncData(data),
         );
       },
       failure: (error, stackTrace) {
         state = state.copyWith(
           videos: AsyncError(error, stackTrace),
+          filteredVideos: AsyncError(error, stackTrace),
         );
       },
     );
@@ -296,8 +314,7 @@ class EducationController extends _$EducationController {
       title: 'Title',
       description: 'Description',
       videoUrl: 'https://www.youtube.com/watch?v=6g3DcLrm9Kw',
-      category: VideoCategory.kesehatan,
-      imageUrl: 'https://via.placeholder.com/150',
+      category: EducationCategory.gayaHidupSehat,
     );
     final result = await ref.read(educationRepositoryProvider).addVideo(video);
     result.when(

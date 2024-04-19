@@ -1,25 +1,11 @@
-enum ArticleCategory {
-  semua('Semua'),
-  kehamilan('Kehamilan'),
-  makananSehat('Makanan Sehat'),
-  kesehatanMental('Kesehatan Mental'),
-  gizi('Gizi'),
-  keuangan('Keuangan'),
-  imunisasi('Imunisasi'),
-  gayaHidupSehat('Gaya Hidup Sehat'),
-  pengelolaanStress('Pengelolaan Stress'),
-  olahraga('Olahraga dan Kebugaran');
-
-  final String value;
-  const ArticleCategory(this.value);
-}
+import 'category.dart';
 
 class Article {
   final String id;
   final String title;
   final String description;
   final String content;
-  final ArticleCategory category;
+  final EducationCategory category;
   final String imageUrl;
 
   const Article({
@@ -37,9 +23,9 @@ class Article {
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       content: json['content'] ?? '',
-      category: ArticleCategory.values.firstWhere(
+      category: EducationCategory.values.firstWhere(
         (e) => e.value == json['category'],
-        orElse: () => ArticleCategory.semua,
+        orElse: () => EducationCategory.semua,
       ),
       imageUrl: json['imageUrl'] ?? '',
     );
@@ -61,7 +47,7 @@ class Article {
     String? title,
     String? description,
     String? content,
-    ArticleCategory? category,
+    EducationCategory? category,
     String? imageUrl,
   }) {
     return Article(

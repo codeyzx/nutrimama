@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,6 +7,7 @@ import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
+import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
@@ -51,32 +53,32 @@ class ProfileScreen extends ConsumerWidget {
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      // data?.profileUrl != null && data?.profileUrl != ''
-                      //     ? CachedNetworkImage(
-                      //         imageUrl: data?.profileUrl ?? '',
-                      //         progressIndicatorBuilder:
-                      //             (context, url, downloadProgress) =>
-                      //                 CircularProgressIndicator(
-                      //                     value: downloadProgress.progress),
-                      //         errorWidget: (context, url, error) =>
-                      //             const Icon(Icons.error),
-                      //         imageBuilder: (context, imageProvider) =>
-                      //             CircleAvatar(
-                      //           radius: 30.r,
-                      //           backgroundImage: imageProvider,
-                      //           backgroundColor: Colors.white,
-                      //         ),
-                      //       )
-                      //     : CircleAvatar(
-                      //         radius: 30.r,
-                      //         backgroundImage: const AssetImage(
-                      //             'assets/images/profile_default_img.png'),
-                      //         backgroundColor: Colors.white,
-                      //       ),
-                      Assets.images.profileDefaultImg.image(
-                        width: 60.w,
-                        height: 60.h,
-                      ),
+                      data?.photoUrl != null && data?.photoUrl != ''
+                          ? CachedNetworkImage(
+                              imageUrl: data?.photoUrl ?? '',
+                              progressIndicatorBuilder:
+                                  (context, url, downloadProgress) =>
+                                      CircularProgressIndicator(
+                                          value: downloadProgress.progress),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                              imageBuilder: (context, imageProvider) =>
+                                  CircleAvatar(
+                                radius: 30.r,
+                                backgroundImage: imageProvider,
+                                backgroundColor: Colors.white,
+                              ),
+                            )
+                          : CircleAvatar(
+                              radius: 30.r,
+                              backgroundImage: Assets.images.profileDefaultImg
+                                  .image(
+                                    width: 60.w,
+                                    height: 60.h,
+                                  )
+                                  .image,
+                              backgroundColor: Colors.white,
+                            ),
                       SizedBox(
                         width: 14.w,
                       ),
@@ -393,6 +395,9 @@ class ProfileScreen extends ConsumerWidget {
                             ref
                                 .read(goRouterProvider)
                                 .goNamed(Routes.login.name);
+                            ref
+                                .read(commonControllerProvider.notifier)
+                                .setPage(0);
                           });
                     },
                     child: Row(

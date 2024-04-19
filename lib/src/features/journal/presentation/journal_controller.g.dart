@@ -6,7 +6,7 @@ part of 'journal_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$journalControllerHash() => r'94c53bc69650e1b4c3190928e291a391ad2a49e0';
+String _$journalControllerHash() => r'8a48d423829a4690c920192940b66b7e2d9ee29e';
 
 /// See also [JournalController].
 @ProviderFor(JournalController)

@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
+import 'package:nutrimama/src/features/education/presentation/education_controller.dart';
+import 'package:nutrimama/src/features/journal/presentation/journal_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -48,17 +50,31 @@ class HomeScreen extends ConsumerWidget {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    await ref
+                        .read(educationControllerProvider.notifier)
+                        .getVideos();
                     ref.read(goRouterProvider).pushNamed(Routes.video.name);
                   },
                   child: const Text('Videos'),
                 ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () async {
+                    await ref
+                        .read(journalControllerProvider.notifier)
+                        .getJournals(data.id);
+                    ref.read(goRouterProvider).pushNamed(Routes.journal.name,
+                        extra: Extras(datas: {ExtrasKey.user: data}));
+                  },
+                  child: const Text('Journals'),
+                ),
                 // const SizedBox(height: 20),
                 // ElevatedButton(
                 //   onPressed: () {
-                //     ref.read(educationControllerProvider.notifier).addArticle();
+                //     ref.read(educationControllerProvider.notifier).addVideo();
                 //   },
-                //   child: const Text('Add Articles'),
+                //   child: const Text('Add Videos'),
                 // ),
               ],
             );

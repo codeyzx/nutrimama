@@ -1,16 +1,68 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/education/domain/video.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class DetailVideoScreen extends ConsumerWidget {
+class DetailVideoScreen extends StatefulWidget {
   final Video video;
   const DetailVideoScreen({super.key, required this.video});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  State<DetailVideoScreen> createState() => _DetailVideoScreenState();
+}
+
+class _DetailVideoScreenState extends State<DetailVideoScreen> {
+  late YoutubePlayerController _controller;
+  late TextEditingController _idController;
+  late TextEditingController _seekToController;
+  late PlayerState _playerState;
+  late YoutubeMetaData _videoMetaData;
+  bool _isPlayerReady = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = YoutubePlayerController(
+      initialVideoId: YoutubePlayer.convertUrlToId(widget.video.videoUrl) ?? "",
+      flags: const YoutubePlayerFlags(
+        autoPlay: false,
+        mute: false,
+      ),
+    )..addListener(listener);
+    _idController = TextEditingController();
+    _seekToController = TextEditingController();
+    _videoMetaData = const YoutubeMetaData();
+    _playerState = PlayerState.unknown;
+  }
+
+  void listener() {
+    if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
+      setState(() {
+        _playerState = _controller.value.playerState;
+        _videoMetaData = _controller.metadata;
+      });
+    }
+  }
+
+  @override
+  void deactivate() {
+    // Pauses video while navigating to next page.
+    _controller.pause();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    _idController.dispose();
+    _seekToController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: const Text('Detail Video',
@@ -44,28 +96,53 @@ class DetailVideoScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (video.imageUrl.isNotEmpty)
-                CachedNetworkImage(
-                  imageUrl: video.imageUrl,
-                  imageBuilder: (context, imageProvider) => Container(
-                    height: 200.h,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
+              YoutubePlayerBuilder(
+                onExitFullScreen: () {
+                  SystemChrome.setPreferredOrientations(
+                      DeviceOrientation.values);
+                },
+                onEnterFullScreen: () {
+                  SystemChrome.setPreferredOrientations([
+                    DeviceOrientation.landscapeLeft,
+                    DeviceOrientation.landscapeRight,
+                  ]);
+                },
+                player: YoutubePlayer(
+                  controller: _controller,
+                  showVideoProgressIndicator: true,
+                  progressIndicatorColor: Colors.blueAccent,
+                  topActions: <Widget>[
+                    const SizedBox(width: 8.0),
+                    Expanded(
+                      child: Text(
+                        _controller.metadata.title,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
                     ),
-                  ),
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                    IconButton(
+                      icon: const Icon(
+                        Icons.settings,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                      onPressed: () {},
+                    ),
+                  ],
+                  onReady: () {
+                    _isPlayerReady = true;
+                  },
                 ),
+                builder: (context, player) => player,
+              ),
               SizedBox(height: 17.h),
               // category video
               Text(
-                video.category.value,
+                widget.video.category.value,
                 style: TextStyle(
                   color: ColorApp.primary,
                   fontSize: 15.sp,
@@ -76,7 +153,7 @@ class DetailVideoScreen extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.only(top: 20.h),
                 child: Text(
-                  video.title,
+                  widget.video.title,
                   style: TextStyle(
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
@@ -88,7 +165,7 @@ class DetailVideoScreen extends ConsumerWidget {
               Padding(
                 padding: EdgeInsets.only(top: 20.h),
                 child: Text(
-                  video.description,
+                  widget.video.description,
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.normal,

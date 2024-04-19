@@ -17,6 +17,9 @@ import 'package:nutrimama/src/features/education/presentation/video/detail_video
 import 'package:nutrimama/src/features/education/presentation/video/video_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/detail_food_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/search_food_screen.dart';
+import 'package:nutrimama/src/features/journal/presentation/add_journal_screen.dart';
+import 'package:nutrimama/src/features/journal/presentation/detail_journal_screen.dart';
+import 'package:nutrimama/src/features/journal/presentation/journal_screen.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/add_fetal_record_screen.dart';
@@ -50,6 +53,9 @@ enum Routes {
   detailArticle,
   video,
   detailVideo,
+  journal,
+  detailJournal,
+  addJournal,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -204,6 +210,32 @@ GoRouter goRouter(GoRouterRef ref) {
           final extras = state.extra as Extras;
           final video = extras.datas[ExtrasKey.video];
           return DetailVideoScreen(video: video);
+        },
+      ),
+      GoRoute(
+          path: '/journal',
+          name: Routes.journal.name,
+          builder: (context, state) {
+            final extras = state.extra as Extras;
+            final user = extras.datas[ExtrasKey.user] as User;
+            return JournalScreen(user: user);
+          }),
+      GoRoute(
+        path: '/detailJournal',
+        name: Routes.detailJournal.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final journal = extras.datas[ExtrasKey.journal];
+          return DetailJournalScreen(journal: journal);
+        },
+      ),
+      GoRoute(
+        path: '/addJournal',
+        name: Routes.addJournal.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final user = extras.datas[ExtrasKey.user] as User;
+          return AddJournalScreen(user: user);
         },
       ),
     ],

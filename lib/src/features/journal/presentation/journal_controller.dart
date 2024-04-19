@@ -16,8 +16,8 @@ class JournalController extends _$JournalController {
     );
   }
 
-  Future<void> getJournals() async {
-    final result = await ref.read(journalRepositoryProvider).getJournals();
+  Future<void> getJournals(String uid) async {
+    final result = await ref.read(journalRepositoryProvider).getJournals(uid);
     result.when(
       success: (data) {
         state = state.copyWith(
@@ -32,7 +32,10 @@ class JournalController extends _$JournalController {
     );
   }
 
-  Future<void> addJournal() async {
+  Future<void> addJournal(String uid) async {
+    state = state.copyWith(
+      journals: const AsyncLoading(),
+    );
     final journal = Journal(
       id: '',
       title: state.titleController.text,
@@ -40,10 +43,10 @@ class JournalController extends _$JournalController {
       createdAt: DateTime.now(),
     );
     final result =
-        await ref.read(journalRepositoryProvider).addJournal(journal);
+        await ref.read(journalRepositoryProvider).addJournal(journal, uid);
     result.when(
       success: (data) {
-        getJournals();
+        getJournals(uid);
         state = state.copyWith(
           titleController: TextEditingController(),
           descriptionController: TextEditingController(),

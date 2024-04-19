@@ -9,6 +9,7 @@ class EducationState {
   final AsyncValue<List<Video>?> filteredVideos;
   final Enum? category;
   final String selectedIndex;
+  final String selectedIndexVideos;
 
   EducationState({
     this.articles = const AsyncLoading(),
@@ -17,6 +18,7 @@ class EducationState {
     this.filteredVideos = const AsyncLoading(),
     this.category,
     this.selectedIndex = 'Semua',
+    this.selectedIndexVideos = 'Semua',
   });
 
   EducationState copyWith({
@@ -26,6 +28,7 @@ class EducationState {
     AsyncValue<List<Video>?>? filteredVideos,
     Enum? category,
     String? selectedIndex,
+    String? selectedIndexVideos,
   }) {
     return EducationState(
       articles: articles ?? this.articles,
@@ -34,6 +37,7 @@ class EducationState {
       filteredVideos: filteredVideos ?? this.filteredVideos,
       category: category ?? this.category,
       selectedIndex: selectedIndex ?? this.selectedIndex,
+      selectedIndexVideos: selectedIndexVideos ?? this.selectedIndexVideos,
     );
   }
 }

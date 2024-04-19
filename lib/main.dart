@@ -83,6 +83,7 @@ final _appTheme = ThemeData(
     primary: ColorApp.primary,
     secondary: ColorApp.secondary,
     error: ColorApp.red,
+    surfaceTint: Colors.transparent,
   ),
   progressIndicatorTheme: ProgressIndicatorThemeData(
     circularTrackColor: ColorApp.white,
@@ -93,6 +94,7 @@ final _appTheme = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: ColorApp.white,
     centerTitle: true,
+    surfaceTintColor: Colors.transparent,
     titleTextStyle: TextStyle(
       fontFamily: 'Poppins',
       color: ColorApp.black,

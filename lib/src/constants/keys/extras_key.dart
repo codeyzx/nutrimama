@@ -12,4 +12,5 @@ class ExtrasKey {
   static const post = 'post';
   static const article = 'article';
   static const video = 'video';
+  static const journal = 'journal';
 }

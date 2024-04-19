@@ -1,28 +1,17 @@
-enum VideoCategory {
-  kehamilan('kehamilan'),
-  olahraga('olahraga'),
-  makananSehat('Makanan Sehat'),
-  kesehatanMental('Kesehatan Mental'),
-  kesehatan('Kesehatan');
-
-  final String value;
-  const VideoCategory(this.value);
-}
+import 'category.dart';
 
 class Video {
   final String id;
   final String title;
   final String description;
   final String videoUrl;
-  final String imageUrl;
-  final VideoCategory category;
+  final EducationCategory category;
 
   const Video({
     required this.id,
     required this.title,
     required this.description,
     required this.videoUrl,
-    required this.imageUrl,
     required this.category,
   });
 
@@ -32,10 +21,9 @@ class Video {
       title: json['title'] ?? '',
       description: json['description'] ?? '',
       videoUrl: json['videoUrl'] ?? '',
-      imageUrl: json['imageUrl'] ?? '',
-      category: VideoCategory.values.firstWhere(
+      category: EducationCategory.values.firstWhere(
         (e) => e.value == json['category'],
-        orElse: () => VideoCategory.kehamilan,
+        orElse: () => EducationCategory.kehamilan,
       ),
     );
   }
@@ -46,7 +34,6 @@ class Video {
       'title': title,
       'description': description,
       'videoUrl': videoUrl,
-      'imageUrl': imageUrl,
       'category': category.value,
     };
   }
@@ -56,15 +43,13 @@ class Video {
     String? title,
     String? description,
     String? videoUrl,
-    String? imageUrl,
-    VideoCategory? category,
+    EducationCategory? category,
   }) {
     return Video(
       id: id ?? this.id,
       title: title ?? this.title,
       description: description ?? this.description,
       videoUrl: videoUrl ?? this.videoUrl,
-      imageUrl: imageUrl ?? this.imageUrl,
       category: category ?? this.category,
     );
   }
