@@ -158,8 +158,7 @@ class QuestionPage extends ConsumerWidget {
                                       await ref
                                           .read(nutritionControllerProvider
                                               .notifier)
-                                          .updateNutrition(
-                                              resultCalculate, uid);
+                                          .setNutrition(resultCalculate, uid);
 
                                       await ref
                                           .read(

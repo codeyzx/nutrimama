@@ -5,13 +5,13 @@ import 'package:nutrimama/src/features/common/presentation/common_state.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/home/home_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/community_screen.dart';
+import 'package:nutrimama/src/features/education/presentation/education_screen.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart';
 
 part 'common_controller.g.dart';
 
-// TODO: autoset botnavbar jadi index awal sama getprofile buat reload dll
 @Riverpod(keepAlive: true)
 class CommonController extends _$CommonController {
   @override
@@ -76,7 +76,7 @@ class CommonController extends _$CommonController {
       case 1:
         return const CommunityScreen();
       case 3:
-        return const HomeScreen();
+        return const EducationScreen();
       case 4:
         return const ProfileScreen();
       default:

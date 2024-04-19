@@ -10,4 +10,7 @@ class ExtrasKey {
   static const isNewFetal = 'isNewFetal';
   static const food = 'food';
   static const post = 'post';
+  static const article = 'article';
+  static const video = 'video';
+  static const journal = 'journal';
 }
