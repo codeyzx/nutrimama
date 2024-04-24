@@ -34,6 +34,26 @@ class CommunityRepository {
           NetworkExceptions.getFirebaseException(e), StackTrace.current);
     }
   }
+
+  Future<Result<void>> updateUserPost(Map<String, String> user) async {
+    try {
+      final resultPosts =
+          await postDb.where('userId', isEqualTo: user['userId']).get();
+      final postsToUpdate = resultPosts.docs;
+
+      final batch = postDb.firestore.batch();
+      for (final post in postsToUpdate) {
+        batch.update(post.reference, user);
+      }
+
+      batch.commit();
+
+      return const Result.success(null);
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
 }
 
 @Riverpod(keepAlive: true)

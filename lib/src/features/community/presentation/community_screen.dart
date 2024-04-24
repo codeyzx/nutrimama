@@ -14,7 +14,6 @@ class CommunityScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(communityControllerProvider);
-
     return StatusBarWidget(
       child: Scaffold(
           appBar: AppBar(

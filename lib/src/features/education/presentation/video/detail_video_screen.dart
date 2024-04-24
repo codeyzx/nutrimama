@@ -17,9 +17,6 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
   late YoutubePlayerController _controller;
   late TextEditingController _idController;
   late TextEditingController _seekToController;
-  late PlayerState _playerState;
-  late YoutubeMetaData _videoMetaData;
-  bool _isPlayerReady = false;
 
   @override
   void initState() {
@@ -30,20 +27,9 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
         autoPlay: false,
         mute: false,
       ),
-    )..addListener(listener);
+    );
     _idController = TextEditingController();
     _seekToController = TextEditingController();
-    _videoMetaData = const YoutubeMetaData();
-    _playerState = PlayerState.unknown;
-  }
-
-  void listener() {
-    if (_isPlayerReady && mounted && !_controller.value.isFullScreen) {
-      setState(() {
-        _playerState = _controller.value.playerState;
-        _videoMetaData = _controller.metadata;
-      });
-    }
   }
 
   @override
@@ -133,9 +119,6 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
                       onPressed: () {},
                     ),
                   ],
-                  onReady: () {
-                    _isPlayerReady = true;
-                  },
                 ),
                 builder: (context, player) => player,
               ),

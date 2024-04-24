@@ -7,6 +7,7 @@ import 'package:nutrimama/src/features/chatbot/presentation/widgets/chat_input_b
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
 //TODO: Terjadi error ketika chat lebih dari 2x
+//TODO: kayanya ubah package kaya AI Buddy jadinya
 class ChatbotScreen extends StatefulWidget {
   const ChatbotScreen({super.key});
 

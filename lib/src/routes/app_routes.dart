@@ -226,7 +226,8 @@ GoRouter goRouter(GoRouterRef ref) {
         builder: (context, state) {
           final extras = state.extra as Extras;
           final journal = extras.datas[ExtrasKey.journal];
-          return DetailJournalScreen(journal: journal);
+          final imageUrl = extras.datas[ExtrasKey.imageUrl];
+          return DetailJournalScreen(journal: journal, imageUrl: imageUrl);
         },
       ),
       GoRoute(

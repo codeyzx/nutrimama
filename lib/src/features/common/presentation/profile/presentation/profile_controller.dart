@@ -6,6 +6,7 @@ import 'package:nutrimama/src/features/auth/data/auth_repository.dart';
 import 'package:nutrimama/src/features/auth/domain/request_user.dart';
 import 'package:nutrimama/src/features/common/data/common_repository.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_state.dart';
+import 'package:nutrimama/src/features/community/data/community_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'profile_controller.g.dart';
@@ -36,14 +37,16 @@ class ProfileController extends _$ProfileController {
     );
   }
 
-  // TODO: update profile harus ke postingan juga (hal-hal public harus ke write jg)
   FutureOr<void> updateProfile() async {
     state = state.copyWith(
       loadingValue: const AsyncLoading(),
     );
 
-    final imageUrl =
-        state.imageUrl != null ? await uploadImages(state.imageUrl!) : '';
+    final imageUrl = state.imageUrl != null
+        ? state.imageUrl!.contains('https')
+            ? state.imageUrl!
+            : await uploadImages(state.imageUrl!)
+        : '';
 
     final user = RequestUser(
       name: state.nameController.text,
@@ -51,7 +54,14 @@ class ProfileController extends _$ProfileController {
       photoUrl: imageUrl,
     );
 
+    Map<String, String> userPost = {
+      'userId': state.user.asData?.value?.id ?? '',
+      'userName': state.nameController.text,
+      'userPhoto': imageUrl,
+    };
+
     final result = await ref.read(authRepositoryProvider).updateProfile(user);
+    await ref.read(communityRepositoryProvider).updateUserPost(userPost);
 
     result.when(
       success: (data) {
