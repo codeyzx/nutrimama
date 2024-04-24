@@ -31,6 +31,7 @@ class OnboardPage extends ConsumerWidget {
               controller.setLastPage(index == 2);
             },
             children: [
+              // TODO : Add image assets and content for each onboarding page
               OnboardingContent(
                 imageAsset: Assets.images.profileDefaultImg,
                 imageWidth: 300,

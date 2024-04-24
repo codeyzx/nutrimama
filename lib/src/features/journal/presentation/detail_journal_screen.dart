@@ -5,7 +5,9 @@ import 'package:nutrimama/src/features/journal/domain/journal.dart';
 
 class DetailJournalScreen extends ConsumerWidget {
   final Journal journal;
-  const DetailJournalScreen({super.key, required this.journal});
+  final String imageUrl;
+  const DetailJournalScreen(
+      {super.key, required this.journal, required this.imageUrl});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,6 +44,19 @@ class DetailJournalScreen extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // image journal
+              Container(
+                height: 150.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    alignment: Alignment.topLeft,
+                    image: AssetImage(imageUrl),
+                    fit: BoxFit.contain,
+                  ),
+                ),
+              ),
               // title journal
               Padding(
                 padding: EdgeInsets.only(top: 20.h),

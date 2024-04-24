@@ -462,6 +462,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                               ),
                                               child: TextButton(
                                                 onPressed: () {
+                                                  // TODO: flutter build apk --split-per-abi --release --obfuscate --split-debug-info=./symbols/
                                                   // TODO: Add logic to update fetal status on repository too
                                                 },
                                                 child: const Text(

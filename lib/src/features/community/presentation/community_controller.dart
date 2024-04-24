@@ -143,6 +143,8 @@ class CommunityController extends _$CommunityController {
     );
   }
 
+  // TODO ADD COMMENTS
+
   void dispose() {
     state = state.copyWith(
       titleController: TextEditingController(),

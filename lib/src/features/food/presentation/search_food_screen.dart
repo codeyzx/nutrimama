@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
@@ -92,7 +93,14 @@ class FoodItem extends ConsumerWidget {
               );
         },
         child: ListTile(
-          leading: Assets.images.nutrimamaLogo.svg(width: 50, height: 50),
+          leading: food.imageUrl.isEmpty
+              ? CachedNetworkImage(
+                  imageUrl: food.imageUrl,
+                  width: 50,
+                  height: 50,
+                  fit: BoxFit.cover,
+                )
+              : Assets.images.nutrimamaLogo.svg(width: 50, height: 50),
           title: Text(food.name),
           subtitle: Text('${food.calories} kalori'),
         ),

@@ -104,7 +104,12 @@ class JournalScreen extends ConsumerWidget {
                 child: ListView.builder(
                   itemCount: journals!.length,
                   itemBuilder: (context, index) {
-                    return JournalWidget(journal: journals[index]);
+                    int indexEmoji = index % 6 + 1;
+                    String imageUrl = 'assets/icons/emoji$indexEmoji.png';
+                    return JournalWidget(
+                      journal: journals[index],
+                      imageUrl: imageUrl,
+                    );
                   },
                 ),
               ),

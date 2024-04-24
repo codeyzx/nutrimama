@@ -1,7 +1,7 @@
 class ExtrasKey {
   static const id = 'id';
   static const index = 'index';
-  static const home = 'home';
+  static const imageUrl = 'imageUrl';
   static const user = 'user';
   static const mother = 'mother';
   static const mothers = 'mothers';

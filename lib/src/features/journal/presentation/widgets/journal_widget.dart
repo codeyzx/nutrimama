@@ -9,15 +9,20 @@ import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
 class JournalWidget extends StatelessWidget {
   final Journal journal;
+  final String imageUrl;
 
-  const JournalWidget({super.key, required this.journal});
+  const JournalWidget(
+      {super.key, required this.journal, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         context.pushNamed(Routes.detailJournal.name,
-            extra: Extras(datas: {ExtrasKey.journal: journal}));
+            extra: Extras(datas: {
+              ExtrasKey.journal: journal,
+              ExtrasKey.imageUrl: imageUrl
+            }));
       },
       child: Container(
         margin: EdgeInsets.only(
@@ -81,17 +86,14 @@ class JournalWidget extends StatelessWidget {
               ),
             ),
             Container(
-              height: 48.h,
-              width: 48.w,
-              margin: EdgeInsets.only(bottom: 20.h),
-              alignment: Alignment.center,
+              width: 60.w,
+              height: 60.h,
               decoration: BoxDecoration(
-                color: ColorApp.primary.withOpacity(.2),
-                borderRadius: BorderRadius.circular(4),
-              ),
-              child: Text(
-                '😁',
-                style: TextStyle(fontSize: 28.sp),
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: AssetImage(imageUrl),
+                  fit: BoxFit.cover,
+                ),
               ),
             )
           ],
