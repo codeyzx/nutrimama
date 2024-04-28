@@ -356,4 +356,22 @@ class TypographyApp {
     fontWeight: FontWeight.w700,
     fontSize: 16.sp,
   );
+
+  static TextStyle appBarMedrec = TextStyle(
+    color: HexColor('#001C34'),
+    fontWeight: FontWeight.w800,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle addTitleMedrec = TextStyle(
+    color: HexColor('#393939'),
+    fontWeight: FontWeight.w700,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle addBtnMedrec = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 14.sp,
+  );
 }

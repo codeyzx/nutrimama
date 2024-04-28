@@ -40,7 +40,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Medikal Record'),
+          title: Text('Medikal Record', style: TypographyApp.appBarMedrec,),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
             color: Colors.black,
