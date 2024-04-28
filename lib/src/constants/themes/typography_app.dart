@@ -171,4 +171,105 @@ class TypographyApp {
     fontWeight: FontWeight.w600,
     fontSize: 16.sp,
   );
+
+  static TextStyle homeDateOn = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w800,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle homeDateOff = TextStyle(
+    color: HexColor('#B0B0B0'),
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle homeTitleOn = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w800,
+    fontSize: 18.sp,
+  );
+
+  static TextStyle homeTitleOff = TextStyle(
+    color: HexColor('#B0B0B0'),
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle dayHome = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w500,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle dateHome = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 20.sp,
+  );
+
+  static TextStyle todayHome= TextStyle(
+    color: ColorApp.primary,
+    fontWeight: FontWeight.w600,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle dayOffHome = TextStyle(
+    color: HexColor('#393939'),
+    fontWeight: FontWeight.w500,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle dateOffHome = TextStyle(
+    color:  HexColor('#393939'),
+    fontWeight: FontWeight.w700,
+    fontSize: 20.sp,
+  );
+
+  static TextStyle btnBlackHome = TextStyle(
+    color:  HexColor('#001C34'),
+    fontWeight: FontWeight.w600,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle consumedHome = TextStyle(
+    color:  HexColor('#B0B0B0'),
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle primaryOnBtn = TextStyle(
+    color:  ColorApp.primary,
+    fontWeight: FontWeight.w500,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle titleHome = TextStyle(
+    color:  HexColor('#001C34'),
+    fontWeight: FontWeight.w600,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle eatCalHome = TextStyle(
+    color:  HexColor('#000000'),
+    fontWeight: FontWeight.w700,
+    fontSize: 20.sp,
+  );
+  static TextStyle eatCalTotalHome = TextStyle(
+    color:  HexColor('#B0B0B0'),
+    fontWeight: FontWeight.w500,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle foodNameHome = TextStyle(
+    color:  HexColor('#000000'),
+    fontWeight: FontWeight.w600,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle foodCalHome = TextStyle(
+    color:  HexColor('#8E8E8E'),
+    fontWeight: FontWeight.w500,
+    fontSize: 13.sp,
+  );
 }
