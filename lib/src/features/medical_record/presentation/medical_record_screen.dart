@@ -6,7 +6,6 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
-import 'package:nutrimama/src/constants/themes/themes.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
@@ -128,7 +127,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                 Container(
                   width: 374.w,
                   height: 192.h,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6.r),
@@ -139,7 +138,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.09),
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 1),
                           blurRadius: 4,
                         )
                       ]),
@@ -257,7 +256,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                 Container(
                   width: 374.w,
                   height: 192.h,
-                  padding: EdgeInsets.all(12),
+                  padding: const EdgeInsets.all(12),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(6.r),
@@ -268,7 +267,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.09),
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 1),
                           blurRadius: 4,
                         )
                       ]),
@@ -963,8 +962,8 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
             );
           },
           backgroundColor: ColorApp.primary,
-          shape: CircleBorder(),
-          child: Icon(Icons.add_rounded, color: Colors.white,),
+          shape: const CircleBorder(),
+          child: const Icon(Icons.add_rounded, color: Colors.white,),
         ),
     );
   }

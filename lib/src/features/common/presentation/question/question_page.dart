@@ -6,6 +6,7 @@ import 'package:nutrimama/src/common_widgets/input_form/dropdown_form_widget.dar
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/common/presentation/question/question_controller.dart';
+import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
@@ -164,6 +165,26 @@ class QuestionPage extends ConsumerWidget {
                                           .read(
                                               commonControllerProvider.notifier)
                                           .getProfile();
+
+                                      await ref
+                                          .read(nutritionControllerProvider
+                                              .notifier)
+                                          .getNutrition(uid);
+
+                                      await ref
+                                          .read(consumeLogControllerProvider
+                                              .notifier)
+                                          .getConsumeLogs(uid);
+                                      await ref
+                                          .read(consumeLogControllerProvider
+                                              .notifier)
+                                          .getTodayConsumeFood(
+                                              uid, DateTime.now().toYyyyMMDd);
+                                      await ref
+                                          .read(consumeLogControllerProvider
+                                              .notifier)
+                                          .getTodayConsumeLog(
+                                              uid, DateTime.now().toYyyyMMDd);
 
                                       controller.setSuccess();
 

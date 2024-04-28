@@ -8,9 +8,12 @@ import 'package:nutrimama/src/features/auth/presentation/login/login_controller.
 import 'package:nutrimama/src/features/auth/presentation/login/widget/login_button_section.dart';
 import 'package:nutrimama/src/features/auth/presentation/login/widget/login_form_section.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
+import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
+import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:nutrimama/src/services/services.dart';
 import 'package:nutrimama/src/shared/extensions/build_context.dart';
+import 'package:nutrimama/src/shared/extensions/date_time.dart';
 
 class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
@@ -22,7 +25,20 @@ class LoginPage extends ConsumerWidget {
         state.loginValue.whenOrNull(
           data: (data) async {
             if (data != null) {
+              final uid = ref.read(commonControllerProvider.notifier).getUid();
               await ref.read(commonControllerProvider.notifier).getProfile();
+              await ref
+                  .read(nutritionControllerProvider.notifier)
+                  .getNutrition(uid);
+              await ref
+                  .read(consumeLogControllerProvider.notifier)
+                  .getConsumeLogs(uid);
+              await ref
+                  .read(consumeLogControllerProvider.notifier)
+                  .getTodayConsumeFood(uid, DateTime.now().toYyyyMMDd);
+              await ref
+                  .read(consumeLogControllerProvider.notifier)
+                  .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
             }
           },
           error: (error, stackTrace) {

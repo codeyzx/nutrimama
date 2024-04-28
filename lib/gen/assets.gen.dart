@@ -112,6 +112,57 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/baby_img.png
+  AssetGenImage get babyImg =>
+      const AssetGenImage('assets/images/baby_img.png');
+
+  /// File path: assets/images/book_img.png
+  AssetGenImage get bookImg =>
+      const AssetGenImage('assets/images/book_img.png');
+
+  /// File path: assets/images/breakfast_img.png
+  AssetGenImage get breakfastImg =>
+      const AssetGenImage('assets/images/breakfast_img.png');
+
+  /// File path: assets/images/child_img.png
+  AssetGenImage get childImg =>
+      const AssetGenImage('assets/images/child_img.png');
+
+  /// File path: assets/images/dinner_img.png
+  AssetGenImage get dinnerImg =>
+      const AssetGenImage('assets/images/dinner_img.png');
+
+  /// File path: assets/images/drink_img.png
+  AssetGenImage get drinkImg =>
+      const AssetGenImage('assets/images/drink_img.png');
+
+  /// File path: assets/images/drink_not_img.png
+  AssetGenImage get drinkNotImg =>
+      const AssetGenImage('assets/images/drink_not_img.png');
+
+  /// File path: assets/images/fork_img.png
+  AssetGenImage get forkImg =>
+      const AssetGenImage('assets/images/fork_img.png');
+
+  /// File path: assets/images/girl_img.png
+  AssetGenImage get girlImg =>
+      const AssetGenImage('assets/images/girl_img.png');
+
+  /// File path: assets/images/lamp_img.png
+  AssetGenImage get lampImg =>
+      const AssetGenImage('assets/images/lamp_img.png');
+
+  /// File path: assets/images/lunch_img.png
+  AssetGenImage get lunchImg =>
+      const AssetGenImage('assets/images/lunch_img.png');
+
+  /// File path: assets/images/medrec_img.png
+  AssetGenImage get medrecImg =>
+      const AssetGenImage('assets/images/medrec_img.png');
+
+  /// File path: assets/images/mom_img.png
+  AssetGenImage get momImg => const AssetGenImage('assets/images/mom_img.png');
+
   /// File path: assets/images/nutrimama_logo.svg
   SvgGenImage get nutrimamaLogo =>
       const SvgGenImage('assets/images/nutrimama_logo.svg');
@@ -132,13 +183,36 @@ class $AssetsImagesGen {
   AssetGenImage get questionImg3 =>
       const AssetGenImage('assets/images/question_img_3.png');
 
+  /// File path: assets/images/target_img.png
+  AssetGenImage get targetImg =>
+      const AssetGenImage('assets/images/target_img.png');
+
+  /// File path: assets/images/vitamin_img.png
+  AssetGenImage get vitaminImg =>
+      const AssetGenImage('assets/images/vitamin_img.png');
+
   /// List of all assets
   List<dynamic> get values => [
+        babyImg,
+        bookImg,
+        breakfastImg,
+        childImg,
+        dinnerImg,
+        drinkImg,
+        drinkNotImg,
+        forkImg,
+        girlImg,
+        lampImg,
+        lunchImg,
+        medrecImg,
+        momImg,
         nutrimamaLogo,
         profileDefaultImg,
         questionImg1,
         questionImg2,
-        questionImg3
+        questionImg3,
+        targetImg,
+        vitaminImg
       ];
 }
 
