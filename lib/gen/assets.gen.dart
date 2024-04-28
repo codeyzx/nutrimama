@@ -34,6 +34,24 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/emoji1.png
+  AssetGenImage get emoji1 => const AssetGenImage('assets/icons/emoji1.png');
+
+  /// File path: assets/icons/emoji2.png
+  AssetGenImage get emoji2 => const AssetGenImage('assets/icons/emoji2.png');
+
+  /// File path: assets/icons/emoji3.png
+  AssetGenImage get emoji3 => const AssetGenImage('assets/icons/emoji3.png');
+
+  /// File path: assets/icons/emoji4.png
+  AssetGenImage get emoji4 => const AssetGenImage('assets/icons/emoji4.png');
+
+  /// File path: assets/icons/emoji5.png
+  AssetGenImage get emoji5 => const AssetGenImage('assets/icons/emoji5.png');
+
+  /// File path: assets/icons/emoji6.png
+  AssetGenImage get emoji6 => const AssetGenImage('assets/icons/emoji6.png');
+
   /// File path: assets/icons/ic_chatbot.svg
   SvgGenImage get icChatbot => const SvgGenImage('assets/icons/ic_chatbot.svg');
 
@@ -72,6 +90,12 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<dynamic> get values => [
+        emoji1,
+        emoji2,
+        emoji3,
+        emoji4,
+        emoji5,
+        emoji6,
         icChatbot,
         icCommunityOff,
         icCommunityOn,

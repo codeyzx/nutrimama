@@ -7,6 +7,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
+import 'package:nutrimama/src/features/education/presentation/education_controller.dart';
+import 'package:nutrimama/src/features/journal/presentation/journal_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:semicircle_indicator/semicircle_indicator.dart';
 import 'dart:math' as math;
@@ -1471,7 +1473,6 @@ class HomeScreen extends ConsumerWidget {
                   ),
                 ],
               ),
-            );
           },
         )),
       ),

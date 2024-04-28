@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
-import 'package:nutrimama/src/features/community/domain/comment.dart';
-import 'package:nutrimama/src/features/community/domain/post.dart';
 import 'package:nutrimama/src/features/community/presentation/community_controller.dart';
 import 'package:nutrimama/src/features/community/presentation/widgets/post_widget.dart';
 import 'package:nutrimama/src/routes/routes.dart';
@@ -15,9 +13,7 @@ class CommunityScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.read(communityControllerProvider.notifier);
     final state = ref.watch(communityControllerProvider);
-
     return StatusBarWidget(
       child: Scaffold(
           appBar: AppBar(
@@ -55,7 +51,7 @@ class CommunityScreen extends ConsumerWidget {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                    color: Colors.blue,
+                    color: ColorApp.primary,
                   ),
                   child: Row(
                     children: [

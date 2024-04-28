@@ -146,7 +146,7 @@ class DetailPostScreen extends ConsumerWidget {
                   ),
                 ),
               ),
-
+              // TODO: SECTION FIELD BUAT KOMENTAR DAN LOGIC NYA
               // comment list
               ListView.builder(
                 shrinkWrap: true,

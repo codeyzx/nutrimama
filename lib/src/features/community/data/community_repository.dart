@@ -23,23 +23,32 @@ class CommunityRepository {
     }
   }
 
-  Future<Result<Post>> getPost(String postId) async {
-    try {
-      final resultPost = await postDb.doc(postId).get();
-      final post = resultPost.data();
-      return Result.success(post!);
-    } catch (e) {
-      return Result.failure(
-          NetworkExceptions.getFirebaseException(e), StackTrace.current);
-    }
-  }
-
   Future<Result<String>> addPost(Post post) async {
     try {
       final ref = postDb.doc();
       post = post.copyWith(id: ref.id);
       await ref.set(post);
       return const Result.success('Success');
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
+
+  Future<Result<void>> updateUserPost(Map<String, String> user) async {
+    try {
+      final resultPosts =
+          await postDb.where('userId', isEqualTo: user['userId']).get();
+      final postsToUpdate = resultPosts.docs;
+
+      final batch = postDb.firestore.batch();
+      for (final post in postsToUpdate) {
+        batch.update(post.reference, user);
+      }
+
+      batch.commit();
+
+      return const Result.success(null);
     } catch (e) {
       return Result.failure(
           NetworkExceptions.getFirebaseException(e), StackTrace.current);

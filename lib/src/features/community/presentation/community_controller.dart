@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
-import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/community/data/community_repository.dart';
 import 'package:nutrimama/src/features/community/domain/post.dart';
@@ -144,6 +142,8 @@ class CommunityController extends _$CommunityController {
       },
     );
   }
+
+  // TODO ADD COMMENTS
 
   void dispose() {
     state = state.copyWith(
