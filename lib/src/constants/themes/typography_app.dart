@@ -272,4 +272,88 @@ class TypographyApp {
     fontWeight: FontWeight.w500,
     fontSize: 13.sp,
   );
+
+  static TextStyle trisMedrec = TextStyle(
+    color:  ColorApp.primary,
+    fontWeight: FontWeight.w600,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle trisDescMedrec = TextStyle(
+    color:  HexColor('#001C34'),
+    fontWeight: FontWeight.w400,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle tipsMedrec = TextStyle(
+    color:  ColorApp.primary,
+    fontWeight: FontWeight.w600,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle dataTitleMedrec = TextStyle(
+    color:  ColorApp.primary,
+    fontWeight: FontWeight.w700,
+    fontSize: 15.sp,
+  );
+
+  static TextStyle weightNumMedrec = TextStyle(
+    color:  ColorApp.black,
+    fontWeight: FontWeight.w600,
+    fontSize: 24.sp,
+  );
+
+  static TextStyle weightKgMedrec = TextStyle(
+    color:  ColorApp.black,
+    fontWeight: FontWeight.w600,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle weightSubtitleMedrec = TextStyle(
+    color:  HexColor('#8E8E8E'),
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle bloodNumMedrec = TextStyle(
+    color:  HexColor('#000000'),
+    fontWeight: FontWeight.w600,
+    fontSize: 20.sp,
+  );
+
+  static TextStyle bloodNumUnitMedrec = TextStyle(
+    color:  HexColor('#000000'),
+    fontWeight: FontWeight.w600,
+    fontSize: 10.sp,
+  );
+
+  static TextStyle dataDateMedrec = TextStyle(
+    color:  ColorApp.primary,
+    fontWeight: FontWeight.w600,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle babyWeightMedrec = TextStyle(
+    color:  ColorApp.black,
+    fontWeight: FontWeight.w600,
+    fontSize: 18.sp,
+  );
+
+  static TextStyle babyWeightUnitMedrec = TextStyle(
+    color:  ColorApp.black,
+    fontWeight: FontWeight.w600,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle babySubtitleMedrec = TextStyle(
+    color: HexColor('#8E8E8E'),
+    fontWeight: FontWeight.w500,
+    fontSize: 10.sp,
+  );
+
+  static TextStyle addMomDataMedrec = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 16.sp,
+  );
 }
