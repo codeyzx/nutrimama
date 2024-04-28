@@ -1472,7 +1472,7 @@ class HomeScreen extends ConsumerWidget {
                     child: const Text('Search Food'),
                   ),
                 ],
-              ),
+              ),);
           },
         )),
       ),
