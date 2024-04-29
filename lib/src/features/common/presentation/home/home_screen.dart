@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:logger/logger.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
@@ -12,6 +12,8 @@ import 'package:nutrimama/src/features/education/presentation/education_controll
 import 'package:nutrimama/src/features/journal/presentation/journal_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
+import 'package:nutrimama/src/shared/extensions/date_time.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:semicircle_indicator/semicircle_indicator.dart';
 import 'dart:math' as math;
 
@@ -701,7 +703,7 @@ class HomeScreen extends ConsumerWidget {
                                                 height: 8.h,
                                               ),
                                               Text(
-                                                '1200 Kkal',
+                                                '${consume?.totalCalories} Kkal',
                                                 style:
                                                     TypographyApp.btnBlackHome,
                                               ),
@@ -725,8 +727,13 @@ class HomeScreen extends ConsumerWidget {
                                               color: ColorApp.primary,
                                               strokeWidth: 13.w,
                                               // TODO: error kalau lebih dari target
-                                              progress:
-                                                  800 / nutrition.calories,
+                                              progress: (consume
+                                                              ?.totalCalories ==
+                                                          null
+                                                      ? 0
+                                                      : consume!.totalCalories
+                                                          .toDouble()) /
+                                                  nutrition.calories,
                                               child: Column(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.center,
@@ -734,7 +741,7 @@ class HomeScreen extends ConsumerWidget {
                                                     CrossAxisAlignment.center,
                                                 children: [
                                                   Text(
-                                                    '800 Kcal',
+                                                    '${nutrition.calories - consume!.totalCalories < 0 ? (nutrition.calories - consume.totalCalories) * -1 : nutrition.calories - consume.totalCalories} Kcal',
                                                     style: TypographyApp
                                                         .btnBlackHome,
                                                   ),
@@ -742,7 +749,12 @@ class HomeScreen extends ConsumerWidget {
                                                     height: 2.h,
                                                   ),
                                                   Text(
-                                                    'Tersisa',
+                                                    nutrition.calories -
+                                                                consume
+                                                                    .totalCalories <
+                                                            0
+                                                        ? 'Berlebih'
+                                                        : 'Tersisa',
                                                     style: TypographyApp
                                                         .consumedHome,
                                                   ),
@@ -798,7 +810,8 @@ class HomeScreen extends ConsumerWidget {
                                                   child:
                                                       LinearProgressIndicator(
                                                     value:
-                                                        80 / nutrition.protein,
+                                                        consume.totalProtein /
+                                                            nutrition.protein,
                                                     minHeight: 7.h,
                                                     backgroundColor:
                                                         HexColor('#D9D9D9'),
@@ -814,7 +827,7 @@ class HomeScreen extends ConsumerWidget {
                                                 height: 12.h,
                                               ),
                                               Text(
-                                                '80/${nutrition.protein}g',
+                                                '${consume.totalProtein}/${nutrition.protein}g',
                                                 style:
                                                     TypographyApp.btnBlackHome,
                                               ),
@@ -839,8 +852,8 @@ class HomeScreen extends ConsumerWidget {
                                                   width: 84.w,
                                                   child:
                                                       LinearProgressIndicator(
-                                                    value:
-                                                        200 / nutrition.carbs,
+                                                    value: consume.totalCarbs /
+                                                        nutrition.carbs,
                                                     minHeight: 7.h,
                                                     backgroundColor:
                                                         HexColor('#D9D9D9'),
@@ -856,7 +869,7 @@ class HomeScreen extends ConsumerWidget {
                                                 height: 12.h,
                                               ),
                                               Text(
-                                                '200/${nutrition.carbs}g',
+                                                '${consume.totalCarbs}/${nutrition.carbs}g',
                                                 style:
                                                     TypographyApp.btnBlackHome,
                                               ),
@@ -881,7 +894,8 @@ class HomeScreen extends ConsumerWidget {
                                                   width: 84.w,
                                                   child:
                                                       LinearProgressIndicator(
-                                                    value: 34 / nutrition.fat,
+                                                    value: consume.totalFat /
+                                                        nutrition.fat,
                                                     minHeight: 7.h,
                                                     backgroundColor:
                                                         HexColor('#D9D9D9'),
@@ -897,7 +911,7 @@ class HomeScreen extends ConsumerWidget {
                                                 height: 12.h,
                                               ),
                                               Text(
-                                                '34/${nutrition.fat}g',
+                                                '${consume.totalFat}/${nutrition.fat}g',
                                                 style:
                                                     TypographyApp.btnBlackHome,
                                               ),
@@ -979,71 +993,94 @@ class HomeScreen extends ConsumerWidget {
                                       SizedBox(
                                         height: 12.h,
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          //ini yang udah minum
-                                          Image.asset(
-                                            'assets/images/drink_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/drink_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/drink_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                          //ini yang gelas tambah
-                                          SizedBox(
-                                            width: 40.w,
-                                            height: 40.h,
-                                            child: Stack(children: [
-                                              Image.asset(
-                                                'assets/images/drink_not_img.png',
+                                      SizedBox(
+                                        height: 40.h,
+                                        child: ListView.builder(
+                                          itemCount: 8,
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            final totalDrink =
+                                                consume.totalDrink;
+                                            if (index < totalDrink) {
+                                              return Container(
                                                 width: 40.w,
                                                 height: 40.h,
-                                              ),
-                                              Positioned(
-                                                  top: 0,
-                                                  right: -6,
-                                                  child: IconButton(
-                                                      onPressed: () {},
-                                                      icon: Icon(
-                                                        Icons.add_rounded,
-                                                        color:
-                                                            HexColor('#001C34'),
-                                                        size: 20,
-                                                      )))
-                                            ]),
-                                          ),
-                                          //ini yang belum minum
-                                          Image.asset(
-                                            'assets/images/drink_not_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/drink_not_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/drink_not_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                          Image.asset(
-                                            'assets/images/drink_not_img.png',
-                                            width: 40.w,
-                                            height: 40.h,
-                                          ),
-                                        ],
+                                                margin:
+                                                    EdgeInsets.only(right: 3.w),
+                                                child: Image.asset(
+                                                  'assets/images/drink_img.png',
+                                                ),
+                                              );
+                                            } else if (index == totalDrink) {
+                                              return Container(
+                                                width: 40.w,
+                                                height: 40.h,
+                                                margin:
+                                                    EdgeInsets.only(right: 3.w),
+                                                child: Stack(children: [
+                                                  Image.asset(
+                                                    'assets/images/drink_not_img.png',
+                                                    width: 40.w,
+                                                    height: 40.h,
+                                                  ),
+                                                  Positioned(
+                                                      top: 0,
+                                                      right: -6,
+                                                      child: IconButton(
+                                                          onPressed: () {
+                                                            //quick alert
+                                                            QuickAlert.show(
+                                                              context: context,
+                                                              type:
+                                                                  QuickAlertType
+                                                                      .confirm,
+                                                              title:
+                                                                  "Tambah Air Minum",
+                                                              text:
+                                                                  "Apakah anda ingin menambah air minum?",
+                                                              confirmBtnText:
+                                                                  "Ya",
+                                                              cancelBtnText:
+                                                                  "Tidak",
+                                                              onConfirmBtnTap:
+                                                                  () {
+                                                                ref
+                                                                    .read(consumeLogControllerProvider
+                                                                        .notifier)
+                                                                    .addDrink(
+                                                                        user.id,
+                                                                        DateTime.now()
+                                                                            .toYyyyMMDd);
+                                                                context.pop();
+                                                              },
+                                                            );
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.add_rounded,
+                                                            color: HexColor(
+                                                                '#001C34'),
+                                                            size: 20,
+                                                          )))
+                                                ]),
+                                              );
+                                            } else {
+                                              return Container(
+                                                width: 40.w,
+                                                height: 40.h,
+                                                margin:
+                                                    EdgeInsets.only(right: 3.w),
+                                                child: Image.asset(
+                                                  'assets/images/drink_not_img.png',
+                                                  width: 40.w,
+                                                  height: 40.h,
+                                                ),
+                                              );
+                                            }
+                                          },
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -1110,12 +1147,12 @@ class HomeScreen extends ConsumerWidget {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        '${consume?.foods.where((element) => element.consumeAt == "sarapan").fold(0, (previousValue, element) => previousValue + element.calories)} Kkal',
+                                                        '${consume.foods.where((element) => element.consumeAt == "sarapan").fold(0, (previousValue, element) => previousValue + element.calories)} Kkal',
                                                         style: TypographyApp
                                                             .eatCalHome,
                                                       ),
                                                       Text(
-                                                        '/330 Kkal',
+                                                        '/${(nutrition.calories * 0.25).toInt()} Kkal',
                                                         style: TypographyApp
                                                             .eatCalTotalHome,
                                                       ),
@@ -1156,14 +1193,14 @@ class HomeScreen extends ConsumerWidget {
                                         shrinkWrap: true,
                                         itemCount:
                                             //consume.foods where consumeAt == "sarapan"
-                                            consume?.foods
+                                            consume.foods
                                                 .where((element) =>
                                                     element.consumeAt ==
                                                     "sarapan")
                                                 .length,
                                         padding: EdgeInsets.zero,
                                         itemBuilder: (context, index) {
-                                          final food = consume?.foods
+                                          final food = consume.foods
                                               .where((element) =>
                                                   element.consumeAt ==
                                                   "sarapan")
@@ -1180,7 +1217,7 @@ class HomeScreen extends ConsumerWidget {
                                                       BorderRadius.circular(
                                                           8.r),
                                                   child: Image.network(
-                                                    '${food?.imageUrl}',
+                                                    food.imageUrl,
                                                     width: 64.w,
                                                     height: 64.h,
                                                     fit: BoxFit.cover,
@@ -1194,12 +1231,12 @@ class HomeScreen extends ConsumerWidget {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      '${food?.name}',
+                                                      food.name,
                                                       style: TypographyApp
                                                           .foodNameHome,
                                                     ),
                                                     Text(
-                                                      '${food?.calories} Kkal',
+                                                      '${food.calories} Kkal',
                                                       style: TypographyApp
                                                           .foodCalHome,
                                                     )
@@ -1275,12 +1312,12 @@ class HomeScreen extends ConsumerWidget {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        '300 Kkal',
+                                                        '${consume.foods.where((element) => element.consumeAt == "lunch").fold(0, (previousValue, element) => previousValue + element.calories)} Kkal',
                                                         style: TypographyApp
                                                             .eatCalHome,
                                                       ),
                                                       Text(
-                                                        '/330 Kkal',
+                                                        '/${(nutrition.calories * 0.35).toInt()} Kkal',
                                                         style: TypographyApp
                                                             .eatCalTotalHome,
                                                       ),
@@ -1424,12 +1461,12 @@ class HomeScreen extends ConsumerWidget {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        '0 Kkal',
+                                                        '${consume.foods.where((element) => element.consumeAt == "dinner").fold(0, (previousValue, element) => previousValue + element.calories)} Kkal',
                                                         style: TypographyApp
                                                             .eatCalHome,
                                                       ),
                                                       Text(
-                                                        '/330 Kkal',
+                                                        '/${(nutrition.calories * 0.4).toInt()} Kkal',
                                                         style: TypographyApp
                                                             .eatCalTotalHome,
                                                       ),
@@ -1575,7 +1612,7 @@ class HomeScreen extends ConsumerWidget {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        '${consume?.totalVitamin} Pil',
+                                                        '${consume.totalVitamin} Pil',
                                                         style: TypographyApp
                                                             .eatCalHome,
                                                       ),

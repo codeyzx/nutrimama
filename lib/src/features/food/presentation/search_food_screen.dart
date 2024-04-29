@@ -93,7 +93,7 @@ class FoodItem extends ConsumerWidget {
               );
         },
         child: ListTile(
-          leading: food.imageUrl.isEmpty
+          leading: food.imageUrl.isNotEmpty
               ? CachedNetworkImage(
                   imageUrl: food.imageUrl,
                   width: 50,

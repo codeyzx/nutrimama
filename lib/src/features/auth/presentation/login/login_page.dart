@@ -24,22 +24,7 @@ class LoginPage extends ConsumerWidget {
       if (prevState?.loginValue != state.loginValue) {
         state.loginValue.whenOrNull(
           data: (data) async {
-            if (data != null) {
-              final uid = ref.read(commonControllerProvider.notifier).getUid();
-              await ref.read(commonControllerProvider.notifier).getProfile();
-              await ref
-                  .read(nutritionControllerProvider.notifier)
-                  .getNutrition(uid);
-              await ref
-                  .read(consumeLogControllerProvider.notifier)
-                  .getConsumeLogs(uid);
-              await ref
-                  .read(consumeLogControllerProvider.notifier)
-                  .getTodayConsumeFood(uid, DateTime.now().toYyyyMMDd);
-              await ref
-                  .read(consumeLogControllerProvider.notifier)
-                  .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
-            }
+            await ref.read(commonControllerProvider.notifier).getProfile();
           },
           error: (error, stackTrace) {
             final message =
@@ -53,8 +38,21 @@ class LoginPage extends ConsumerWidget {
     ref.listen(commonControllerProvider, (previous, next) {
       if (previous?.userValue != next.userValue) {
         next.userValue.whenOrNull(
-          data: (data) {
-            context.goNamed(Routes.botNavBar.name);
+          data: (data) async {
+            final uid = ref.read(commonControllerProvider.notifier).getUid();
+            await ref
+                .read(nutritionControllerProvider.notifier)
+                .getNutrition(uid);
+            await ref
+                .read(consumeLogControllerProvider.notifier)
+                .getConsumeLogs(uid);
+            await ref
+                .read(consumeLogControllerProvider.notifier)
+                .getTodayConsumeFood(uid, DateTime.now().toYyyyMMDd);
+            await ref
+                .read(consumeLogControllerProvider.notifier)
+                .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
+            ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
           },
           error: (error, stackTrace) {
             final message =
