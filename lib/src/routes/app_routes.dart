@@ -160,7 +160,11 @@ GoRouter goRouter(GoRouterRef ref) {
       GoRoute(
         path: '/searchFood',
         name: Routes.searchFood.name,
-        builder: (context, state) => const SearchFoodScreen(),
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final consumeAt = extras.datas[ExtrasKey.consumeAt] as String;
+          return SearchFoodScreen(consumeAt: consumeAt);
+        },
       ),
       GoRoute(
         path: '/detailFood',
@@ -168,7 +172,8 @@ GoRouter goRouter(GoRouterRef ref) {
         builder: (context, state) {
           final extras = state.extra as Extras;
           final food = extras.datas[ExtrasKey.food];
-          return DetailFoodScreen(food: food);
+          final consumeAt = extras.datas[ExtrasKey.consumeAt] as String;
+          return DetailFoodScreen(food: food, consumeAt: consumeAt);
         },
       ),
       GoRoute(

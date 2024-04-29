@@ -106,6 +106,7 @@ class VideoWidget extends StatelessWidget {
               ),
             ),
             Container(
+              margin: EdgeInsets.only(left: 16.w),
               decoration: BoxDecoration(
                 color: HexColor('#E5F6FD'),
                 borderRadius: BorderRadius.circular(100),

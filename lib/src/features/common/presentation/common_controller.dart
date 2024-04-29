@@ -62,6 +62,7 @@ class CommonController extends _$CommonController {
             await ref
                 .read(consumeLogControllerProvider.notifier)
                 .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
+            ref.read(consumeLogControllerProvider.notifier).getDate();
             ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
           } else {
             ref.read(goRouterProvider).goNamed(Routes.question.name);

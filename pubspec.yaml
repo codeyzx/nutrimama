@@ -65,7 +65,6 @@ dev_dependencies:
   flutter_gen_runner: ^5.4.0
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^3.0.2
-  flutter_native_splash: ^2.4.0
   flutter_test:
     sdk: flutter
   riverpod_generator: ^2.4.0
@@ -74,6 +73,13 @@ dev_dependencies:
 flutter_gen:
   integrations:
     flutter_svg: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/ic_launcher.png"
+  remove_alpha_ios: true
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

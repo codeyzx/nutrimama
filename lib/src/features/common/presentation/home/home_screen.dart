@@ -68,7 +68,7 @@ class HomeScreen extends ConsumerWidget {
                                         children: [
                                           SizedBox(
                                             width: 50.w,
-                                            height: 45.h,
+                                            height: 42.h,
                                             child: Transform(
                                               alignment: Alignment.center,
                                               transform:
@@ -157,336 +157,185 @@ class HomeScreen extends ConsumerWidget {
                           SizedBox(
                             height: 20.h,
                           ),
-                          SizedBox(
-                            height: 111.h,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
-                              children: [
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        width: 61.w,
-                                        height: 84.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 16.h),
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#0366DA'),
-                                          borderRadius:
-                                              BorderRadius.circular(6.r),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Sen',
-                                              style: TypographyApp.dayHome,
-                                            ),
-                                            Text(
-                                              '22',
-                                              style: TypographyApp.dateHome,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text('Hari Ini',
-                                          style: TypographyApp.todayHome),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        width: 41.w,
-                                        height: 6.h,
-                                        decoration: BoxDecoration(
-                                            color: ColorApp.primary,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        width: 61.w,
-                                        height: 84.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 16.h),
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F3F3F3'),
-                                          borderRadius:
-                                              BorderRadius.circular(6.r),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Sel',
-                                              style: TypographyApp.dayOffHome,
-                                            ),
-                                            Text(
-                                              '23',
-                                              style: TypographyApp.dateOffHome,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //ini sengaja ada supaya ukuran container atas ga berubah
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text('', style: TypographyApp.todayHome),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        width: 41.w,
-                                        height: 6.h,
-                                        decoration: BoxDecoration(
-                                            color: ColorApp.white,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        width: 61.w,
-                                        height: 84.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 16.h),
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F3F3F3'),
-                                          borderRadius:
-                                              BorderRadius.circular(6.r),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Rab',
-                                              style: TypographyApp.dayOffHome,
-                                            ),
-                                            Text(
-                                              '24',
-                                              style: TypographyApp.dateOffHome,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //ini sengaja ada supaya ukuran container atas ga berubah
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text('', style: TypographyApp.todayHome),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        width: 41.w,
-                                        height: 6.h,
-                                        decoration: BoxDecoration(
-                                            color: ColorApp.white,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        width: 61.w,
-                                        height: 84.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 16.h),
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F3F3F3'),
-                                          borderRadius:
-                                              BorderRadius.circular(6.r),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Sel',
-                                              style: TypographyApp.dayOffHome,
-                                            ),
-                                            Text(
-                                              '23',
-                                              style: TypographyApp.dateOffHome,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //ini sengaja ada supaya ukuran container atas ga berubah
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text('', style: TypographyApp.todayHome),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        width: 41.w,
-                                        height: 6.h,
-                                        decoration: BoxDecoration(
-                                            color: ColorApp.white,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        width: 61.w,
-                                        height: 84.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 16.h),
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F3F3F3'),
-                                          borderRadius:
-                                              BorderRadius.circular(6.r),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Sel',
-                                              style: TypographyApp.dayOffHome,
-                                            ),
-                                            Text(
-                                              '23',
-                                              style: TypographyApp.dateOffHome,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //ini sengaja ada supaya ukuran container atas ga berubah
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text('', style: TypographyApp.todayHome),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        width: 41.w,
-                                        height: 6.h,
-                                        decoration: BoxDecoration(
-                                            color: ColorApp.white,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {},
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Container(
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 8.w),
-                                        width: 61.w,
-                                        height: 84.h,
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 16.h),
-                                        decoration: BoxDecoration(
-                                          color: HexColor('#F3F3F3'),
-                                          borderRadius:
-                                              BorderRadius.circular(6.r),
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              'Sel',
-                                              style: TypographyApp.dayOffHome,
-                                            ),
-                                            Text(
-                                              '23',
-                                              style: TypographyApp.dateOffHome,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      //ini sengaja ada supaya ukuran container atas ga berubah
-                                      SizedBox(
-                                        height: 4.h,
-                                      ),
-                                      Text('', style: TypographyApp.todayHome),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Container(
-                                        width: 41.w,
-                                        height: 6.h,
-                                        decoration: BoxDecoration(
-                                            color: ColorApp.white,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                          AsyncValueWidget(
+                            value: consumeLogState.date,
+                            data: (data) => Container(
+                              height: 111.h,
+                              padding: EdgeInsets.symmetric(horizontal: 5.w),
+                              child: ListView(
+                                  controller: ScrollController(
+                                      initialScrollOffset: (9) * (40)),
+                                  scrollDirection: Axis.horizontal,
+                                  children: data
+                                      .map(
+                                        (date) => consumeLogState
+                                                    .selectedDate?.toYyyyMMDd ==
+                                                date.toYyyyMMDd
+                                            ? GestureDetector(
+                                                onTap: () async {
+                                                  await ref
+                                                      .read(
+                                                          consumeLogControllerProvider
+                                                              .notifier)
+                                                      .getTodayConsumeLog(
+                                                          user.id,
+                                                          date.toYyyyMMDd);
+                                                },
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10.w),
+                                                      width: 61.w,
+                                                      height: 72.h,
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 16.h),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            HexColor('#0366DA'),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(6.r),
+                                                      ),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            date.dayNameShort,
+                                                            style: TypographyApp
+                                                                .dayHome,
+                                                          ),
+                                                          Text(
+                                                            date.day.toString(),
+                                                            style: TypographyApp
+                                                                .dateHome,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Visibility(
+                                                      visible:
+                                                          date.toYyyyMMDd ==
+                                                              DateTime.now()
+                                                                  .toYyyyMMDd,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          SizedBox(
+                                                            height: 4.h,
+                                                          ),
+                                                          Text('Hari Ini',
+                                                              style: TypographyApp
+                                                                  .todayHome),
+                                                          SizedBox(
+                                                            height: 2.h,
+                                                          ),
+                                                          Container(
+                                                            width: 41.w,
+                                                            height: 6.h,
+                                                            decoration:
+                                                                BoxDecoration(
+                                                              color: ColorApp
+                                                                  .primary,
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          6.r),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            : GestureDetector(
+                                                onTap: () async {
+                                                  await ref
+                                                      .read(
+                                                          consumeLogControllerProvider
+                                                              .notifier)
+                                                      .getTodayConsumeLog(
+                                                          user.id,
+                                                          date.toYyyyMMDd);
+                                                },
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      margin:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10.w),
+                                                      width: 61.w,
+                                                      height: 72.h,
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 16.h),
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            HexColor('#F3F3F3'),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(6.r),
+                                                      ),
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Text(
+                                                            date.dayNameShort,
+                                                            style: TypographyApp
+                                                                .dayOffHome,
+                                                          ),
+                                                          Text(
+                                                            date.day.toString(),
+                                                            style: TypographyApp
+                                                                .dateOffHome,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    //ini sengaja ada supaya ukuran container atas ga berubah
+                                                    SizedBox(
+                                                      height: 4.h,
+                                                    ),
+                                                    Text('',
+                                                        style: TypographyApp
+                                                            .todayHome),
+                                                    SizedBox(
+                                                      height: 2.h,
+                                                    ),
+                                                    Container(
+                                                      width: 41.w,
+                                                      height: 6.h,
+                                                      decoration: BoxDecoration(
+                                                          color: ColorApp.white,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      6.r)),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                      )
+                                      .toList()),
                             ),
                           ),
                           SizedBox(
@@ -550,53 +399,58 @@ class HomeScreen extends ConsumerWidget {
                                         ),
                                       ),
                                     ),
-                                    InkWell(
-                                      onTap: () async {
-                                        await ref
-                                            .read(journalControllerProvider
-                                                .notifier)
-                                            .getJournals(user.id);
-                                        ref.read(goRouterProvider).pushNamed(
-                                            Routes.journal.name,
-                                            extra: Extras(
-                                                datas: {ExtrasKey.user: user}));
-                                      },
-                                      child: Container(
-                                        width: 181.w,
-                                        height: 55.h,
-                                        decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(6.r),
-                                            border: Border.all(
-                                              color: HexColor('#CCD1D6'),
-                                            ),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.black
-                                                    .withOpacity(0.09),
-                                                offset: const Offset(0, 1),
-                                                blurRadius: 4,
+                                    Padding(
+                                      padding: EdgeInsets.only(right: 4.w),
+                                      child: InkWell(
+                                        onTap: () async {
+                                          await ref
+                                              .read(journalControllerProvider
+                                                  .notifier)
+                                              .getJournals(user.id);
+                                          ref.read(goRouterProvider).pushNamed(
+                                              Routes.journal.name,
+                                              extra: Extras(datas: {
+                                                ExtrasKey.user: user
+                                              }));
+                                        },
+                                        child: Container(
+                                          width: 181.w,
+                                          height: 55.h,
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(6.r),
+                                              border: Border.all(
+                                                color: HexColor('#CCD1D6'),
+                                              ),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.black
+                                                      .withOpacity(0.09),
+                                                  offset: const Offset(0, 1),
+                                                  blurRadius: 4,
+                                                )
+                                              ]),
+                                          child: Row(
+                                            children: [
+                                              SizedBox(
+                                                width: 12.w,
+                                              ),
+                                              Image.asset(
+                                                'assets/images/book_img.png',
+                                                width: 29.w,
+                                                height: 30.h,
+                                              ),
+                                              SizedBox(
+                                                width: 16.w,
+                                              ),
+                                              Text(
+                                                'Jurnal',
+                                                style:
+                                                    TypographyApp.btnBlackHome,
                                               )
-                                            ]),
-                                        child: Row(
-                                          children: [
-                                            SizedBox(
-                                              width: 12.w,
-                                            ),
-                                            Image.asset(
-                                              'assets/images/book_img.png',
-                                              width: 29.w,
-                                              height: 30.h,
-                                            ),
-                                            SizedBox(
-                                              width: 16.w,
-                                            ),
-                                            Text(
-                                              'Jurnal',
-                                              style: TypographyApp.btnBlackHome,
-                                            )
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -726,13 +580,16 @@ class HomeScreen extends ConsumerWidget {
                                                   HexColor('#D9D9D9'),
                                               color: ColorApp.primary,
                                               strokeWidth: 13.w,
-                                              // TODO: error kalau lebih dari target
                                               progress: (consume
                                                               ?.totalCalories ==
                                                           null
                                                       ? 0
-                                                      : consume!.totalCalories
-                                                          .toDouble()) /
+                                                      : consume!.totalCalories >
+                                                              nutrition.calories
+                                                          ? nutrition.calories
+                                                          : consume
+                                                              .totalCalories
+                                                              .toDouble()) /
                                                   nutrition.calories,
                                               child: Column(
                                                 mainAxisAlignment:
@@ -1030,34 +887,39 @@ class HomeScreen extends ConsumerWidget {
                                                       top: 0,
                                                       right: -6,
                                                       child: IconButton(
-                                                          onPressed: () {
-                                                            //quick alert
-                                                            QuickAlert.show(
-                                                              context: context,
-                                                              type:
-                                                                  QuickAlertType
-                                                                      .confirm,
-                                                              title:
-                                                                  "Tambah Air Minum",
-                                                              text:
-                                                                  "Apakah anda ingin menambah air minum?",
-                                                              confirmBtnText:
-                                                                  "Ya",
-                                                              cancelBtnText:
-                                                                  "Tidak",
-                                                              onConfirmBtnTap:
-                                                                  () {
-                                                                ref
-                                                                    .read(consumeLogControllerProvider
-                                                                        .notifier)
-                                                                    .addDrink(
-                                                                        user.id,
-                                                                        DateTime.now()
-                                                                            .toYyyyMMDd);
-                                                                context.pop();
-                                                              },
-                                                            );
-                                                          },
+                                                          onPressed: consumeLogState
+                                                                      .selectedDate
+                                                                      ?.toYyyyMMDd !=
+                                                                  DateTime.now()
+                                                                      .toYyyyMMDd
+                                                              ? () {}
+                                                              : () {
+                                                                  QuickAlert
+                                                                      .show(
+                                                                    context:
+                                                                        context,
+                                                                    type: QuickAlertType
+                                                                        .confirm,
+                                                                    title:
+                                                                        "Tambah Air Minum",
+                                                                    text:
+                                                                        "Apakah anda ingin menambah air minum?",
+                                                                    confirmBtnText:
+                                                                        "Ya",
+                                                                    cancelBtnText:
+                                                                        "Tidak",
+                                                                    onConfirmBtnTap:
+                                                                        () {
+                                                                      ref.read(consumeLogControllerProvider.notifier).addDrink(
+                                                                          user
+                                                                              .id,
+                                                                          DateTime.now()
+                                                                              .toYyyyMMDd);
+                                                                      context
+                                                                          .pop();
+                                                                    },
+                                                                  );
+                                                                },
                                                           icon: Icon(
                                                             Icons.add_rounded,
                                                             color: HexColor(
@@ -1147,7 +1009,7 @@ class HomeScreen extends ConsumerWidget {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        '${consume.foods.where((element) => element.consumeAt == "sarapan").fold(0, (previousValue, element) => previousValue + element.calories)} Kkal',
+                                                        '${consume.foods.where((element) => element.consumeAt == "breakfast").fold(0, (previousValue, element) => previousValue + element.calories)} Kkal',
                                                         style: TypographyApp
                                                             .eatCalHome,
                                                       ),
@@ -1168,12 +1030,24 @@ class HomeScreen extends ConsumerWidget {
                                             ],
                                           ),
                                           RawMaterialButton(
-                                            onPressed: () {
-                                              ref
-                                                  .read(goRouterProvider)
-                                                  .pushNamed(
-                                                      Routes.searchFood.name);
-                                            },
+                                            onPressed: consumeLogState
+                                                        .selectedDate
+                                                        ?.toYyyyMMDd !=
+                                                    DateTime.now().toYyyyMMDd
+                                                ? () {}
+                                                : () {
+                                                    ref
+                                                        .read(goRouterProvider)
+                                                        .pushNamed(
+                                                            Routes.searchFood
+                                                                .name,
+                                                            extra: const Extras(
+                                                                datas: {
+                                                                  ExtrasKey
+                                                                          .consumeAt:
+                                                                      "breakfast"
+                                                                }));
+                                                  },
                                             elevation: 0.0,
                                             fillColor: HexColor('#E5F6FD'),
                                             padding: const EdgeInsets.all(5.0),
@@ -1191,19 +1065,17 @@ class HomeScreen extends ConsumerWidget {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
-                                        itemCount:
-                                            //consume.foods where consumeAt == "sarapan"
-                                            consume.foods
-                                                .where((element) =>
-                                                    element.consumeAt ==
-                                                    "sarapan")
-                                                .length,
+                                        itemCount: consume.foods
+                                            .where((element) =>
+                                                element.consumeAt ==
+                                                "breakfast")
+                                            .length,
                                         padding: EdgeInsets.zero,
                                         itemBuilder: (context, index) {
                                           final food = consume.foods
                                               .where((element) =>
                                                   element.consumeAt ==
-                                                  "sarapan")
+                                                  "breakfast")
                                               .toList()[index];
                                           return Padding(
                                             padding:
@@ -1333,7 +1205,24 @@ class HomeScreen extends ConsumerWidget {
                                             ],
                                           ),
                                           RawMaterialButton(
-                                            onPressed: () {},
+                                            onPressed: consumeLogState
+                                                        .selectedDate
+                                                        ?.toYyyyMMDd !=
+                                                    DateTime.now().toYyyyMMDd
+                                                ? () {}
+                                                : () {
+                                                    ref
+                                                        .read(goRouterProvider)
+                                                        .pushNamed(
+                                                            Routes.searchFood
+                                                                .name,
+                                                            extra: const Extras(
+                                                                datas: {
+                                                                  ExtrasKey
+                                                                          .consumeAt:
+                                                                      "lunch"
+                                                                }));
+                                                  },
                                             elevation: 0.0,
                                             fillColor: HexColor('#E5F6FD'),
                                             padding: const EdgeInsets.all(5.0),
@@ -1353,9 +1242,16 @@ class HomeScreen extends ConsumerWidget {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
-                                        itemCount: 1,
+                                        itemCount: consume.foods
+                                            .where((element) =>
+                                                element.consumeAt == "lunch")
+                                            .length,
                                         padding: EdgeInsets.zero,
                                         itemBuilder: (context, index) {
+                                          final food = consume.foods
+                                              .where((element) =>
+                                                  element.consumeAt == "lunch")
+                                              .toList()[index];
                                           return Padding(
                                             padding:
                                                 EdgeInsets.only(bottom: 10.h),
@@ -1368,7 +1264,7 @@ class HomeScreen extends ConsumerWidget {
                                                       BorderRadius.circular(
                                                           8.r),
                                                   child: Image.network(
-                                                    'https://asset.kompas.com/crops/st5mFloK5rTZk0Q00L_SWLbjUYs=/0x61:800x594/750x500/data/photo/2022/05/15/6280f7d231bd6.jpg',
+                                                    food.imageUrl,
                                                     width: 64.w,
                                                     height: 64.h,
                                                     fit: BoxFit.cover,
@@ -1382,12 +1278,12 @@ class HomeScreen extends ConsumerWidget {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Dada Ayam',
+                                                      food.name,
                                                       style: TypographyApp
                                                           .foodNameHome,
                                                     ),
                                                     Text(
-                                                      '300 Kkal',
+                                                      '${food.calories} Kkal',
                                                       style: TypographyApp
                                                           .foodCalHome,
                                                     )
@@ -1482,7 +1378,24 @@ class HomeScreen extends ConsumerWidget {
                                             ],
                                           ),
                                           RawMaterialButton(
-                                            onPressed: () {},
+                                            onPressed: consumeLogState
+                                                        .selectedDate
+                                                        ?.toYyyyMMDd !=
+                                                    DateTime.now().toYyyyMMDd
+                                                ? () {}
+                                                : () {
+                                                    ref
+                                                        .read(goRouterProvider)
+                                                        .pushNamed(
+                                                            Routes.searchFood
+                                                                .name,
+                                                            extra: const Extras(
+                                                                datas: {
+                                                                  ExtrasKey
+                                                                          .consumeAt:
+                                                                      "dinner"
+                                                                }));
+                                                  },
                                             elevation: 0.0,
                                             fillColor: HexColor('#E5F6FD'),
                                             padding: const EdgeInsets.all(5.0),
@@ -1502,9 +1415,16 @@ class HomeScreen extends ConsumerWidget {
                                         physics:
                                             const NeverScrollableScrollPhysics(),
                                         shrinkWrap: true,
-                                        itemCount: 0,
+                                        itemCount: consume.foods
+                                            .where((element) =>
+                                                element.consumeAt == "dinner")
+                                            .length,
                                         padding: EdgeInsets.zero,
                                         itemBuilder: (context, index) {
+                                          final food = consume.foods
+                                              .where((element) =>
+                                                  element.consumeAt == "dinner")
+                                              .toList()[index];
                                           return Padding(
                                             padding:
                                                 EdgeInsets.only(bottom: 10.h),
@@ -1517,7 +1437,7 @@ class HomeScreen extends ConsumerWidget {
                                                       BorderRadius.circular(
                                                           8.r),
                                                   child: Image.network(
-                                                    'https://asset.kompas.com/crops/st5mFloK5rTZk0Q00L_SWLbjUYs=/0x61:800x594/750x500/data/photo/2022/05/15/6280f7d231bd6.jpg',
+                                                    food.imageUrl,
                                                     width: 64.w,
                                                     height: 64.h,
                                                     fit: BoxFit.cover,
@@ -1531,12 +1451,12 @@ class HomeScreen extends ConsumerWidget {
                                                       CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
-                                                      'Dada Ayam',
+                                                      food.name,
                                                       style: TypographyApp
                                                           .foodNameHome,
                                                     ),
                                                     Text(
-                                                      '300 Kkal',
+                                                      '${food.calories} Kkal',
                                                       style: TypographyApp
                                                           .foodCalHome,
                                                     )
@@ -1633,7 +1553,34 @@ class HomeScreen extends ConsumerWidget {
                                             ],
                                           ),
                                           RawMaterialButton(
-                                            onPressed: () {},
+                                            onPressed: consumeLogState
+                                                        .selectedDate
+                                                        ?.toYyyyMMDd !=
+                                                    DateTime.now().toYyyyMMDd
+                                                ? () {}
+                                                : () {
+                                                    QuickAlert.show(
+                                                      context: context,
+                                                      type: QuickAlertType
+                                                          .confirm,
+                                                      title: "Tambah Vitamin",
+                                                      text:
+                                                          'Apakah anda ingin menambah vitamin?',
+                                                      confirmBtnText: "Ya",
+                                                      cancelBtnText: "Tidak",
+                                                      onConfirmBtnTap: () {
+                                                        ref
+                                                            .read(
+                                                                consumeLogControllerProvider
+                                                                    .notifier)
+                                                            .addVitamin(
+                                                                user.id,
+                                                                DateTime.now()
+                                                                    .toYyyyMMDd);
+                                                        context.pop();
+                                                      },
+                                                    );
+                                                  },
                                             elevation: 0.0,
                                             fillColor: HexColor('#E5F6FD'),
                                             padding: const EdgeInsets.all(5.0),
@@ -1648,55 +1595,6 @@ class HomeScreen extends ConsumerWidget {
                                       ),
                                       SizedBox(
                                         height: 18.h,
-                                      ),
-                                      ListView.builder(
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount: 0,
-                                        padding: EdgeInsets.zero,
-                                        itemBuilder: (context, index) {
-                                          return Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10.h),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          8.r),
-                                                  child: Image.network(
-                                                    'https://asset.kompas.com/crops/st5mFloK5rTZk0Q00L_SWLbjUYs=/0x61:800x594/750x500/data/photo/2022/05/15/6280f7d231bd6.jpg',
-                                                    width: 64.w,
-                                                    height: 64.h,
-                                                    fit: BoxFit.cover,
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  width: 18.w,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Dada Ayam',
-                                                      style: TypographyApp
-                                                          .foodNameHome,
-                                                    ),
-                                                    Text(
-                                                      '300 Kkal',
-                                                      style: TypographyApp
-                                                          .foodCalHome,
-                                                    )
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        },
                                       ),
                                     ],
                                   ),

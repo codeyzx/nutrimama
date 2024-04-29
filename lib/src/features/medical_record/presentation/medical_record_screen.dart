@@ -38,22 +38,35 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Medikal Record',
-          style: TypographyApp.appBarMedrec,
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          color: Colors.black,
-          onPressed: () {
-            ref.read(goRouterProvider).pop();
-          },
-        ),
-      ),
+          title: Text(
+            'Medikal Record',
+            style: TypographyApp.appBarMedrec,
+          ),
+          leading: Container(
+            margin: const EdgeInsets.only(
+              left: 16,
+              top: 10,
+              bottom: 10,
+              right: 2,
+            ),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.grey, width: .5),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back_ios_new, size: 20),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          )),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 16.w),
-          margin: EdgeInsets.only(bottom: 72.h),
+          margin: EdgeInsets.only(
+            bottom: 72.h,
+            top: 12.h,
+          ),
           child: Column(
             children: [
               Container(
@@ -128,18 +141,25 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
               AsyncValueWidget(
                 value: state.mother,
                 data: (data) => data.isNull()
-                    ? Center(
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
+                    ? Container(
+                        width: 374.w,
+                        height: 192.h,
+                        padding: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6.r),
                             border: Border.all(
-                              color: Colors.grey,
-                              width: 1.0,
+                              color: HexColor('#CCD1D6'),
+                              width: 0.3.w,
                             ),
-                            borderRadius: BorderRadius.circular(10.0),
-                          ),
-                          margin: const EdgeInsets.all(20.0),
-                          padding: const EdgeInsets.all(20.0),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.09),
+                                offset: const Offset(0, 1),
+                                blurRadius: 4,
+                              )
+                            ]),
+                        child: Center(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -258,8 +278,13 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                                 children: [
                                                   RichText(
                                                     text: TextSpan(
-                                                      text:
-                                                          '${data?.weight.toInt()}',
+                                                      text: data?.weight
+                                                              .toString()
+                                                              .replaceAll(
+                                                                  RegExp(
+                                                                      r'\.0'),
+                                                                  '') ??
+                                                          '-',
                                                       style: TypographyApp
                                                           .weightNumMedrec,
                                                       children: <TextSpan>[
@@ -398,18 +423,25 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                 data: (data) {
                   final fetals = _groupAndSelectLatestFetals(data ?? []);
                   return data!.isEmpty
-                      ? Center(
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
+                      ? Container(
+                          width: 374.w,
+                          height: 192.h,
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6.r),
                               border: Border.all(
-                                color: Colors.grey,
-                                width: 1.0,
+                                color: HexColor('#CCD1D6'),
+                                width: 0.3.w,
                               ),
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            margin: const EdgeInsets.all(20.0),
-                            padding: const EdgeInsets.all(20.0),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.09),
+                                  offset: const Offset(0, 1),
+                                  blurRadius: 4,
+                                )
+                              ]),
+                          child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -545,8 +577,11 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                                       children: [
                                                         RichText(
                                                           text: TextSpan(
-                                                            text: fetal.weight
-                                                                .toString(),
+                                                            text: '${fetal.weight}'
+                                                                .replaceAll(
+                                                                    RegExp(
+                                                                        r'\.0'),
+                                                                    ''),
                                                             style: TypographyApp
                                                                 .babyWeightMedrec,
                                                             children: <TextSpan>[
@@ -583,8 +618,11 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                                       children: [
                                                         RichText(
                                                           text: TextSpan(
-                                                            text:
-                                                                '${fetal.length}',
+                                                            text: '${fetal.length}'
+                                                                .replaceAll(
+                                                                    RegExp(
+                                                                        r'\.0'),
+                                                                    ''),
                                                             style: TypographyApp
                                                                 .babyWeightMedrec,
                                                             children: <TextSpan>[
@@ -621,22 +659,14 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                                       children: [
                                                         RichText(
                                                           text: TextSpan(
-                                                            text: fetal
-                                                                .heartRate
-                                                                .toString(),
+                                                            text:
+                                                                '${fetal.heartRate} bpm',
                                                             style: TypographyApp
                                                                 .babyWeightMedrec,
-                                                            children: <TextSpan>[
-                                                              TextSpan(
-                                                                text: '',
-                                                                style: TypographyApp
-                                                                    .babyWeightUnitMedrec,
-                                                              )
-                                                            ],
                                                           ),
                                                         ),
                                                         Text(
-                                                          'Detak Jantung/Menit',
+                                                          'Detak Jantung',
                                                           style: TypographyApp
                                                               .babySubtitleMedrec,
                                                         ),

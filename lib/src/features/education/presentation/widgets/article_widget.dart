@@ -37,11 +37,14 @@ class ArticleWidget extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      article.title,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16.sp,
+                    SizedBox(
+                      width: 270.w,
+                      child: Text(
+                        article.title,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.sp,
+                        ),
                       ),
                     ),
                     SizedBox(
@@ -64,7 +67,7 @@ class ArticleWidget extends StatelessWidget {
                     imageUrl: article.imageUrl,
                     imageBuilder: (context, imageProvider) => Container(
                       height: 72.h,
-                      width: 72.w,
+                      width: 83.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(6),
                         image: DecorationImage(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/consume_log/domain/consume_food.dart';
@@ -10,7 +9,9 @@ import 'package:nutrimama/src/shared/extensions/date_time.dart';
 
 class DetailFoodScreen extends ConsumerWidget {
   final Food food;
-  const DetailFoodScreen({super.key, required this.food});
+  final String consumeAt;
+  const DetailFoodScreen(
+      {super.key, required this.food, required this.consumeAt});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,29 +64,29 @@ class DetailFoodScreen extends ConsumerWidget {
               onTap: () {
                 final uid =
                     ref.read(commonControllerProvider.notifier).getUid();
-                ConsumeFood consumeFood = ConsumeFood.fromFood(food, "sarapan");
+                ConsumeFood consumeFood = ConsumeFood.fromFood(food, consumeAt);
                 ref.read(consumeLogControllerProvider.notifier).addConsumeFood(
                     uid, DateTime.now().toYyyyMMDd, consumeFood);
-                final consumeLogs = ref
-                        .read(consumeLogControllerProvider)
-                        .consumeLogs
-                        .asData
-                        ?.value ??
-                    [];
-                final todayConsumeLog = ref
-                    .read(consumeLogControllerProvider)
-                    .todayConsumeLog
-                    .asData
-                    ?.value;
-                final todayConsumeFoods = ref
-                        .read(consumeLogControllerProvider)
-                        .consumeFoods
-                        .asData
-                        ?.value ??
-                    [];
-                Logger().i(consumeLogs);
-                Logger().i(todayConsumeLog);
-                Logger().i(todayConsumeFoods);
+                // final consumeLogs = ref
+                //         .read(consumeLogControllerProvider)
+                //         .consumeLogs
+                //         .asData
+                //         ?.value ??
+                //     [];
+                // final todayConsumeLog = ref
+                //     .read(consumeLogControllerProvider)
+                //     .todayConsumeLog
+                //     .asData
+                //     ?.value;
+                // final todayConsumeFoods = ref
+                //         .read(consumeLogControllerProvider)
+                //         .consumeFoods
+                //         .asData
+                //         ?.value ??
+                //     [];
+                // Logger().i(consumeLogs);
+                // Logger().i(todayConsumeLog);
+                // Logger().i(todayConsumeFoods);
               },
               child: Container(
                 height: 50,

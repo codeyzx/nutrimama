@@ -208,10 +208,10 @@ class TypographyApp {
     fontSize: 20.sp,
   );
 
-  static TextStyle todayHome= TextStyle(
+  static TextStyle todayHome = TextStyle(
     color: ColorApp.primary,
-    fontWeight: FontWeight.w600,
-    fontSize: 12.sp,
+    fontWeight: FontWeight.bold,
+    fontSize: 10.sp,
   );
 
   static TextStyle dayOffHome = TextStyle(
@@ -221,126 +221,126 @@ class TypographyApp {
   );
 
   static TextStyle dateOffHome = TextStyle(
-    color:  HexColor('#393939'),
+    color: HexColor('#393939'),
     fontWeight: FontWeight.w700,
     fontSize: 20.sp,
   );
 
   static TextStyle btnBlackHome = TextStyle(
-    color:  HexColor('#001C34'),
+    color: HexColor('#001C34'),
     fontWeight: FontWeight.w600,
     fontSize: 16.sp,
   );
 
   static TextStyle consumedHome = TextStyle(
-    color:  HexColor('#B0B0B0'),
+    color: HexColor('#B0B0B0'),
     fontWeight: FontWeight.w500,
     fontSize: 12.sp,
   );
 
   static TextStyle primaryOnBtn = TextStyle(
-    color:  ColorApp.primary,
+    color: ColorApp.primary,
     fontWeight: FontWeight.w500,
     fontSize: 16.sp,
   );
 
   static TextStyle titleHome = TextStyle(
-    color:  HexColor('#001C34'),
+    color: HexColor('#001C34'),
     fontWeight: FontWeight.w600,
     fontSize: 14.sp,
   );
 
   static TextStyle eatCalHome = TextStyle(
-    color:  HexColor('#000000'),
+    color: HexColor('#000000'),
     fontWeight: FontWeight.w700,
     fontSize: 20.sp,
   );
   static TextStyle eatCalTotalHome = TextStyle(
-    color:  HexColor('#B0B0B0'),
+    color: HexColor('#B0B0B0'),
     fontWeight: FontWeight.w500,
     fontSize: 14.sp,
   );
 
   static TextStyle foodNameHome = TextStyle(
-    color:  HexColor('#000000'),
+    color: HexColor('#000000'),
     fontWeight: FontWeight.w600,
     fontSize: 16.sp,
   );
 
   static TextStyle foodCalHome = TextStyle(
-    color:  HexColor('#8E8E8E'),
+    color: HexColor('#8E8E8E'),
     fontWeight: FontWeight.w500,
     fontSize: 13.sp,
   );
 
   static TextStyle trisMedrec = TextStyle(
-    color:  ColorApp.primary,
+    color: ColorApp.primary,
     fontWeight: FontWeight.w600,
     fontSize: 13.sp,
   );
 
   static TextStyle trisDescMedrec = TextStyle(
-    color:  HexColor('#001C34'),
+    color: HexColor('#001C34'),
     fontWeight: FontWeight.w400,
     fontSize: 13.sp,
   );
 
   static TextStyle tipsMedrec = TextStyle(
-    color:  ColorApp.primary,
+    color: ColorApp.primary,
     fontWeight: FontWeight.w600,
     fontSize: 13.sp,
   );
 
   static TextStyle dataTitleMedrec = TextStyle(
-    color:  ColorApp.primary,
+    color: ColorApp.primary,
     fontWeight: FontWeight.w700,
     fontSize: 15.sp,
   );
 
   static TextStyle weightNumMedrec = TextStyle(
-    color:  ColorApp.black,
+    color: ColorApp.black,
     fontWeight: FontWeight.w600,
     fontSize: 24.sp,
   );
 
   static TextStyle weightKgMedrec = TextStyle(
-    color:  ColorApp.black,
+    color: ColorApp.black,
     fontWeight: FontWeight.w600,
     fontSize: 16.sp,
   );
 
   static TextStyle weightSubtitleMedrec = TextStyle(
-    color:  HexColor('#8E8E8E'),
+    color: HexColor('#8E8E8E'),
     fontWeight: FontWeight.w500,
     fontSize: 12.sp,
   );
 
   static TextStyle bloodNumMedrec = TextStyle(
-    color:  HexColor('#000000'),
+    color: HexColor('#000000'),
     fontWeight: FontWeight.w600,
     fontSize: 20.sp,
   );
 
   static TextStyle bloodNumUnitMedrec = TextStyle(
-    color:  HexColor('#000000'),
+    color: HexColor('#000000'),
     fontWeight: FontWeight.w600,
     fontSize: 10.sp,
   );
 
   static TextStyle dataDateMedrec = TextStyle(
-    color:  ColorApp.primary,
+    color: ColorApp.primary,
     fontWeight: FontWeight.w600,
     fontSize: 13.sp,
   );
 
   static TextStyle babyWeightMedrec = TextStyle(
-    color:  ColorApp.black,
+    color: ColorApp.black,
     fontWeight: FontWeight.w600,
     fontSize: 18.sp,
   );
 
   static TextStyle babyWeightUnitMedrec = TextStyle(
-    color:  ColorApp.black,
+    color: ColorApp.black,
     fontWeight: FontWeight.w600,
     fontSize: 14.sp,
   );

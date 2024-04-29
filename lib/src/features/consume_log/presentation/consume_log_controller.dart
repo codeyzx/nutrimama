@@ -40,6 +40,7 @@ class ConsumeLogController extends _$ConsumeLogController {
         Logger().i(log.toJson());
         state = state.copyWith(
           todayConsumeLog: AsyncData(log),
+          selectedDate: DateTime.parse(date),
         );
       },
       failure: (e, s) {
@@ -113,6 +114,21 @@ class ConsumeLogController extends _$ConsumeLogController {
           todayConsumeLog: AsyncError(e, s),
         );
       },
+    );
+  }
+
+  void getDate() {
+    state = state.copyWith(
+      date: const AsyncLoading(),
+    );
+
+    final now = DateTime.now();
+    final dateTemp = List.generate(8, (index) {
+      return now.subtract(Duration(days: index));
+    });
+    final date = dateTemp.reversed.toList();
+    state = state.copyWith(
+      date: AsyncData(date),
     );
   }
 }

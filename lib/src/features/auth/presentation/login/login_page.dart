@@ -52,6 +52,7 @@ class LoginPage extends ConsumerWidget {
             await ref
                 .read(consumeLogControllerProvider.notifier)
                 .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
+            ref.read(consumeLogControllerProvider.notifier).getDate();
             ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
           },
           error: (error, stackTrace) {
@@ -75,7 +76,7 @@ class LoginPage extends ConsumerWidget {
                   const Spacer(),
                   Center(
                     child: Assets.icons.icLauncher.image(
-                      width: context.screenWidthPercentage(0.40),
+                      width: context.screenWidthPercentage(.5),
                       fit: BoxFit.fitWidth,
                     ),
                   ),

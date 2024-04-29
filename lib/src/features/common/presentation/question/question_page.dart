@@ -185,6 +185,10 @@ class QuestionPage extends ConsumerWidget {
                                               .notifier)
                                           .getTodayConsumeLog(
                                               uid, DateTime.now().toYyyyMMDd);
+                                      ref
+                                          .read(consumeLogControllerProvider
+                                              .notifier)
+                                          .getDate();
 
                                       controller.setSuccess();
 
