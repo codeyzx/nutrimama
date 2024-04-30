@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/common_widgets/input_form/dropdown_form_widget.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/common/presentation/question/question_controller.dart';
 import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
@@ -27,23 +29,17 @@ class QuestionPage extends ConsumerWidget {
             margin: EdgeInsets.only(top: 60.h, bottom: 20.h),
             child: Column(
               children: [
-                Center(
-                  child: Image.asset(
-                    'assets/images/question_img_1.png',
-                    width: 375.w,
-                    height: 300.h,
-                  ),
-                ),
-                SizedBox(
-                  height: 13.46.h,
-                ),
                 Text(
-                  ' Personal Information',
+                  'Personal Information',
                   style: TypographyApp.onBoardTitle.copyWith(fontSize: 24.sp),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  height: 12.h,
+                Gap.h12,
+                Center(
+                  child: Assets.images.question.svg(
+                    width: 300.w,
+                    height: 200.h,
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 40.w),
@@ -108,7 +104,7 @@ class QuestionPage extends ConsumerWidget {
                           DropdownFormWidget(
                             value: state.age,
                             list: state.ageList,
-                            prefixIcon: Icons.cake,
+                            prefixIcon: null,
                             onChanged: (value) {
                               if (value.isNotNull()) {
                                 controller.setAge(value.toString());
@@ -151,20 +147,28 @@ class QuestionPage extends ConsumerWidget {
                                                   state.heightController.text),
                                               age: int.parse(state.age));
 
+                                      await ref
+                                          .read(
+                                              commonControllerProvider.notifier)
+                                          .getProfile();
+
                                       String uid = ref
                                           .read(
                                               commonControllerProvider.notifier)
                                           .getUid();
 
+                                      final conceptionDate = ref
+                                              .read(commonControllerProvider)
+                                              .userValue
+                                              .asData
+                                              ?.value
+                                              .fetalDate ??
+                                          DateTime.now();
+
                                       await ref
                                           .read(nutritionControllerProvider
                                               .notifier)
                                           .setNutrition(resultCalculate, uid);
-
-                                      await ref
-                                          .read(
-                                              commonControllerProvider.notifier)
-                                          .getProfile();
 
                                       await ref
                                           .read(nutritionControllerProvider
@@ -178,17 +182,21 @@ class QuestionPage extends ConsumerWidget {
                                       await ref
                                           .read(consumeLogControllerProvider
                                               .notifier)
-                                          .getTodayConsumeFood(
+                                          .getTodayConsumeLog(
                                               uid, DateTime.now().toYyyyMMDd);
                                       await ref
                                           .read(consumeLogControllerProvider
                                               .notifier)
-                                          .getTodayConsumeLog(
+                                          .getTodayConsumeFood(
                                               uid, DateTime.now().toYyyyMMDd);
                                       ref
                                           .read(consumeLogControllerProvider
                                               .notifier)
                                           .getDate();
+                                      ref
+                                          .read(medicalRecordControllerProvider
+                                              .notifier)
+                                          .getTrimester(conceptionDate);
 
                                       controller.setSuccess();
 

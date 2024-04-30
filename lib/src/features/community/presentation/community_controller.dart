@@ -144,6 +144,7 @@ class CommunityController extends _$CommunityController {
   }
 
   // TODO ADD COMMENTS
+  // TODO: flutter build apk --split-per-abi --release --obfuscate --split-debug-info=./symbols/
 
   void dispose() {
     state = state.copyWith(

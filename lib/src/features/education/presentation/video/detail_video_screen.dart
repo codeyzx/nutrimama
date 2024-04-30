@@ -20,7 +20,6 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
 
   @override
   void initState() {
-    super.initState();
     _controller = YoutubePlayerController(
       initialVideoId: YoutubePlayer.convertUrlToId(widget.video.videoUrl) ?? "",
       flags: const YoutubePlayerFlags(
@@ -30,6 +29,7 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
     );
     _idController = TextEditingController();
     _seekToController = TextEditingController();
+    super.initState();
   }
 
   @override

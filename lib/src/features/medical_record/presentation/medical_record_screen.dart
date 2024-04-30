@@ -8,34 +8,18 @@ import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
-import 'package:nutrimama/src/features/medical_record/presentation/medical_record_state.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/routes/extras.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
-class MedicalRecordScreen extends ConsumerStatefulWidget {
+class MedicalRecordScreen extends ConsumerWidget {
   final User user;
   const MedicalRecordScreen({super.key, required this.user});
 
   @override
-  ConsumerState<MedicalRecordScreen> createState() =>
-      _MedicalRecordScreenState();
-}
-
-class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
-  MedicalRecordState get state => ref.watch(medicalRecordControllerProvider);
-  MedicalRecordController get controller =>
-      ref.read(medicalRecordControllerProvider.notifier);
-
-  @override
-  void initState() {
-    controller.getFetal(widget.user);
-    controller.getMother(widget.user);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(medicalRecordControllerProvider);
+    final controller = ref.read(medicalRecordControllerProvider.notifier);
     return Scaffold(
       appBar: AppBar(
           title: Text(
@@ -69,71 +53,80 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
           ),
           child: Column(
             children: [
-              Container(
-                width: 374.w,
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                decoration: BoxDecoration(
-                    color: ColorApp.primary.withOpacity(0.20),
-                    borderRadius: BorderRadius.circular(6.r),
-                    border: Border.all(color: HexColor('#0366DA'))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Trimester 1: Minggu 12',
-                      style: TypographyApp.trisMedrec,
-                    ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/baby_img.png',
-                            width: 86.w,
-                            height: 86.h,
-                          ),
-                          SizedBox(
-                              width: 258.w,
-                              child: Text(
-                                'Pada tahap ini janin telah, Lorem ipsum dolor sit amet consectetur. Interdum consectetur a metus eget.',
-                                style: TypographyApp.trisDescMedrec,
-                                textAlign: TextAlign.justify,
-                              )),
-                        ]),
-                  ],
+              AsyncValueWidget(
+                value: state.trimester,
+                data: (trimeser) => Container(
+                  width: 374.w,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+                  decoration: BoxDecoration(
+                      color: ColorApp.primary.withOpacity(0.20),
+                      borderRadius: BorderRadius.circular(6.r),
+                      border: Border.all(color: HexColor('#0366DA'))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Trimester ${state.trimester.asData?.value?.type}: Minggu ${state.trimester.asData?.value?.week}',
+                        style: TypographyApp.trisMedrec,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // TODO: dinamis image when it trimester 1/2/3 (differents)
+                            Image.asset(
+                              'assets/images/baby_img.png',
+                              width: 86.w,
+                              height: 86.h,
+                            ),
+                            SizedBox(
+                                width: 258.w,
+                                child: Text(
+                                  '${trimeser?.desc}',
+                                  style: TypographyApp.trisDescMedrec,
+                                  textAlign: TextAlign.justify,
+                                )),
+                          ]),
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
                 height: 12.h,
               ),
-              Container(
-                width: 374.w,
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
-                decoration: BoxDecoration(
-                    color: ColorApp.primary.withOpacity(0.20),
-                    borderRadius: BorderRadius.circular(6.r),
-                    border: Border.all(color: HexColor('#0366DA'))),
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        'assets/images/lamp_img.png',
-                        width: 24.w,
-                        height: 24.h,
-                      ),
-                      SizedBox(
-                        width: 6.w,
-                      ),
-                      SizedBox(
-                          width: 300.w,
-                          child: Text(
-                            'Trimester 1: ini isinya nanti tips',
-                            style: TypographyApp.tipsMedrec,
-                            textAlign: TextAlign.justify,
-                          )),
-                    ]),
+              AsyncValueWidget(
+                value: state.trimester,
+                data: (trimeser) => Container(
+                  width: 374.w,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
+                  decoration: BoxDecoration(
+                      color: ColorApp.primary.withOpacity(0.20),
+                      borderRadius: BorderRadius.circular(6.r),
+                      border: Border.all(color: HexColor('#0366DA'))),
+                  child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/lamp_img.png',
+                          width: 24.w,
+                          height: 24.h,
+                        ),
+                        SizedBox(
+                          width: 6.w,
+                        ),
+                        SizedBox(
+                            width: 300.w,
+                            child: Text(
+                              'Trimester ${trimeser?.week}: ${trimeser?.tips}',
+                              style: TypographyApp.tipsMedrec,
+                              textAlign: TextAlign.justify,
+                            )),
+                      ]),
+                ),
               ),
               SizedBox(
                 height: 26.h,
@@ -174,7 +167,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                         Routes.addMotherRecord.name,
                                         extra: Extras(
                                           datas: {
-                                            ExtrasKey.user: widget.user,
+                                            ExtrasKey.user: user,
                                           },
                                         ),
                                       );
@@ -367,7 +360,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                       const SizedBox(height: 10.0),
                       ElevatedButton(
                         onPressed: () {
-                          controller.getMother(widget.user);
+                          controller.getMother(user);
                         },
                         child: const Text('Coba Lagi'),
                       ),
@@ -378,7 +371,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
               SizedBox(
                 height: 19.h,
               ),
-              if (widget.user.fetalId.isEmpty &&
+              if (user.fetalId.isEmpty &&
                   state.allFetals.asData?.value?.isNotEmpty == true)
                 Center(
                   child: Container(
@@ -406,7 +399,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                   Routes.addFetalRecord.name,
                                   extra: Extras(
                                     datas: {
-                                      ExtrasKey.user: widget.user,
+                                      ExtrasKey.user: user,
                                       ExtrasKey.isNewFetal: true,
                                     },
                                   ),
@@ -456,7 +449,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                           Routes.addFetalRecord.name,
                                           extra: Extras(
                                             datas: {
-                                              ExtrasKey.user: widget.user,
+                                              ExtrasKey.user: user,
                                               ExtrasKey.isNewFetal: true,
                                             },
                                           ),
@@ -706,7 +699,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                       const SizedBox(height: 10.0),
                       ElevatedButton(
                         onPressed: () {
-                          controller.getFetal(widget.user);
+                          controller.getFetal(user);
                         },
                         child: const Text('Coba Lagi'),
                       ),
@@ -751,7 +744,7 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                 Routes.addMotherRecord.name,
                                 extra: Extras(
                                   datas: {
-                                    ExtrasKey.user: widget.user,
+                                    ExtrasKey.user: user,
                                   },
                                 ),
                               );
@@ -777,9 +770,9 @@ class _MedicalRecordScreenState extends ConsumerState<MedicalRecordScreen> {
                                 Routes.addFetalRecord.name,
                                 extra: Extras(
                                   datas: {
-                                    ExtrasKey.user: widget.user,
+                                    ExtrasKey.user: user,
                                     ExtrasKey.isNewFetal:
-                                        widget.user.fetalId.isEmpty &&
+                                        user.fetalId.isEmpty &&
                                             state.allFetals.asData?.value
                                                     ?.isEmpty ==
                                                 true,

@@ -9,6 +9,7 @@ class ColorApp {
   static Color black = HexColor("#031B29");
   static Color grey = HexColor("#CCD1D6");
   static Color splash = HexColor("#606060");
+  static Color circularTrack = HexColor("#DDE8FC");
   static const Color green = Color(0xFF29D697);
   static const Color orange = Color(0xFFF59762);
   static const Color blue = Color(0xFF46CDFB);

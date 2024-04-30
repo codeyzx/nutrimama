@@ -3,6 +3,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/domain/mother.dart';
 
+class Trimester {
+  final int? week;
+  final int? type;
+  final String? desc;
+  final String? tips;
+
+  Trimester({
+    this.week,
+    this.type,
+    this.desc,
+    this.tips,
+  });
+}
+
 class MedicalRecordState {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final AsyncValue<List<Mother>?> mothers;
@@ -15,6 +29,7 @@ class MedicalRecordState {
   final TextEditingController lengthController;
   final TextEditingController heartRateController;
   final String? date;
+  final AsyncValue<Trimester?> trimester;
 
   MedicalRecordState({
     this.mothers = const AsyncLoading(),
@@ -27,6 +42,7 @@ class MedicalRecordState {
     required this.lengthController,
     required this.heartRateController,
     this.date,
+    this.trimester = const AsyncLoading(),
   });
 
   MedicalRecordState copyWith({
@@ -40,6 +56,7 @@ class MedicalRecordState {
     TextEditingController? lengthController,
     TextEditingController? heartRateController,
     String? date,
+    AsyncValue<Trimester?>? trimester,
   }) {
     return MedicalRecordState(
       mothers: mothers ?? this.mothers,
@@ -53,6 +70,7 @@ class MedicalRecordState {
       lengthController: lengthController ?? this.lengthController,
       heartRateController: heartRateController ?? this.heartRateController,
       date: date ?? this.date,
+      trimester: trimester ?? this.trimester,
     );
   }
 }

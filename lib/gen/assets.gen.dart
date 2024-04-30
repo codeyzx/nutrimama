@@ -167,21 +167,21 @@ class $AssetsImagesGen {
   SvgGenImage get nutrimamaLogo =>
       const SvgGenImage('assets/images/nutrimama_logo.svg');
 
+  /// File path: assets/images/onboard_1.svg
+  SvgGenImage get onboard1 => const SvgGenImage('assets/images/onboard_1.svg');
+
+  /// File path: assets/images/onboard_2.svg
+  SvgGenImage get onboard2 => const SvgGenImage('assets/images/onboard_2.svg');
+
+  /// File path: assets/images/onboard_3.svg
+  SvgGenImage get onboard3 => const SvgGenImage('assets/images/onboard_3.svg');
+
   /// File path: assets/images/profile_default_img.png
   AssetGenImage get profileDefaultImg =>
       const AssetGenImage('assets/images/profile_default_img.png');
 
-  /// File path: assets/images/question_img_1.png
-  AssetGenImage get questionImg1 =>
-      const AssetGenImage('assets/images/question_img_1.png');
-
-  /// File path: assets/images/question_img_2.png
-  AssetGenImage get questionImg2 =>
-      const AssetGenImage('assets/images/question_img_2.png');
-
-  /// File path: assets/images/question_img_3.png
-  AssetGenImage get questionImg3 =>
-      const AssetGenImage('assets/images/question_img_3.png');
+  /// File path: assets/images/question.svg
+  SvgGenImage get question => const SvgGenImage('assets/images/question.svg');
 
   /// File path: assets/images/target_img.png
   AssetGenImage get targetImg =>
@@ -207,10 +207,11 @@ class $AssetsImagesGen {
         medrecImg,
         momImg,
         nutrimamaLogo,
+        onboard1,
+        onboard2,
+        onboard3,
         profileDefaultImg,
-        questionImg1,
-        questionImg2,
-        questionImg3,
+        question,
         targetImg,
         vitaminImg
       ];

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/features/community/domain/post.dart';
 import 'package:nutrimama/src/shared/extensions/date_time.dart';
 
@@ -48,9 +49,14 @@ class PostWidget extends StatelessWidget {
                             ),
                           ),
                         )
-                      : const CircleAvatar(
-                          radius: 20,
-                          child: Icon(Icons.person),
+                      : CircleAvatar(
+                          backgroundImage: Assets.images.profileDefaultImg
+                              .image(
+                                width: 20.w,
+                                height: 20.h,
+                              )
+                              .image,
+                          backgroundColor: Colors.white,
                         ),
                   const SizedBox(width: 8),
                   Column(

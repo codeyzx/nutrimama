@@ -9,6 +9,7 @@ import 'package:nutrimama/src/features/auth/presentation/login/widget/login_butt
 import 'package:nutrimama/src/features/auth/presentation/login/widget/login_form_section.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:nutrimama/src/services/services.dart';
@@ -40,6 +41,15 @@ class LoginPage extends ConsumerWidget {
         next.userValue.whenOrNull(
           data: (data) async {
             final uid = ref.read(commonControllerProvider.notifier).getUid();
+
+            final conceptionDate = ref
+                    .read(commonControllerProvider)
+                    .userValue
+                    .asData
+                    ?.value
+                    .fetalDate ??
+                DateTime.now();
+
             await ref
                 .read(nutritionControllerProvider.notifier)
                 .getNutrition(uid);
@@ -48,11 +58,14 @@ class LoginPage extends ConsumerWidget {
                 .getConsumeLogs(uid);
             await ref
                 .read(consumeLogControllerProvider.notifier)
-                .getTodayConsumeFood(uid, DateTime.now().toYyyyMMDd);
+                .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
             await ref
                 .read(consumeLogControllerProvider.notifier)
-                .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
+                .getTodayConsumeFood(uid, DateTime.now().toYyyyMMDd);
             ref.read(consumeLogControllerProvider.notifier).getDate();
+            ref
+                .read(medicalRecordControllerProvider.notifier)
+                .getTrimester(conceptionDate);
             ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
           },
           error: (error, stackTrace) {
