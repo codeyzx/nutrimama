@@ -31,30 +31,28 @@ class OnboardPage extends ConsumerWidget {
               controller.setLastPage(index == 2);
             },
             children: [
-              // TODO : Add image assets and content for each onboarding page
               OnboardingContent(
-                imageAsset: Assets.images.profileDefaultImg,
+                  imageAsset: Assets.images.onboard1,
+                  imageWidth: 300,
+                  imageHeight: 230,
+                  title: "Pemantauan Nutrisi Harian",
+                  subtitle:
+                      "Pantau makanan dan minumanmu sesuai rekomendasi nutrisi ibu hamil"),
+              OnboardingContent(
+                imageAsset: Assets.images.onboard2,
                 imageWidth: 300,
                 imageHeight: 230,
-                title: "Personalized Diet Planning",
+                title: "Konsultasi Kesehatanmu Bersama AI",
                 subtitle:
-                    "Tailor your daily diet to your preferences and nutritional needs for a personalized wellness journey.",
+                    "AI kami memberikan jawaban atas pertanyaan kesehatan kamu dengan data terpercaya",
               ),
               OnboardingContent(
-                imageAsset: Assets.images.profileDefaultImg,
+                imageAsset: Assets.images.onboard3,
                 imageWidth: 300,
                 imageHeight: 230,
-                title: "Nutrition Compare",
+                title: "Pantau Kesehatan Janinmu",
                 subtitle:
-                    "Make informed, healthier choices by comparing nutritional content of different foods.",
-              ),
-              OnboardingContent(
-                imageAsset: Assets.images.profileDefaultImg,
-                imageWidth: 300,
-                imageHeight: 230,
-                title: "Minimize food waste",
-                subtitle:
-                    "Share leftovers with food banks,\nearn reward coins, and unlock exclusive perks!",
+                    "Lacak perkembangan janin dan kesehatanmu dengan mudah dan sistematis",
               ),
             ],
           ),

@@ -10,7 +10,8 @@ import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/routes/extras.dart';
 
 class SearchFoodScreen extends ConsumerWidget {
-  const SearchFoodScreen({super.key});
+  final String consumeAt;
+  const SearchFoodScreen({super.key, required this.consumeAt});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -50,7 +51,7 @@ class SearchFoodScreen extends ConsumerWidget {
             data: (foods) {
               return Column(
                 children: foods!.map((food) {
-                  return FoodItem(food);
+                  return FoodItem(food, consumeAt);
                 }).toList(),
               );
             },
@@ -63,8 +64,9 @@ class SearchFoodScreen extends ConsumerWidget {
 
 class FoodItem extends ConsumerWidget {
   final Food food;
+  final String consumeAt;
 
-  const FoodItem(this.food, {super.key});
+  const FoodItem(this.food, this.consumeAt, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -88,12 +90,13 @@ class FoodItem extends ConsumerWidget {
                 extra: Extras(
                   datas: {
                     ExtrasKey.food: food,
+                    ExtrasKey.consumeAt: consumeAt,
                   },
                 ),
               );
         },
         child: ListTile(
-          leading: food.imageUrl.isEmpty
+          leading: food.imageUrl.isNotEmpty
               ? CachedNetworkImage(
                   imageUrl: food.imageUrl,
                   width: 50,

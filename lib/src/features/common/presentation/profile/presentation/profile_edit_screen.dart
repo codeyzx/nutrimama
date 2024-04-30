@@ -297,7 +297,7 @@ class ProfileEditScreen extends ConsumerWidget {
                     DropdownFormWidget(
                       value: nutritionState.age.toString(),
                       list: nutritionState.ageList,
-                      prefixIcon: Icons.cake,
+                      prefixIcon: null,
                       onChanged: (value) {
                         if (value.isNotNull()) {
                           nutritionController.setAge(value.toString());

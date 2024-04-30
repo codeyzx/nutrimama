@@ -13,4 +13,5 @@ class ExtrasKey {
   static const article = 'article';
   static const video = 'video';
   static const journal = 'journal';
+  static const consumeAt = 'consumeAt';
 }

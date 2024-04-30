@@ -7,12 +7,12 @@ part of 'medical_record_controller.dart';
 // **************************************************************************
 
 String _$medicalRecordControllerHash() =>
-    r'440dcfcdf336b5d49af76c47b54b6c41ae9a5c07';
+    r'ec7d92ff3466933f9858ec0c7d718a739d034360';
 
 /// See also [MedicalRecordController].
 @ProviderFor(MedicalRecordController)
-final medicalRecordControllerProvider = AutoDisposeNotifierProvider<
-    MedicalRecordController, MedicalRecordState>.internal(
+final medicalRecordControllerProvider =
+    NotifierProvider<MedicalRecordController, MedicalRecordState>.internal(
   MedicalRecordController.new,
   name: r'medicalRecordControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final medicalRecordControllerProvider = AutoDisposeNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$MedicalRecordController = AutoDisposeNotifier<MedicalRecordState>;
+typedef _$MedicalRecordController = Notifier<MedicalRecordState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

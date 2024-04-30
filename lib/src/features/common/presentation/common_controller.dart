@@ -5,8 +5,12 @@ import 'package:nutrimama/src/features/common/presentation/common_state.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/home/home_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/community_screen.dart';
+import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
 import 'package:nutrimama/src/features/education/presentation/education_screen.dart';
+import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
+import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
+import 'package:nutrimama/src/shared/extensions/date_time.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:logger/logger.dart';
 
@@ -45,6 +49,25 @@ class CommonController extends _$CommonController {
           final isSuccessRegister =
               state.userValue.asData?.value.isSuccessRegister ?? false;
           if (isSuccessRegister) {
+            final uid = getUid();
+            final conceptionDate =
+                state.userValue.asData?.value.fetalDate ?? DateTime.now();
+            await ref
+                .read(nutritionControllerProvider.notifier)
+                .getNutrition(uid);
+            await ref
+                .read(consumeLogControllerProvider.notifier)
+                .getConsumeLogs(uid);
+            await ref
+                .read(consumeLogControllerProvider.notifier)
+                .getTodayConsumeLog(uid, DateTime.now().toYyyyMMDd);
+            await ref
+                .read(consumeLogControllerProvider.notifier)
+                .getTodayConsumeFood(uid, DateTime.now().toYyyyMMDd);
+            ref.read(consumeLogControllerProvider.notifier).getDate();
+            ref
+                .read(medicalRecordControllerProvider.notifier)
+                .getTrimester(conceptionDate);
             ref.read(goRouterProvider).goNamed(Routes.botNavBar.name);
           } else {
             ref.read(goRouterProvider).goNamed(Routes.question.name);

@@ -4,7 +4,7 @@ import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 
 class OnboardingContent extends StatelessWidget {
-  final AssetGenImage imageAsset;
+  final SvgGenImage imageAsset;
   final double imageWidth;
   final double imageHeight;
   final String title;
@@ -22,11 +22,11 @@ class OnboardingContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 230.h),
+      margin: EdgeInsets.only(top: 167.h),
       child: Column(
         children: [
           Center(
-            child: imageAsset.image(
+            child: imageAsset.svg(
               width: imageWidth.w,
               height: imageHeight.h,
             ),
@@ -42,10 +42,13 @@ class OnboardingContent extends StatelessWidget {
           SizedBox(
             height: 12.h,
           ),
-          Text(
-            subtitle,
-            style: TypographyApp.onBoardSubTitle,
-            textAlign: TextAlign.center,
+          SizedBox(
+            width: 350.w,
+            child: Text(
+              subtitle,
+              style: TypographyApp.onBoardSubTitle,
+              textAlign: TextAlign.center,
+            ),
           ),
         ],
       ),

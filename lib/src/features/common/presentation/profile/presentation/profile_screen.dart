@@ -34,40 +34,18 @@ class ProfileScreen extends ConsumerWidget {
               ),
               AsyncValueWidget(
                 value: state.user,
-                loading: (loadingWidget) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Assets.images.profileDefaultImg.image(
-                        width: 60.w,
-                        height: 60.h,
-                      ),
-                      SizedBox(
-                        width: 14.w,
-                      ),
-                      loadingWidget,
-                    ],
-                  );
-                },
+                loading: (loadingWidget) => const SizedBox(),
                 data: (data) {
                   return Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       data?.photoUrl != null && data?.photoUrl != ''
-                          ? CachedNetworkImage(
-                              imageUrl: data?.photoUrl ?? '',
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) =>
-                                      CircularProgressIndicator(
-                                          value: downloadProgress.progress),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
-                              imageBuilder: (context, imageProvider) =>
-                                  CircleAvatar(
-                                radius: 30.r,
-                                backgroundImage: imageProvider,
-                                backgroundColor: Colors.white,
+                          ? CircleAvatar(
+                              radius: 30.r,
+                              backgroundImage: CachedNetworkImageProvider(
+                                data?.photoUrl ?? '',
                               ),
+                              backgroundColor: Colors.white,
                             )
                           : CircleAvatar(
                               radius: 30.r,

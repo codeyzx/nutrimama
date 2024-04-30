@@ -7,12 +7,12 @@ part of 'consume_log_controller.dart';
 // **************************************************************************
 
 String _$consumeLogControllerHash() =>
-    r'653a8854e05b7911594afe20b7a488d6b69a3570';
+    r'5bcfd80959625324f426639f303781aa6c111ac2';
 
 /// See also [ConsumeLogController].
 @ProviderFor(ConsumeLogController)
 final consumeLogControllerProvider =
-    AutoDisposeNotifierProvider<ConsumeLogController, ConsumeLogState>.internal(
+    NotifierProvider<ConsumeLogController, ConsumeLogState>.internal(
   ConsumeLogController.new,
   name: r'consumeLogControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final consumeLogControllerProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$ConsumeLogController = AutoDisposeNotifier<ConsumeLogState>;
+typedef _$ConsumeLogController = Notifier<ConsumeLogState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

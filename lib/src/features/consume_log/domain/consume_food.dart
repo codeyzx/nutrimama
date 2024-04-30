@@ -1,6 +1,7 @@
 import 'package:nutrimama/src/features/food/domain/food.dart';
 
 class ConsumeFood {
+  final String unique;
   final String id;
   final String name;
   final String type;
@@ -15,6 +16,7 @@ class ConsumeFood {
   final String consumeAt;
 
   ConsumeFood({
+    required this.unique,
     required this.id,
     required this.name,
     required this.type,
@@ -31,6 +33,7 @@ class ConsumeFood {
 
   factory ConsumeFood.fromFood(Food food, String consumeAt) {
     return ConsumeFood(
+      unique: DateTime.now().millisecondsSinceEpoch.toString(),
       id: food.id,
       name: food.name,
       type: food.type,
@@ -48,6 +51,7 @@ class ConsumeFood {
 
   factory ConsumeFood.fromJson(Map<String, dynamic> json) {
     return ConsumeFood(
+      unique: json['unique'] ?? '',
       id: json['id'] ?? '',
       name: json['name'] ?? '',
       type: json['type'] ?? '',
@@ -65,6 +69,7 @@ class ConsumeFood {
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
+      'unique': unique,
       'id': id,
       'name': name,
       'type': type,
@@ -81,6 +86,7 @@ class ConsumeFood {
   }
 
   ConsumeFood copyWith({
+    String? unique,
     String? id,
     String? name,
     String? type,
@@ -95,6 +101,7 @@ class ConsumeFood {
     String? consumeAt,
   }) {
     return ConsumeFood(
+      unique: unique ?? this.unique,
       id: id ?? this.id,
       name: name ?? this.name,
       type: type ?? this.type,

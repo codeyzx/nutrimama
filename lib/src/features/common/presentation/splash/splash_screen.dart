@@ -24,7 +24,6 @@ class SplashScreen extends ConsumerWidget {
           child: Column(
             children: [
               const Spacer(flex: 4),
-              // TODO: add logo
               Assets.images.nutrimamaLogo.svg(
                 width: context.screenWidthPercentage(0.6),
                 fit: BoxFit.fitWidth,

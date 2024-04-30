@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/features/community/domain/post.dart';
 import 'package:nutrimama/src/shared/extensions/date_time.dart';
 
@@ -37,28 +38,25 @@ class PostWidget extends StatelessWidget {
               child: Row(
                 children: [
                   post.userPhoto.isNotEmpty
-                      ? CachedNetworkImage(
-                          imageUrl: post.userPhoto,
-                          imageBuilder: (context, imageProvider) => Container(
-                            height: 42.h,
-                            width: 42.w,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
+                      ? Container(
+                          height: 42.h,
+                          width: 42.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(post.userPhoto),
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          placeholder: (context, url) => const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
                         )
-                      : const CircleAvatar(
-                          radius: 20,
-                          child: Icon(Icons.person),
+                      : CircleAvatar(
+                          backgroundImage: Assets.images.profileDefaultImg
+                              .image(
+                                width: 20.w,
+                                height: 20.h,
+                              )
+                              .image,
+                          backgroundColor: Colors.white,
                         ),
                   const SizedBox(width: 8),
                   Column(

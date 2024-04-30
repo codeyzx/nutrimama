@@ -97,6 +97,20 @@ class FetalRecordScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Tanggal Mengandung',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                    Text(
+                      fetal?.fetalDate.dateMonthYear ?? "-",
+                      style: const TextStyle(fontSize: 16.0),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),

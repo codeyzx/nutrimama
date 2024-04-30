@@ -6,7 +6,7 @@ part of 'common_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$commonControllerHash() => r'15716e746be72abfd60a723ab0b6e72e5a9e33cf';
+String _$commonControllerHash() => r'bb8fd801328287f2dc1f64b421790821c29d98af';
 
 /// See also [CommonController].
 @ProviderFor(CommonController)

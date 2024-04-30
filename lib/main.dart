@@ -86,8 +86,8 @@ final _appTheme = ThemeData(
     surfaceTint: Colors.transparent,
   ),
   progressIndicatorTheme: ProgressIndicatorThemeData(
-    circularTrackColor: ColorApp.white,
-    color: ColorApp.secondary,
+    circularTrackColor: ColorApp.circularTrack,
+    color: ColorApp.primary,
   ),
   dividerColor: Colors.transparent,
   fontFamily: 'Poppins',

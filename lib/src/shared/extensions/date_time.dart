@@ -8,6 +8,7 @@ extension XDateTime on DateTime {
   String get dateMonth => DateFormat('dd MMMM').format(this);
   String get dateWithMonth => DateFormat('dd/M').format(this);
   String get dayName => DateFormat('EEEE').format(this);
+  String get dayNameShort => DateFormat('EEE').format(this);
   String get monthName => DateFormat('MMMM').format(this);
   String get monthNameShort => DateFormat('MMM').format(this);
   String get time => DateFormat('Hm').format(this);
