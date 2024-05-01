@@ -4,11 +4,11 @@ extension XDateTime on DateTime {
   DateTime get toEndOfDay => DateTime(year, month, day, 23, 59, 59);
   String get toYyyyMMDd => DateFormat('yyyy-MM-dd').format(this);
   String get dateMonthTime => '$dateMonth • $time';
-  String get dateMonthYear => DateFormat('dd MMMM yyyy').format(this);
-  String get dateMonth => DateFormat('dd MMMM').format(this);
+  String get dateMonthYear => DateFormat('dd MMMM yyyy', 'id').format(this);
+  String get dateMonth => DateFormat('dd MMMM', 'id').format(this);
   String get dateWithMonth => DateFormat('dd/M').format(this);
   String get dayName => DateFormat('EEEE').format(this);
-  String get dayNameShort => DateFormat('EEE').format(this);
+  String get dayNameShort => DateFormat('EEE', 'id').format(this);
   String get monthName => DateFormat('MMMM').format(this);
   String get monthNameShort => DateFormat('MMM').format(this);
   String get time => DateFormat('Hm').format(this);
