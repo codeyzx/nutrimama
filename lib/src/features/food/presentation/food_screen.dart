@@ -58,288 +58,282 @@ class FoodScreen extends ConsumerWidget {
               ),
             )),
         body: Stack(
-          children: <Widget>[
-            Column(
-              children: [
-                SizedBox(
-                  height: 15.h,
+          alignment: Alignment.center,
+          children:[
+            Positioned(
+              top: 10,
+              child: Container(
+                width: 377.w,
+                height: 222.h,
+                padding: EdgeInsets.only(top: 16.h, left: 9.w, right: 9.w),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6.r),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Container(
-                    width: 377.w,
-                    height: 222.h,
-                    padding: EdgeInsets.only(top: 16.h, left: 9.w, right: 9.w),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(6.r),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Text(
+                          'Kebutuhan Kalori',
+                          style: TypographyApp.calorieNeedsFood,
+                        ),
+                        Text(
+                          '${consume?.totalCalories}/${nutrition.calories} Kkal',
+                          style: TypographyApp.calorieNeedsNumFood,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 6.h,
+                    ),
+                    ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(6.r)),
+                      child: SizedBox(
+                        width: 358.w,
+                        child: LinearProgressIndicator(
+                          value: consume?.totalCalories.toDouble() ??
+                              0.0 / nutrition.calories,
+                          minHeight: 8.h,
+                          borderRadius: BorderRadius.circular(6.r),
+                          backgroundColor: HexColor('#D9D9D9'),
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                              HexColor('#0366DA')),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Kebutuhan Kalori',
-                              style: TypographyApp.calorieNeedsFood,
+                              '${consume?.totalProtein}/${nutrition.protein}g',
+                              style: TypographyApp.nutrNeedsNumFood,
+                            ),
+                            SizedBox(
+                              height: 1.h,
                             ),
                             Text(
-                              '${consume?.totalCalories}/${nutrition.calories} Kkal',
-                              style: TypographyApp.calorieNeedsNumFood,
+                              'Protein',
+                              style: TypographyApp.nutrNeedsLabelFood,
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6.r)),
+                              child: SizedBox(
+                                width: 84.w,
+                                child: LinearProgressIndicator(
+                                  value: consume?.totalProtein.toDouble() ??
+                                      0.0 / nutrition.protein,
+                                  minHeight: 7.h,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  backgroundColor: HexColor('#D9D9D9'),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      HexColor('#03DA8D')),
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 6.h,
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.all(Radius.circular(6.r)),
-                          child: SizedBox(
-                            width: 358.w,
-                            child: LinearProgressIndicator(
-                              value: consume?.totalCalories.toDouble() ??
-                                  0.0 / nutrition.calories,
-                              minHeight: 8.h,
-                              borderRadius: BorderRadius.circular(6.r),
-                              backgroundColor: HexColor('#D9D9D9'),
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  HexColor('#0366DA')),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${consume?.totalProtein}/${nutrition.protein}g',
-                                  style: TypographyApp.nutrNeedsNumFood,
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Protein',
-                                  style: TypographyApp.nutrNeedsLabelFood,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.r)),
-                                  child: SizedBox(
-                                    width: 64.w,
-                                    child: LinearProgressIndicator(
-                                      value: consume?.totalProtein.toDouble() ??
-                                          0.0 / nutrition.protein,
-                                      minHeight: 7.h,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      backgroundColor: HexColor('#D9D9D9'),
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          HexColor('#03DA8D')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              '${consume?.totalCarbs}/${nutrition.carbs}g',
+                              style: TypographyApp.nutrNeedsNumFood,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${consume?.totalCarbs}/${nutrition.carbs}g',
-                                  style: TypographyApp.nutrNeedsNumFood,
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Karbohidrat',
-                                  style: TypographyApp.nutrNeedsLabelFood,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.r)),
-                                  child: SizedBox(
-                                    width: 64.w,
-                                    child: LinearProgressIndicator(
-                                      value: consume?.totalCarbs.toDouble() ??
-                                          0.0 / nutrition.carbs,
-                                      minHeight: 7.h,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      backgroundColor: HexColor('#D9D9D9'),
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          HexColor('#DA9E03')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 1.h,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${consume?.totalFat}/${nutrition.fat}g',
-                                  style: TypographyApp.nutrNeedsNumFood,
+                            Text(
+                              'Karbohidrat',
+                              style: TypographyApp.nutrNeedsLabelFood,
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6.r)),
+                              child: SizedBox(
+                                width: 84.w,
+                                child: LinearProgressIndicator(
+                                  value: consume?.totalCarbs.toDouble() ??
+                                      0.0 / nutrition.carbs,
+                                  minHeight: 7.h,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  backgroundColor: HexColor('#D9D9D9'),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      HexColor('#DA9E03')),
                                 ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Lemak',
-                                  style: TypographyApp.nutrNeedsLabelFood,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.r)),
-                                  child: SizedBox(
-                                    width: 64.w,
-                                    child: LinearProgressIndicator(
-                                      value: consume?.totalFat.toDouble() ??
-                                          0.0 / nutrition.fat,
-                                      minHeight: 7.h,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      backgroundColor: HexColor('#D9D9D9'),
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          HexColor('#7B03DA')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${consume?.totalSugars}/${nutrition.sugars}g',
-                                  style: TypographyApp.nutrNeedsNumFood,
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Sugar',
-                                  style: TypographyApp.nutrNeedsLabelFood,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.r)),
-                                  child: SizedBox(
-                                    width: 64.w,
-                                    child: LinearProgressIndicator(
-                                      value: consume?.totalSugars.toDouble() ??
-                                          0.0 / nutrition.sugars,
-                                      minHeight: 7.h,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      backgroundColor: HexColor('#D9D9D9'),
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          HexColor('#6EDA03')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              '${consume?.totalFat}/${nutrition.fat}g',
+                              style: TypographyApp.nutrNeedsNumFood,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${consume?.totalIron}/${nutrition.iron}g',
-                                  style: TypographyApp.nutrNeedsNumFood,
-                                ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Zat Besi',
-                                  style: TypographyApp.nutrNeedsLabelFood,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.r)),
-                                  child: SizedBox(
-                                    width: 64.w,
-                                    child: LinearProgressIndicator(
-                                      value: consume?.totalIron.toDouble() ??
-                                          0.0 / nutrition.iron,
-                                      minHeight: 7.h,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      backgroundColor: HexColor('#D9D9D9'),
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          HexColor('#DA3603')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            SizedBox(
+                              height: 1.h,
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${consume?.totalCalcium}/${nutrition.calcium}g',
-                                  style: TypographyApp.nutrNeedsNumFood,
+                            Text(
+                              'Lemak',
+                              style: TypographyApp.nutrNeedsLabelFood,
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6.r)),
+                              child: SizedBox(
+                                width: 84.w,
+                                child: LinearProgressIndicator(
+                                  value: consume?.totalFat.toDouble() ??
+                                      0.0 / nutrition.fat,
+                                  minHeight: 7.h,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  backgroundColor: HexColor('#D9D9D9'),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      HexColor('#7B03DA')),
                                 ),
-                                SizedBox(
-                                  height: 1.h,
-                                ),
-                                Text(
-                                  'Kalsium',
-                                  style: TypographyApp.nutrNeedsLabelFood,
-                                ),
-                                SizedBox(
-                                  height: 6.h,
-                                ),
-                                ClipRRect(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6.r)),
-                                  child: SizedBox(
-                                    width: 64.w,
-                                    child: LinearProgressIndicator(
-                                      value: consume?.totalCalcium.toDouble() ??
-                                          0.0 / nutrition.calcium,
-                                      minHeight: 7.h,
-                                      borderRadius: BorderRadius.circular(6.r),
-                                      backgroundColor: HexColor('#D9D9D9'),
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                          HexColor('#039ADA')),
-                                    ),
-                                  ),
-                                ),
-                              ],
+                              ),
                             ),
                           ],
                         ),
                       ],
                     ),
-                  ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${consume?.totalSugars}/${nutrition.sugars}g',
+                              style: TypographyApp.nutrNeedsNumFood,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Text(
+                              'Sugar',
+                              style: TypographyApp.nutrNeedsLabelFood,
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6.r)),
+                              child: SizedBox(
+                                width: 84.w,
+                                child: LinearProgressIndicator(
+                                  value: consume?.totalSugars.toDouble() ??
+                                      0.0 / nutrition.sugars,
+                                  minHeight: 7.h,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  backgroundColor: HexColor('#D9D9D9'),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      HexColor('#6EDA03')),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${consume?.totalIron}/${nutrition.iron}g',
+                              style: TypographyApp.nutrNeedsNumFood,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Text(
+                              'Zat Besi',
+                              style: TypographyApp.nutrNeedsLabelFood,
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6.r)),
+                              child: SizedBox(
+                                width: 84.w,
+                                child: LinearProgressIndicator(
+                                  value: consume?.totalIron.toDouble() ??
+                                      0.0 / nutrition.iron,
+                                  minHeight: 7.h,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  backgroundColor: HexColor('#D9D9D9'),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      HexColor('#DA3603')),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${consume?.totalCalcium}/${nutrition.calcium}g',
+                              style: TypographyApp.nutrNeedsNumFood,
+                            ),
+                            SizedBox(
+                              height: 1.h,
+                            ),
+                            Text(
+                              'Kalsium',
+                              style: TypographyApp.nutrNeedsLabelFood,
+                            ),
+                            SizedBox(
+                              height: 6.h,
+                            ),
+                            ClipRRect(
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6.r)),
+                              child: SizedBox(
+                                width: 84.w,
+                                child: LinearProgressIndicator(
+                                  value: consume?.totalCalcium.toDouble() ??
+                                      0.0 / nutrition.calcium,
+                                  minHeight: 7.h,
+                                  borderRadius: BorderRadius.circular(6.r),
+                                  backgroundColor: HexColor('#D9D9D9'),
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      HexColor('#039ADA')),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
             Positioned(
               bottom: 0,
