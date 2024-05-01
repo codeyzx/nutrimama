@@ -374,4 +374,46 @@ class TypographyApp {
     fontWeight: FontWeight.w700,
     fontSize: 14.sp,
   );
+
+  static TextStyle appBarFood = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 18.sp,
+  );
+
+  static TextStyle calorieNeedsFood = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w500,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle calorieNeedsNumFood = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.w600,
+    fontSize: 12.sp,
+  );
+
+  static TextStyle nutrNeedsNumFood = TextStyle(
+    color: HexColor('#000000'),
+    fontWeight: FontWeight.w600,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle nutrNeedsLabelFood = TextStyle(
+    color: HexColor('#B0B0B0'),
+    fontWeight: FontWeight.w500,
+    fontSize: 11.sp,
+  );
+
+  static TextStyle searchBtnFood = TextStyle(
+    color: HexColor('#8E9195'),
+    fontWeight: FontWeight.w400,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle listLabelFood = TextStyle(
+    color: HexColor('#000000'),
+    fontWeight: FontWeight.w700,
+    fontSize: 14.sp,
+  );
 }

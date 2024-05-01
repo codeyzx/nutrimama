@@ -9,6 +9,7 @@ import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
 import 'package:nutrimama/src/features/education/presentation/education_controller.dart';
+import 'package:nutrimama/src/features/food/presentation/food_screen.dart';
 import 'package:nutrimama/src/features/journal/presentation/journal_controller.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
@@ -719,6 +720,7 @@ class HomeScreen extends ConsumerWidget {
                                               value: consume.totalProtein /
                                                   nutrition.protein,
                                               minHeight: 7.h,
+                                              borderRadius: BorderRadius.circular(6.r),
                                               backgroundColor:
                                                   HexColor('#D9D9D9'),
                                               valueColor:
@@ -756,6 +758,7 @@ class HomeScreen extends ConsumerWidget {
                                               value: consume.totalCarbs /
                                                   nutrition.carbs,
                                               minHeight: 7.h,
+                                              borderRadius: BorderRadius.circular(6.r),
                                               backgroundColor:
                                                   HexColor('#D9D9D9'),
                                               valueColor:
@@ -793,6 +796,7 @@ class HomeScreen extends ConsumerWidget {
                                               value: consume.totalFat /
                                                   nutrition.fat,
                                               minHeight: 7.h,
+                                              borderRadius: BorderRadius.circular(6.r),
                                               backgroundColor:
                                                   HexColor('#D9D9D9'),
                                               valueColor:
@@ -1055,21 +1059,27 @@ class HomeScreen extends ConsumerWidget {
                                       ],
                                     ),
                                     RawMaterialButton(
-                                      onPressed: consumeLogState
-                                                  .selectedDate?.toYyyyMMDd !=
-                                              DateTime.now().toYyyyMMDd
-                                          ? () {}
-                                          : () {
-                                              ref
-                                                  .read(goRouterProvider)
-                                                  .pushNamed(
-                                                      Routes.searchFood.name,
-                                                      extra: const Extras(
-                                                          datas: {
-                                                            ExtrasKey.consumeAt:
-                                                                "breakfast"
-                                                          }));
-                                            },
+                                      // onPressed: consumeLogState
+                                      //             .selectedDate?.toYyyyMMDd !=
+                                      //         DateTime.now().toYyyyMMDd
+                                      //     ? () {}
+                                      //     : () {
+                                      //         ref
+                                      //             .read(goRouterProvider)
+                                      //             .pushNamed(
+                                      //                 Routes.searchFood.name,
+                                      //                 extra: const Extras(
+                                      //                     datas: {
+                                      //                       ExtrasKey.consumeAt:
+                                      //                           "breakfast"
+                                      //                     }));
+                                      //       },
+                                      onPressed: (){
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => FoodScreen()),
+                                        );
+                                      },
                                       elevation: 0.0,
                                       fillColor: HexColor('#E5F6FD'),
                                       padding: const EdgeInsets.all(5.0),
