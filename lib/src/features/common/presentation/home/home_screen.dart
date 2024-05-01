@@ -395,7 +395,7 @@ class HomeScreen extends ConsumerWidget {
                                     width: 16.w,
                                   ),
                                   Text(
-                                    'Rekam Medis',
+                                    'Medikal Record',
                                     style: TypographyApp.btnBlackHome,
                                   )
                                 ],
