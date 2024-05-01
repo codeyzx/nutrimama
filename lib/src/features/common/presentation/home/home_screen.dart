@@ -60,7 +60,11 @@ class HomeScreen extends ConsumerWidget {
                             type: trimester.type!,
                           ),
                         ),
-                        const CalendarIcon(),
+                        CalendarIcon(
+                          uid: user.id,
+                          initialDate:
+                              consumeLogState.selectedDate ?? DateTime.now(),
+                        ),
                       ],
                     ),
                     SizedBox(
@@ -1534,15 +1538,31 @@ class TrimesterWidget extends StatelessWidget {
   }
 }
 
-class CalendarIcon extends StatelessWidget {
-  const CalendarIcon({super.key});
+class CalendarIcon extends ConsumerWidget {
+  const CalendarIcon({super.key, required this.uid, required this.initialDate});
+
+  final String uid;
+  final DateTime initialDate;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
       padding: EdgeInsets.only(right: 16.w),
       child: InkWell(
-        onTap: () {},
+        onTap: () async {
+          showDatePicker(
+            context: context,
+            initialDate: initialDate,
+            firstDate: DateTime(2023),
+            lastDate: DateTime.now(),
+          ).then((date) async {
+            if (date != null) {
+              await ref
+                  .read(consumeLogControllerProvider.notifier)
+                  .getTodayConsumeLog(uid, date.toYyyyMMDd);
+            }
+          });
+        },
         child: Container(
           width: 40.w,
           height: 40.h,
