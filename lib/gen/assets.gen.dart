@@ -120,6 +120,10 @@ class $AssetsImagesGen {
   AssetGenImage get bookImg =>
       const AssetGenImage('assets/images/book_img.png');
 
+  /// File path: assets/images/bot_profile.png
+  AssetGenImage get botProfile =>
+      const AssetGenImage('assets/images/bot_profile.png');
+
   /// File path: assets/images/breakfast_img.png
   AssetGenImage get breakfastImg =>
       const AssetGenImage('assets/images/breakfast_img.png');
@@ -139,6 +143,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/drink_not_img.png
   AssetGenImage get drinkNotImg =>
       const AssetGenImage('assets/images/drink_not_img.png');
+
+  /// File path: assets/images/filter_img.png
+  AssetGenImage get filterImg =>
+      const AssetGenImage('assets/images/filter_img.png');
 
   /// File path: assets/images/fork_img.png
   AssetGenImage get forkImg =>
@@ -195,11 +203,13 @@ class $AssetsImagesGen {
   List<dynamic> get values => [
         babyImg,
         bookImg,
+        botProfile,
         breakfastImg,
         childImg,
         dinnerImg,
         drinkImg,
         drinkNotImg,
+        filterImg,
         forkImg,
         girlImg,
         lampImg,

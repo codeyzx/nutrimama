@@ -13,7 +13,7 @@ class DetailPostScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Detail Post',
+          title: const Text('Postingan',
               style: TextStyle(fontWeight: FontWeight.bold)),
           leading: Container(
             margin: const EdgeInsets.only(

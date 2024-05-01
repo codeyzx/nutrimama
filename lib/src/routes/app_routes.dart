@@ -16,6 +16,7 @@ import 'package:nutrimama/src/features/education/presentation/article/detail_art
 import 'package:nutrimama/src/features/education/presentation/video/detail_video_screen.dart';
 import 'package:nutrimama/src/features/education/presentation/video/video_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/detail_food_screen.dart';
+import 'package:nutrimama/src/features/food/presentation/food_screen.dart';
 import 'package:nutrimama/src/features/food/presentation/search_food_screen.dart';
 import 'package:nutrimama/src/features/journal/presentation/add_journal_screen.dart';
 import 'package:nutrimama/src/features/journal/presentation/detail_journal_screen.dart';
@@ -46,6 +47,7 @@ enum Routes {
   addMotherRecord,
   motherRecord,
   fetalRecord,
+  food,
   detailFood,
   searchFood,
   detailPost,
@@ -155,6 +157,15 @@ GoRouter goRouter(GoRouterRef ref) {
           final fetals = extras.datas[ExtrasKey.fetals] as List<Fetal>;
           final fetal = extras.datas[ExtrasKey.fetal] as Fetal;
           return FetalRecordScreen(fetals: fetals, fetal: fetal);
+        },
+      ),
+      GoRoute(
+        path: '/food',
+        name: Routes.food.name,
+        builder: (context, state) {
+          final extras = state.extra as Extras;
+          final consumeAt = extras.datas[ExtrasKey.consumeAt] as String;
+          return FoodScreen(consumeAt: consumeAt);
         },
       ),
       GoRoute(

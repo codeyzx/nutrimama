@@ -9,7 +9,6 @@ import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/consume_log/presentation/consume_log_controller.dart';
 import 'package:nutrimama/src/features/education/presentation/education_controller.dart';
-import 'package:nutrimama/src/features/food/presentation/food_screen.dart';
 import 'package:nutrimama/src/features/journal/presentation/journal_controller.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
@@ -53,179 +52,15 @@ class HomeScreen extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         AsyncValueWidget(
-                            value: medicalRecordState.trimester,
-                            loading: (_) => Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 16.w),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Transform.scale(
-                                        scale: 1.01,
-                                        child: Stack(
-                                          children: [
-                                            SizedBox(
-                                              width: 50.w,
-                                              height: 42.h,
-                                              child: Transform(
-                                                alignment: Alignment.center,
-                                                transform:
-                                                    Matrix4.rotationY(math.pi),
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  value: 1 / 42,
-                                                  strokeWidth: 5,
-                                                  strokeCap: StrokeCap.round,
-                                                  backgroundColor:
-                                                      HexColor('#CCD1D6'),
-                                                  valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(
-                                                    HexColor('#0366DA'),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Positioned.fill(
-                                                child: Center(
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "1/",
-                                                    style: TypographyApp
-                                                        .homeDateOn,
-                                                  ),
-                                                  Text(
-                                                    "42",
-                                                    style: TypographyApp
-                                                        .homeDateOff,
-                                                  ),
-                                                ],
-                                              ),
-                                            ))
-                                          ],
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 12.w,
-                                      ),
-                                      Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Minggu 1",
-                                              style: TypographyApp.homeTitleOn,
-                                            ),
-                                            Text(
-                                              "Trimester Pertama",
-                                              style: TypographyApp.homeTitleOff,
-                                            ),
-                                          ]),
-                                    ],
-                                  ),
-                                ),
-                            data: (trimester) {
-                              return Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Transform.scale(
-                                      scale: 1.01,
-                                      child: Stack(
-                                        children: [
-                                          SizedBox(
-                                            width: 50.w,
-                                            height: 42.h,
-                                            child: Transform(
-                                              alignment: Alignment.center,
-                                              transform:
-                                                  Matrix4.rotationY(math.pi),
-                                              child: CircularProgressIndicator(
-                                                value: trimester!.week! / 42,
-                                                strokeWidth: 5,
-                                                strokeCap: StrokeCap.round,
-                                                backgroundColor:
-                                                    HexColor('#CCD1D6'),
-                                                valueColor:
-                                                    AlwaysStoppedAnimation<
-                                                        Color>(
-                                                  HexColor('#0366DA'),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                          Positioned.fill(
-                                              child: Center(
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "${trimester.week}/",
-                                                  style:
-                                                      TypographyApp.homeDateOn,
-                                                ),
-                                                Text(
-                                                  "42",
-                                                  style:
-                                                      TypographyApp.homeDateOff,
-                                                ),
-                                              ],
-                                            ),
-                                          ))
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 12.w,
-                                    ),
-                                    Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "Minggu ${trimester.week}",
-                                            style: TypographyApp.homeTitleOn,
-                                          ),
-                                          Text(
-                                            "Trimester ${trimester.type == 2 ? "Kedua" : trimester.type == 3 ? "Ketiga" : "Pertama"}",
-                                            style: TypographyApp.homeTitleOff,
-                                          ),
-                                        ]),
-                                  ],
-                                ),
-                              );
-                            }),
-                        Padding(
-                          padding: EdgeInsets.only(right: 16.w),
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              width: 40.w,
-                              height: 40.h,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(6.r),
-                                  border:
-                                      Border.all(color: HexColor('#CCD1D6'))),
-                              child: const Center(
-                                child: Icon(
-                                  Icons.calendar_month_rounded,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
+                          value: medicalRecordState.trimester,
+                          loading: (_) =>
+                              const TrimesterWidget(week: 1, type: 1),
+                          data: (trimester) => TrimesterWidget(
+                            week: trimester!.week!,
+                            type: trimester.type!,
                           ),
                         ),
+                        const CalendarIcon(),
                       ],
                     ),
                     SizedBox(
@@ -393,9 +228,7 @@ class HomeScreen extends ConsumerWidget {
                                 .toList()),
                       ),
                     ),
-                    SizedBox(
-                      height: 24.h,
-                    ),
+                    Gap.h12,
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
@@ -720,7 +553,8 @@ class HomeScreen extends ConsumerWidget {
                                               value: consume.totalProtein /
                                                   nutrition.protein,
                                               minHeight: 7.h,
-                                              borderRadius: BorderRadius.circular(6.r),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.r),
                                               backgroundColor:
                                                   HexColor('#D9D9D9'),
                                               valueColor:
@@ -758,7 +592,8 @@ class HomeScreen extends ConsumerWidget {
                                               value: consume.totalCarbs /
                                                   nutrition.carbs,
                                               minHeight: 7.h,
-                                              borderRadius: BorderRadius.circular(6.r),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.r),
                                               backgroundColor:
                                                   HexColor('#D9D9D9'),
                                               valueColor:
@@ -796,7 +631,8 @@ class HomeScreen extends ConsumerWidget {
                                               value: consume.totalFat /
                                                   nutrition.fat,
                                               minHeight: 7.h,
-                                              borderRadius: BorderRadius.circular(6.r),
+                                              borderRadius:
+                                                  BorderRadius.circular(6.r),
                                               backgroundColor:
                                                   HexColor('#D9D9D9'),
                                               valueColor:
@@ -831,7 +667,13 @@ class HomeScreen extends ConsumerWidget {
                                   color: HexColor('#CCD1D6'),
                                 ),
                                 TextButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      ref.read(goRouterProvider).pushNamed(
+                                          Routes.food.name,
+                                          extra: const Extras(datas: {
+                                            ExtrasKey.consumeAt: "breakfast"
+                                          }));
+                                    },
                                     child: Row(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
@@ -1059,27 +901,20 @@ class HomeScreen extends ConsumerWidget {
                                       ],
                                     ),
                                     RawMaterialButton(
-                                      // onPressed: consumeLogState
-                                      //             .selectedDate?.toYyyyMMDd !=
-                                      //         DateTime.now().toYyyyMMDd
-                                      //     ? () {}
-                                      //     : () {
-                                      //         ref
-                                      //             .read(goRouterProvider)
-                                      //             .pushNamed(
-                                      //                 Routes.searchFood.name,
-                                      //                 extra: const Extras(
-                                      //                     datas: {
-                                      //                       ExtrasKey.consumeAt:
-                                      //                           "breakfast"
-                                      //                     }));
-                                      //       },
-                                      onPressed: (){
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => FoodScreen()),
-                                        );
-                                      },
+                                      onPressed: consumeLogState
+                                                  .selectedDate?.toYyyyMMDd !=
+                                              DateTime.now().toYyyyMMDd
+                                          ? () {}
+                                          : () {
+                                              ref
+                                                  .read(goRouterProvider)
+                                                  .pushNamed(Routes.food.name,
+                                                      extra: const Extras(
+                                                          datas: {
+                                                            ExtrasKey.consumeAt:
+                                                                "breakfast"
+                                                          }));
+                                            },
                                       elevation: 0.0,
                                       fillColor: HexColor('#E5F6FD'),
                                       padding: const EdgeInsets.all(5.0),
@@ -1236,8 +1071,7 @@ class HomeScreen extends ConsumerWidget {
                                           : () {
                                               ref
                                                   .read(goRouterProvider)
-                                                  .pushNamed(
-                                                      Routes.searchFood.name,
+                                                  .pushNamed(Routes.food.name,
                                                       extra: const Extras(
                                                           datas: {
                                                             ExtrasKey.consumeAt:
@@ -1400,8 +1234,7 @@ class HomeScreen extends ConsumerWidget {
                                           : () {
                                               ref
                                                   .read(goRouterProvider)
-                                                  .pushNamed(
-                                                      Routes.searchFood.name,
+                                                  .pushNamed(Routes.food.name,
                                                       extra: const Extras(
                                                           datas: {
                                                             ExtrasKey.consumeAt:
@@ -1611,6 +1444,118 @@ class HomeScreen extends ConsumerWidget {
                 ),
               );
             },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TrimesterWidget extends StatelessWidget {
+  final int week;
+  final int type;
+
+  const TrimesterWidget({super.key, required this.week, required this.type});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          _buildProgressIndicator(week),
+          SizedBox(width: 12.w),
+          _buildTrimesterInfo(week, type),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProgressIndicator(int week) {
+    return Transform.scale(
+      scale: 1.01,
+      child: Stack(
+        children: [
+          SizedBox(
+            width: 50.w,
+            height: 42.h,
+            child: Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.rotationY(math.pi),
+              child: CircularProgressIndicator(
+                value: week / 42,
+                strokeWidth: 5,
+                strokeCap: StrokeCap.round,
+                backgroundColor: HexColor('#CCD1D6'),
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  HexColor('#0366DA'),
+                ),
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: Center(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "$week/",
+                    style: TypographyApp.homeDateOn,
+                  ),
+                  Text(
+                    "42",
+                    style: TypographyApp.homeDateOff,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTrimesterInfo(int week, int type) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Minggu $week",
+          style: TypographyApp.homeTitleOn,
+        ),
+        Text(
+          "Trimester ${type == 2 ? "Kedua" : type == 3 ? "Ketiga" : "Pertama"}",
+          style: TypographyApp.homeTitleOff,
+        ),
+      ],
+    );
+  }
+}
+
+class CalendarIcon extends StatelessWidget {
+  const CalendarIcon({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(right: 16.w),
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          width: 40.w,
+          height: 40.h,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(6.r),
+            border: Border.all(color: HexColor('#CCD1D6')),
+          ),
+          child: const Center(
+            child: Icon(
+              Icons.calendar_month_rounded,
+              color: Colors.black,
+            ),
           ),
         ),
       ),

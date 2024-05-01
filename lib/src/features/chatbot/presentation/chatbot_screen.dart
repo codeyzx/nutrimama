@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/features/chatbot/presentation/widgets/chat_input_box.dart';
@@ -41,24 +42,24 @@ class _ChatbotScreenState extends State<ChatbotScreen> {
       backgroundColor: HexColor("#F3FAFD"),
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new, // Replace with your desired leading icon
+        leading: Container(
+          margin: EdgeInsets.only(left: 10.w, bottom: 8.h),
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
             color: Colors.grey,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
         ),
+
         title: Padding(
           padding: const EdgeInsets.only(bottom: 10),
           child: Row(
             children: [
-              CircleAvatar(
-                child: Assets.images.profileDefaultImg.image(
-                  width: 60,
-                  height: 60,
-                ),
+              Assets.images.botProfile.image(
+                width: 45.w,
+                height: 45.h,
               ),
               const SizedBox(
                 width: 10.0,

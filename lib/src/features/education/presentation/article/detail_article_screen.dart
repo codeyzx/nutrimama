@@ -13,8 +13,10 @@ class DetailArticleScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Detail Article',
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          title: const Text(
+            'Artikel',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           leading: Container(
             margin: const EdgeInsets.only(
               left: 16,
