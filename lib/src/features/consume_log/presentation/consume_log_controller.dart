@@ -18,7 +18,7 @@ class ConsumeLogController extends _$ConsumeLogController {
         await ref.read(consumeLogRepositoryProvider).getConsumeLogs(uid);
     result.when(
       success: (foods) {
-        Logger().i(foods.map((e) => e.toJson()).toList());
+        Logger().i(foods);
         state = state.copyWith(
           consumeLogs: AsyncData(foods),
         );
@@ -37,7 +37,6 @@ class ConsumeLogController extends _$ConsumeLogController {
         .getTodayConsumeLog(uid, date);
     result.when(
       success: (log) {
-        Logger().i(log.toJson());
         state = state.copyWith(
           todayConsumeLog: AsyncData(log),
           selectedDate: DateTime.parse(date),
@@ -57,7 +56,6 @@ class ConsumeLogController extends _$ConsumeLogController {
         .getTodayConsumeFood(uid, date);
     result.when(
       success: (foods) {
-        Logger().e(foods.map((e) => e.toJson()).toList());
         state = state.copyWith(
           consumeFoods: AsyncData(foods),
         );

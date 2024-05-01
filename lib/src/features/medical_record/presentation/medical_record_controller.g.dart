@@ -7,7 +7,7 @@ part of 'medical_record_controller.dart';
 // **************************************************************************
 
 String _$medicalRecordControllerHash() =>
-    r'ec7d92ff3466933f9858ec0c7d718a739d034360';
+    r'25f4eb22308da182f4bed36961884b3e7a35f8fa';
 
 /// See also [MedicalRecordController].
 @ProviderFor(MedicalRecordController)

@@ -27,7 +27,7 @@ class MedicalRecordController extends _$MedicalRecordController {
         await ref.read(medicalRecordRepositoryProvider).getFetal(user);
     result.when(
       success: (data) {
-        Logger().i(data.map((e) => e.toJson()).toList());
+        Logger().i(data);
         data.sort((a, b) {
           if (a.date == null) {
             return 1;
@@ -121,7 +121,7 @@ class MedicalRecordController extends _$MedicalRecordController {
         await ref.read(medicalRecordRepositoryProvider).getMother(user);
     result.when(
       success: (data) {
-        Logger().i(data.map((e) => e.toJson()).toList());
+        Logger().i(data);
         data.sort((a, b) => b.date.compareTo(a.date));
         state = state.copyWith(
           mothers: AsyncData(data),

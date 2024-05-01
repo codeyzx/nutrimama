@@ -7,7 +7,7 @@ part of 'consume_log_controller.dart';
 // **************************************************************************
 
 String _$consumeLogControllerHash() =>
-    r'5bcfd80959625324f426639f303781aa6c111ac2';
+    r'add2c692b7c4d46f67a4287ab1d380f501e50553';
 
 /// See also [ConsumeLogController].
 @ProviderFor(ConsumeLogController)

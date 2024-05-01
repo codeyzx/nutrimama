@@ -1,4 +1,3 @@
-import 'package:logger/logger.dart';
 import 'package:nutrimama/src/features/education/data/education_repository.dart';
 import 'package:nutrimama/src/features/education/domain/article.dart';
 import 'package:nutrimama/src/features/education/domain/category.dart';
@@ -290,9 +289,6 @@ class EducationController extends _$EducationController {
     ];
 
     final article = listOfJson.map((json) => Article.fromJson(json)).toList();
-    for (var element in article) {
-      Logger().i(element.toJson());
-    }
     final result =
         await ref.read(educationRepositoryProvider).addArticle(article);
     result.when(
