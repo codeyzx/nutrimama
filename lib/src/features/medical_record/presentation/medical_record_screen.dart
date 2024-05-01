@@ -55,81 +55,83 @@ class MedicalRecordScreen extends ConsumerWidget {
             children: [
               AsyncValueWidget(
                 value: state.trimester,
-                data: (trimeser) => Container(
-                  width: 374.w,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
-                  decoration: BoxDecoration(
-                      color: ColorApp.primary.withOpacity(0.20),
-                      borderRadius: BorderRadius.circular(6.r),
-                      border: Border.all(color: HexColor('#0366DA'))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Trimester ${state.trimester.asData?.value?.type}: Minggu ${state.trimester.asData?.value?.week}',
-                        style: TypographyApp.trisMedrec,
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            // TODO: dinamis image when it trimester 1/2/3 (differents)
-                            Image.asset(
-                              'assets/images/baby_img.png',
-                              width: 86.w,
-                              height: 86.h,
-                            ),
-                            SizedBox(
-                                width: 258.w,
-                                child: Text(
-                                  '${trimeser?.desc}',
-                                  style: TypographyApp.trisDescMedrec,
-                                  textAlign: TextAlign.justify,
-                                )),
-                          ]),
-                    ],
+                data: (trimester) => Visibility(
+                  visible: trimester?.week != 0,
+                  child: Container(
+                    width: 374.w,
+                    margin: EdgeInsets.only(bottom: 12.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
+                    decoration: BoxDecoration(
+                        color: ColorApp.primary.withOpacity(0.20),
+                        borderRadius: BorderRadius.circular(6.r),
+                        border: Border.all(color: HexColor('#0366DA'))),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Trimester ${state.trimester.asData?.value?.type}: Minggu ${state.trimester.asData?.value?.week}',
+                          style: TypographyApp.trisMedrec,
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              // TODO: dinamis image when it trimester 1/2/3 (differents)
+                              Image.asset(
+                                'assets/images/baby_img.png',
+                                width: 86.w,
+                                height: 86.h,
+                              ),
+                              SizedBox(
+                                  width: 258.w,
+                                  child: Text(
+                                    '${trimester?.desc}',
+                                    style: TypographyApp.trisDescMedrec,
+                                    textAlign: TextAlign.justify,
+                                  )),
+                            ]),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              SizedBox(
-                height: 12.h,
-              ),
               AsyncValueWidget(
                 value: state.trimester,
-                data: (trimeser) => Container(
-                  width: 374.w,
-                  padding:
-                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
-                  decoration: BoxDecoration(
-                      color: ColorApp.primary.withOpacity(0.20),
-                      borderRadius: BorderRadius.circular(6.r),
-                      border: Border.all(color: HexColor('#0366DA'))),
-                  child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/lamp_img.png',
-                          width: 24.w,
-                          height: 24.h,
-                        ),
-                        SizedBox(
-                          width: 6.w,
-                        ),
-                        SizedBox(
-                            width: 300.w,
-                            child: Text(
-                              'Trimester ${trimeser?.week}: ${trimeser?.tips}',
-                              style: TypographyApp.tipsMedrec,
-                              textAlign: TextAlign.justify,
-                            )),
-                      ]),
+                data: (trimester) => Visibility(
+                  visible: trimester?.week != 0,
+                  child: Container(
+                    width: 374.w,
+                    margin: EdgeInsets.only(bottom: 26.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 15.h),
+                    decoration: BoxDecoration(
+                        color: ColorApp.primary.withOpacity(0.20),
+                        borderRadius: BorderRadius.circular(6.r),
+                        border: Border.all(color: HexColor('#0366DA'))),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/lamp_img.png',
+                            width: 24.w,
+                            height: 24.h,
+                          ),
+                          SizedBox(
+                            width: 6.w,
+                          ),
+                          SizedBox(
+                              width: 300.w,
+                              child: Text(
+                                'Trimester ${trimester?.week}: ${trimester?.tips}',
+                                style: TypographyApp.tipsMedrec,
+                                textAlign: TextAlign.justify,
+                              )),
+                        ]),
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 26.h,
               ),
               AsyncValueWidget(
                 value: state.mother,
