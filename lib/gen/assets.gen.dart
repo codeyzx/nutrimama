@@ -132,6 +132,10 @@ class $AssetsImagesGen {
   AssetGenImage get childImg =>
       const AssetGenImage('assets/images/child_img.png');
 
+  /// File path: assets/images/default_food.jpg
+  AssetGenImage get defaultFood =>
+      const AssetGenImage('assets/images/default_food.jpg');
+
   /// File path: assets/images/dinner_img.png
   AssetGenImage get dinnerImg =>
       const AssetGenImage('assets/images/dinner_img.png');
@@ -206,6 +210,7 @@ class $AssetsImagesGen {
         botProfile,
         breakfastImg,
         childImg,
+        defaultFood,
         dinnerImg,
         drinkImg,
         drinkNotImg,

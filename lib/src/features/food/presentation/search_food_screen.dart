@@ -1,5 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,9 +29,9 @@ class SearchFoodScreen extends ConsumerWidget {
           onPressed: () {
             Navigator.pop(context);
           },
-          icon: Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
           iconSize: 20,
-          padding: EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8.0),
           color: Colors.black,
           style: IconButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -40,7 +39,7 @@ class SearchFoodScreen extends ConsumerWidget {
               side: BorderSide(color: HexColor('#CCD1D6'), width: 0.3.w),
             ),
             backgroundColor: Colors.white,
-            padding: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(8),
           ),
         ),
       ),
@@ -115,89 +114,61 @@ class FoodItem extends ConsumerWidget {
         InkWell(
           onTap: () {
             ref.read(goRouterProvider).pushNamed(
-              Routes.detailFood.name,
-              extra: Extras(
-                datas: {
-                  ExtrasKey.food: food,
-                  ExtrasKey.consumeAt: consumeAt,
-                },
-              ),
-            );
+                  Routes.detailFood.name,
+                  extra: Extras(
+                    datas: {
+                      ExtrasKey.food: food,
+                      ExtrasKey.consumeAt: consumeAt,
+                    },
+                  ),
+                );
           },
           child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.r),
-                  child: food.imageUrl.isNotEmpty
-                      ? CachedNetworkImage(
-                          imageUrl: food.imageUrl,
-                          width: 64.w,
-                          height: 56.h,
-                          fit: BoxFit.cover,
-                        )
-                      : Assets.images.nutrimamaLogo.svg(width: 50, height: 50),
-                ),
-                SizedBox(
-                  width: 14.w,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      food.name,
-                      style: TypographyApp.foodNameHome,
-                    ),
-                    Text(
-                      '${food.calories} Kkal',
-                      style: TypographyApp.foodCalHome,
-                    )
-                  ],
-                ),
-              ],
-            ),
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.r),
+                child: food.imageUrl.isNotEmpty
+                    ? CachedNetworkImage(
+                        imageUrl: food.imageUrl,
+                        width: 64.w,
+                        height: 56.h,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) =>
+                            Assets.images.defaultFood.image(
+                              width: 64.w,
+                              height: 56.h,
+                              fit: BoxFit.cover,
+                            ))
+                    : Assets.images.defaultFood.image(
+                        width: 64.w,
+                        height: 56.h,
+                        fit: BoxFit.cover,
+                      ),
+              ),
+              SizedBox(
+                width: 14.w,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    food.name,
+                    style: TypographyApp.foodNameHome,
+                  ),
+                  Text(
+                    '${food.calories} Kkal',
+                    style: TypographyApp.foodCalHome,
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
-        SizedBox(height: 24.h,),
+        SizedBox(
+          height: 24.h,
+        ),
       ],
     );
-    // return Container(
-    //   width: 378.w,
-    //   decoration: BoxDecoration(
-    //     color: Colors.white,
-    //     borderRadius: BorderRadius.circular(10),
-    //     boxShadow: const [
-    //       BoxShadow(
-    //         color: Colors.grey,
-    //         blurRadius: 5,
-    //         offset: Offset(0, 3),
-    //       ),
-    //     ],
-    //   ),
-    //   child: InkWell(
-    //     onTap: () {
-    //       ref.read(goRouterProvider).pushNamed(
-    //             Routes.detailFood.name,
-    //             extra: Extras(
-    //               datas: {
-    //                 ExtrasKey.food: food,
-    //                 ExtrasKey.consumeAt: consumeAt,
-    //               },
-    //             ),
-    //           );
-    //     },
-    //     child: ListTile(
-    //       leading: food.imageUrl.isNotEmpty
-    //           ? CachedNetworkImage(
-    //               imageUrl: food.imageUrl,
-    //               width: 50,
-    //               height: 50,
-    //               fit: BoxFit.cover,
-    //             )
-    //           : Assets.images.nutrimamaLogo.svg(width: 50, height: 50),
-    //       title: Text(food.name),
-    //       subtitle: Text('${food.calories} kalori'),
-    //     ),
-    //   ),
-    // );
   }
 }

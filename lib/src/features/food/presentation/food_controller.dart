@@ -58,4 +58,8 @@ class FoodController extends _$FoodController {
   Future<void> addFood() async {
     await ref.read(foodRepositoryProvider).addFood();
   }
+
+  void setGuide() {
+    state = state.copyWith(isGuide: !state.isGuide);
+  }
 }

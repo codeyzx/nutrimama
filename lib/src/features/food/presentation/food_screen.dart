@@ -22,7 +22,7 @@ class FoodScreen extends ConsumerWidget {
     final nutritionState = ref.watch(nutritionControllerProvider);
     final consumeLogState = ref.watch(consumeLogControllerProvider);
     final nutrition = nutritionState.nutrition.asData!.value;
-    final consume = consumeLogState.todayConsumeLog.asData!.value;
+    final consume = consumeLogState.todayConsumeLog.asData!.value!;
     final foodState = ref.watch(foodControllerProvider);
 
     return StatusBarWidget(
@@ -59,7 +59,7 @@ class FoodScreen extends ConsumerWidget {
             )),
         body: Stack(
           alignment: Alignment.center,
-          children:[
+          children: [
             Positioned(
               top: 10,
               child: Container(
@@ -82,7 +82,7 @@ class FoodScreen extends ConsumerWidget {
                           style: TypographyApp.calorieNeedsFood,
                         ),
                         Text(
-                          '${consume?.totalCalories}/${nutrition.calories} Kkal',
+                          '${consume.totalCalories}/${nutrition.calories} Kkal',
                           style: TypographyApp.calorieNeedsNumFood,
                         ),
                       ],
@@ -95,8 +95,7 @@ class FoodScreen extends ConsumerWidget {
                       child: SizedBox(
                         width: 358.w,
                         child: LinearProgressIndicator(
-                          value: consume?.totalCalories.toDouble() ??
-                              0.0 / nutrition.calories,
+                          value: consume.totalCalories / nutrition.calories,
                           minHeight: 8.h,
                           borderRadius: BorderRadius.circular(6.r),
                           backgroundColor: HexColor('#D9D9D9'),
@@ -115,7 +114,7 @@ class FoodScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${consume?.totalProtein}/${nutrition.protein}g',
+                              '${consume.totalProtein}/${nutrition.protein}g',
                               style: TypographyApp.nutrNeedsNumFood,
                             ),
                             SizedBox(
@@ -130,12 +129,12 @@ class FoodScreen extends ConsumerWidget {
                             ),
                             ClipRRect(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6.r)),
                               child: SizedBox(
                                 width: 84.w,
                                 child: LinearProgressIndicator(
-                                  value: consume?.totalProtein.toDouble() ??
-                                      0.0 / nutrition.protein,
+                                  value:
+                                      consume.totalProtein / nutrition.protein,
                                   minHeight: 7.h,
                                   borderRadius: BorderRadius.circular(6.r),
                                   backgroundColor: HexColor('#D9D9D9'),
@@ -150,7 +149,7 @@ class FoodScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${consume?.totalCarbs}/${nutrition.carbs}g',
+                              '${consume.totalCarbs}/${nutrition.carbs}g',
                               style: TypographyApp.nutrNeedsNumFood,
                             ),
                             SizedBox(
@@ -165,12 +164,11 @@ class FoodScreen extends ConsumerWidget {
                             ),
                             ClipRRect(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6.r)),
                               child: SizedBox(
                                 width: 84.w,
                                 child: LinearProgressIndicator(
-                                  value: consume?.totalCarbs.toDouble() ??
-                                      0.0 / nutrition.carbs,
+                                  value: consume.totalCarbs / nutrition.carbs,
                                   minHeight: 7.h,
                                   borderRadius: BorderRadius.circular(6.r),
                                   backgroundColor: HexColor('#D9D9D9'),
@@ -185,7 +183,7 @@ class FoodScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${consume?.totalFat}/${nutrition.fat}g',
+                              '${consume.totalFat}/${nutrition.fat}g',
                               style: TypographyApp.nutrNeedsNumFood,
                             ),
                             SizedBox(
@@ -200,12 +198,11 @@ class FoodScreen extends ConsumerWidget {
                             ),
                             ClipRRect(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6.r)),
                               child: SizedBox(
                                 width: 84.w,
                                 child: LinearProgressIndicator(
-                                  value: consume?.totalFat.toDouble() ??
-                                      0.0 / nutrition.fat,
+                                  value: consume.totalFat / nutrition.fat,
                                   minHeight: 7.h,
                                   borderRadius: BorderRadius.circular(6.r),
                                   backgroundColor: HexColor('#D9D9D9'),
@@ -228,7 +225,7 @@ class FoodScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${consume?.totalSugars}/${nutrition.sugars}g',
+                              '${consume.totalSugars}/${nutrition.sugars}g',
                               style: TypographyApp.nutrNeedsNumFood,
                             ),
                             SizedBox(
@@ -243,12 +240,11 @@ class FoodScreen extends ConsumerWidget {
                             ),
                             ClipRRect(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6.r)),
                               child: SizedBox(
                                 width: 84.w,
                                 child: LinearProgressIndicator(
-                                  value: consume?.totalSugars.toDouble() ??
-                                      0.0 / nutrition.sugars,
+                                  value: consume.totalSugars / nutrition.sugars,
                                   minHeight: 7.h,
                                   borderRadius: BorderRadius.circular(6.r),
                                   backgroundColor: HexColor('#D9D9D9'),
@@ -263,7 +259,7 @@ class FoodScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${consume?.totalIron}/${nutrition.iron}g',
+                              '${consume.totalIron}/${nutrition.iron}mg',
                               style: TypographyApp.nutrNeedsNumFood,
                             ),
                             SizedBox(
@@ -278,12 +274,11 @@ class FoodScreen extends ConsumerWidget {
                             ),
                             ClipRRect(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6.r)),
                               child: SizedBox(
                                 width: 84.w,
                                 child: LinearProgressIndicator(
-                                  value: consume?.totalIron.toDouble() ??
-                                      0.0 / nutrition.iron,
+                                  value: consume.totalIron / nutrition.iron,
                                   minHeight: 7.h,
                                   borderRadius: BorderRadius.circular(6.r),
                                   backgroundColor: HexColor('#D9D9D9'),
@@ -298,7 +293,7 @@ class FoodScreen extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              '${consume?.totalCalcium}/${nutrition.calcium}g',
+                              '${consume.totalCalcium}/${nutrition.calcium}mg',
                               style: TypographyApp.nutrNeedsNumFood,
                             ),
                             SizedBox(
@@ -313,12 +308,12 @@ class FoodScreen extends ConsumerWidget {
                             ),
                             ClipRRect(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6.r)),
+                                  BorderRadius.all(Radius.circular(6.r)),
                               child: SizedBox(
                                 width: 84.w,
                                 child: LinearProgressIndicator(
-                                  value: consume?.totalCalcium.toDouble() ??
-                                      0.0 / nutrition.calcium,
+                                  value:
+                                      consume.totalCalcium / nutrition.calcium,
                                   minHeight: 7.h,
                                   borderRadius: BorderRadius.circular(6.r),
                                   backgroundColor: HexColor('#D9D9D9'),
@@ -422,9 +417,9 @@ class FoodScreen extends ConsumerWidget {
                               height: 24.h,
                             ),
                             Visibility(
-                              visible: consume?.foods.where(
-                                      (element) => element.type == "food") !=
-                                  null,
+                              visible: consume.foods
+                                  .where((element) => element.type == "food")
+                                  .isNotEmpty,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -439,10 +434,11 @@ class FoodScreen extends ConsumerWidget {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemCount: consume?.foods.where((element) =>
-                                                element.type == "food") !=
-                                            null
-                                        ? consume!.foods
+                                    itemCount: consume.foods
+                                            .where((element) =>
+                                                element.type == "food")
+                                            .isNotEmpty
+                                        ? consume.foods
                                                     .where((element) =>
                                                         element.type == "food")
                                                     .length >
@@ -454,7 +450,7 @@ class FoodScreen extends ConsumerWidget {
                                                 .length
                                         : 0,
                                     itemBuilder: (context, index) {
-                                      final food = consume!.foods
+                                      final food = consume.foods
                                           .where((element) =>
                                               element.type == "food")
                                           .toList()[index];
@@ -502,9 +498,9 @@ class FoodScreen extends ConsumerWidget {
                               ),
                             ),
                             Visibility(
-                              visible: consume?.foods.where(
-                                      (element) => element.type == "drink") !=
-                                  null,
+                              visible: consume.foods
+                                  .where((element) => element.type == "drink")
+                                  .isNotEmpty,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -519,10 +515,11 @@ class FoodScreen extends ConsumerWidget {
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     shrinkWrap: true,
-                                    itemCount: consume?.foods.where((element) =>
-                                                element.type == "drink") !=
-                                            null
-                                        ? consume!.foods
+                                    itemCount: consume.foods
+                                            .where((element) =>
+                                                element.type == "drink")
+                                            .isNotEmpty
+                                        ? consume.foods
                                                     .where((element) =>
                                                         element.type == "drink")
                                                     .length >
@@ -534,7 +531,7 @@ class FoodScreen extends ConsumerWidget {
                                                 .length
                                         : 0,
                                     itemBuilder: (context, index) {
-                                      final food = consume!.foods
+                                      final food = consume.foods
                                           .where((element) =>
                                               element.type == "drink")
                                           .toList()[index];
