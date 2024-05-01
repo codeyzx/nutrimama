@@ -14,7 +14,7 @@ class DetailArticleScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
           title: const Text(
-            'Artikel',
+            'Detail Artikel',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           leading: Container(

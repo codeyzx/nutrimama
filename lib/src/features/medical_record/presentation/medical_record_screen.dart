@@ -80,6 +80,7 @@ class MedicalRecordScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               // TODO: dinamis image when it trimester 1/2/3 (differents)
+                              // TODO: flutter build apk --split-per-abi --release --obfuscate --split-debug-info=./symbols/
                               Image.asset(
                                 'assets/images/baby_img.png',
                                 width: 86.w,

@@ -10,8 +10,6 @@ import 'package:nutrimama/src/shared/extensions/extensions.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:nutrimama/src/constants/themes/themes.dart';
 
-
-
 class AddMotherRecordScreen extends ConsumerWidget {
   final User user;
   const AddMotherRecordScreen({super.key, required this.user});
@@ -21,7 +19,10 @@ class AddMotherRecordScreen extends ConsumerWidget {
     final state = ref.watch(medicalRecordControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Tambah Data Ibu', style: TypographyApp.appBarMedrec,),
+        title: Text(
+          'Tambah Data Ibu',
+          style: TypographyApp.appBarMedrec,
+        ),
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
@@ -112,6 +113,7 @@ class AddMotherRecordScreen extends ConsumerWidget {
                             onPressed: () {
                               showDatePicker(
                                 context: context,
+                                locale: const Locale('id', 'ID'),
                                 initialDate: DateTime.now(),
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime.now(),
@@ -143,7 +145,9 @@ class AddMotherRecordScreen extends ConsumerWidget {
                 ),
               ),
             ),
-            SizedBox(height: 24.h,),
+            SizedBox(
+              height: 24.h,
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               height: 53.h,
@@ -162,10 +166,10 @@ class AddMotherRecordScreen extends ConsumerWidget {
                           QuickAlert.show(
                               context: context,
                               type: QuickAlertType.success,
-                              title: 'Success',
+                              title: 'Data Ibu Berhasil Ditambahkan',
                               showCancelBtn: false,
                               barrierDismissible: false,
-                              confirmBtnText: 'Go to Home',
+                              confirmBtnText: 'Kembali ke Beranda',
                               onConfirmBtnTap: () {
                                 ref.read(goRouterProvider).pop();
                                 ref.read(goRouterProvider).pop();
@@ -183,7 +187,10 @@ class AddMotherRecordScreen extends ConsumerWidget {
                 ),
                 child: state.mothers is AsyncLoading
                     ? const LoadingWidget()
-                    : Text('Konfirmasi & Tambahkan', style: TypographyApp.addBtnMedrec,),
+                    : Text(
+                        'Konfirmasi & Tambahkan',
+                        style: TypographyApp.addBtnMedrec,
+                      ),
               ),
             ),
           ],

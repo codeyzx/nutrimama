@@ -190,11 +190,7 @@ GoRouter goRouter(GoRouterRef ref) {
       GoRoute(
         path: '/detailPost',
         name: Routes.detailPost.name,
-        builder: (context, state) {
-          final extras = state.extra as Extras;
-          final post = extras.datas[ExtrasKey.post];
-          return DetailPostScreen(post: post);
-        },
+        builder: (context, state) => const DetailPostScreen(),
       ),
       GoRoute(
         path: '/addPost',

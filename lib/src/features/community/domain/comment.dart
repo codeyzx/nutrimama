@@ -1,5 +1,4 @@
 class Comment {
-  final String id;
   final DateTime createdAt;
   final String postId;
   final String text;
@@ -8,7 +7,6 @@ class Comment {
   final String userPhoto;
 
   Comment({
-    required this.id,
     required this.createdAt,
     required this.postId,
     required this.text,
@@ -19,7 +17,6 @@ class Comment {
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-      id: json['id'] ?? '',
       createdAt: json['createdAt'] == null
           ? DateTime.now()
           : DateTime.fromMillisecondsSinceEpoch(json['createdAt']),
@@ -33,7 +30,6 @@ class Comment {
 
   Map<String, dynamic> toJson() {
     return {
-      'id': id,
       'createdAt': createdAt.millisecondsSinceEpoch,
       'postId': postId,
       'text': text,
@@ -44,7 +40,6 @@ class Comment {
   }
 
   Comment copyWith({
-    String? id,
     DateTime? createdAt,
     String? postId,
     String? text,
@@ -53,7 +48,6 @@ class Comment {
     String? userPhoto,
   }) {
     return Comment(
-      id: id ?? this.id,
       createdAt: createdAt ?? this.createdAt,
       postId: postId ?? this.postId,
       text: text ?? this.text,

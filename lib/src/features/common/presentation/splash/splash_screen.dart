@@ -13,7 +13,6 @@ class SplashScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO: pake ref.listen
     ref.read(commonControllerProvider.notifier).checkSplash();
 
     return StatusBarWidget(

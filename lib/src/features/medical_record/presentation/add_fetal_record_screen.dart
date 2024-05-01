@@ -164,6 +164,7 @@ class FormFetalWidget extends ConsumerWidget {
                           onPressed: () {
                             showDatePicker(
                               context: context,
+                              locale: const Locale('id', 'ID'),
                               initialDate: DateTime.now(),
                               firstDate: DateTime(2000),
                               lastDate: DateTime.now(),
@@ -296,6 +297,7 @@ class FormNewFetalWidget extends ConsumerWidget {
                           onPressed: () {
                             showDatePicker(
                               context: context,
+                              locale: const Locale('id', 'ID'),
                               initialDate: DateTime.now(),
                               firstDate: DateTime(2000),
                               lastDate: DateTime.now(),
@@ -351,10 +353,10 @@ class FormNewFetalWidget extends ConsumerWidget {
                         QuickAlert.show(
                             context: context,
                             type: QuickAlertType.success,
-                            title: 'Success',
+                            title: 'Berhasil Menambahkan Data Janin',
                             showCancelBtn: false,
                             barrierDismissible: false,
-                            confirmBtnText: 'Go to Home',
+                            confirmBtnText: 'Kembali ke Beranda',
                             onConfirmBtnTap: () {
                               ref.read(goRouterProvider).pop();
                               ref.read(goRouterProvider).pop();

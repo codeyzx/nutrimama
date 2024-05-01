@@ -104,7 +104,7 @@ class ProfileScreen extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Your Account",
+                    "Akun Kamu",
                     style: TypographyApp.profileItemTitle,
                   ),
                   SizedBox(
@@ -150,7 +150,7 @@ class ProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Edit Profile",
+                                "Ubah Profil",
                                 style: TypographyApp.profileItem,
                               ),
                               Icon(
@@ -194,7 +194,7 @@ class ProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Change Password",
+                                "Ubah Password",
                                 style: TypographyApp.profileItem,
                               ),
                               Icon(
@@ -211,7 +211,7 @@ class ProfileScreen extends ConsumerWidget {
                     height: 24.h,
                   ),
                   Text(
-                    "Support",
+                    "Bantuan",
                     style: TypographyApp.profileItemTitle,
                   ),
                   SizedBox(
@@ -245,7 +245,7 @@ class ProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Contact",
+                                "Kontak Kami",
                                 style: TypographyApp.profileItem,
                               ),
                               Icon(
@@ -289,7 +289,7 @@ class ProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Report a Problem",
+                                "Laporkan Masalah",
                                 style: TypographyApp.profileItem,
                               ),
                               Icon(
@@ -306,7 +306,7 @@ class ProfileScreen extends ConsumerWidget {
                     height: 24.h,
                   ),
                   Text(
-                    "Others",
+                    "Lainnya",
                     style: TypographyApp.profileItemTitle,
                   ),
                   SizedBox(
@@ -340,7 +340,7 @@ class ProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Terms & Conditions",
+                                "Syarat & Ketentuan",
                                 style: TypographyApp.profileItem,
                               ),
                               Icon(
@@ -361,12 +361,11 @@ class ProfileScreen extends ConsumerWidget {
                       QuickAlert.show(
                           context: context,
                           type: QuickAlertType.confirm,
-                          title: 'Are you sure?',
-                          text: 'Do you want to logout',
+                          title: 'Apakah kamu ingin keluar?',
                           backgroundColor: Colors.white,
                           showCancelBtn: true,
-                          cancelBtnText: 'Cancel',
-                          confirmBtnText: 'Logout',
+                          cancelBtnText: 'Batal',
+                          confirmBtnText: 'Keluar',
                           confirmBtnColor: HexColor('#DB3F3F'),
                           onConfirmBtnTap: () {
                             controller.logout();
@@ -404,7 +403,7 @@ class ProfileScreen extends ConsumerWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Logout",
+                                "Keluar",
                                 style: TypographyApp.profileItem.copyWith(
                                   color: HexColor('#DB3F3F'),
                                 ),

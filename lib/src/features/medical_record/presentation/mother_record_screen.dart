@@ -50,7 +50,7 @@ class MotherRecordScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16.0),
                     ),
                     Text(
-                      '${mother?.weight ?? '0'} kg',
+                      '${mother?.weight.toString().replaceAll(RegExp(r'\.0'), '') ?? '-'} kg',
                       style: const TextStyle(fontSize: 16.0),
                     ),
                   ],
@@ -129,7 +129,7 @@ class MotherRecordScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16.0),
                         ),
                         Text(
-                          '${mother?.weight ?? '0'} kg',
+                          '${mother?.weight.toString().replaceAll(RegExp(r'\.0'), '') ?? '-'} kg',
                           style: const TextStyle(fontSize: 16.0),
                         ),
                       ],

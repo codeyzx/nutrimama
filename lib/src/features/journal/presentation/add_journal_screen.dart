@@ -122,10 +122,10 @@ class AddJournalScreen extends ConsumerWidget {
                       QuickAlert.show(
                           context: context,
                           type: QuickAlertType.success,
-                          title: 'Success',
+                          title: 'Jurnal Berhasil Ditambahkan',
                           showCancelBtn: false,
                           barrierDismissible: false,
-                          confirmBtnText: 'Go to Home',
+                          confirmBtnText: 'Kembali ke Beranda',
                           onConfirmBtnTap: () {
                             ref
                                 .read(goRouterProvider)

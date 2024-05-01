@@ -779,9 +779,7 @@ class HomeScreen extends ConsumerWidget {
                                                                   QuickAlertType
                                                                       .confirm,
                                                               title:
-                                                                  "Tambah Air Minum",
-                                                              text:
-                                                                  "Apakah anda ingin menambah air minum?",
+                                                                  "Tambahkan Air Minum?",
                                                               confirmBtnText:
                                                                   "Ya",
                                                               cancelBtnText:
@@ -1404,9 +1402,7 @@ class HomeScreen extends ConsumerWidget {
                                               QuickAlert.show(
                                                 context: context,
                                                 type: QuickAlertType.confirm,
-                                                title: "Tambah Vitamin",
-                                                text:
-                                                    'Apakah anda ingin menambah vitamin?',
+                                                title: "Sudah Minum Vitamin?",
                                                 confirmBtnText: "Ya",
                                                 cancelBtnText: "Tidak",
                                                 onConfirmBtnTap: () {
@@ -1552,6 +1548,7 @@ class CalendarIcon extends ConsumerWidget {
         onTap: () async {
           showDatePicker(
             context: context,
+            locale: const Locale('id', 'ID'),
             initialDate: initialDate,
             firstDate: DateTime(2023),
             lastDate: DateTime.now(),

@@ -30,7 +30,7 @@ class QuestionPage extends ConsumerWidget {
             child: Column(
               children: [
                 Text(
-                  'Personal Information',
+                  'Informasi Kesehatan Anda',
                   style: TypographyApp.onBoardTitle.copyWith(fontSize: 24.sp),
                   textAlign: TextAlign.center,
                 ),
@@ -52,7 +52,7 @@ class QuestionPage extends ConsumerWidget {
                             children: [
                               Gap.h28,
                               Text(
-                                'Your Height (cm)',
+                                'Tinggi Badan Anda (cm)',
                                 style: TextStyle(
                                   color: ColorApp.black,
                                   fontSize: 16.sp,
@@ -64,14 +64,14 @@ class QuestionPage extends ConsumerWidget {
                                 controller: state.heightController,
                                 onChanged: (value) {},
                                 keyboardType: TextInputType.number,
-                                hintText: 'Height',
+                                hintText: '160',
                                 prefixIcon: Icons.leaderboard,
                                 validator: controller.validateHeight,
                                 isHeight: true,
                               ),
                               Gap.h20,
                               Text(
-                                'Your Weight (kg)',
+                                'Berat Badan Anda (kg)',
                                 style: TextStyle(
                                   color: ColorApp.black,
                                   fontSize: 16.sp,
@@ -83,7 +83,7 @@ class QuestionPage extends ConsumerWidget {
                                 controller: state.weightController,
                                 onChanged: (value) {},
                                 keyboardType: TextInputType.number,
-                                hintText: 'Weight',
+                                hintText: '50',
                                 prefixIcon: Icons.monitor_weight,
                                 validator: controller.validateWeight,
                                 isWeight: true,
@@ -96,7 +96,7 @@ class QuestionPage extends ConsumerWidget {
                         children: [
                           Gap.h20,
                           Text(
-                            'Your Age',
+                            'Usia Anda',
                             style: TextStyle(
                               color: ColorApp.black,
                               fontSize: 16.sp,
@@ -211,7 +211,7 @@ class QuestionPage extends ConsumerWidget {
                             child: state.loadingValue is AsyncLoading
                                 ? const LoadingWidget()
                                 : Text(
-                                    'Start',
+                                    'Mulai',
                                     style:
                                         TypographyApp.onBoardBtnText.copyWith(
                                       fontSize: 18.sp,

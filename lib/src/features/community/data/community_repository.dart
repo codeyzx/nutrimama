@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nutrimama/src/features/community/domain/comment.dart';
 import 'package:nutrimama/src/features/community/domain/post.dart';
 import 'package:nutrimama/src/services/remote/remote.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -23,11 +24,38 @@ class CommunityRepository {
     }
   }
 
+  //getPost
+  Future<Result<Post>> getPost(String postId) async {
+    try {
+      final result = await postDb.doc(postId).get();
+      final post = result.data();
+      return Result.success(post!);
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
+
   Future<Result<String>> addPost(Post post) async {
     try {
       final ref = postDb.doc();
       post = post.copyWith(id: ref.id);
       await ref.set(post);
+      return const Result.success('Success');
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
+
+  Future<Result<String>> addComment(String postId, Comment comment) async {
+    try {
+      final ref = postDb.doc(postId);
+      final result = await ref.get();
+      final post = result.data();
+      List<Comment> comments = post?.comments ?? [];
+      comments.add(comment);
+      await ref.set(post!.copyWith(comments: comments));
       return const Result.success('Success');
     } catch (e) {
       return Result.failure(

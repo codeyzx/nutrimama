@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -39,6 +40,14 @@ class MyApp extends ConsumerWidget {
             routerDelegate: router.routerDelegate,
             routeInformationParser: router.routeInformationParser,
             routeInformationProvider: router.routeInformationProvider,
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('id', 'ID'),
+            ],
             title: 'NutriMama',
             theme: _appTheme,
             builder: (context, child) {

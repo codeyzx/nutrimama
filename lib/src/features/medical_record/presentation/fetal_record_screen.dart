@@ -50,7 +50,7 @@ class FetalRecordScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16.0),
                     ),
                     Text(
-                      '${fetal?.weight ?? '0'} kg',
+                      '${fetal?.weight.toString().replaceAll(RegExp(r'\.0'), '') ?? '-'} gram',
                       style: const TextStyle(fontSize: 16.0),
                     ),
                   ],
@@ -64,7 +64,7 @@ class FetalRecordScreen extends StatelessWidget {
                       style: TextStyle(fontSize: 16.0),
                     ),
                     Text(
-                      '${fetal?.length ?? '0'} cm',
+                      '${fetal?.length.toString().replaceAll(RegExp(r'\.0'), '') ?? '-'} cm',
                       style: const TextStyle(fontSize: 16.0),
                     ),
                   ],
@@ -157,7 +157,7 @@ class FetalRecordScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16.0),
                         ),
                         Text(
-                          '${fetal?.weight ?? '0'} gram',
+                          '${fetal?.weight.toString().replaceAll(RegExp(r'\.0'), '') ?? '-'} gram',
                           style: const TextStyle(fontSize: 16.0),
                         ),
                       ],
@@ -171,7 +171,7 @@ class FetalRecordScreen extends StatelessWidget {
                           style: TextStyle(fontSize: 16.0),
                         ),
                         Text(
-                          '${fetal?.length ?? '0'} cm',
+                          '${fetal?.length.toString().replaceAll(RegExp(r'\.0'), '') ?? '-'} cm',
                           style: const TextStyle(fontSize: 16.0),
                         ),
                       ],

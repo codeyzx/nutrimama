@@ -101,17 +101,27 @@ class JournalScreen extends ConsumerWidget {
             AsyncValueWidget(
               value: state.journals,
               data: (journals) => Expanded(
-                child: ListView.builder(
-                  itemCount: journals!.length,
-                  itemBuilder: (context, index) {
-                    int indexEmoji = index % 6 + 1;
-                    String imageUrl = 'assets/icons/emoji$indexEmoji.png';
-                    return JournalWidget(
-                      journal: journals[index],
-                      imageUrl: imageUrl,
-                    );
-                  },
-                ),
+                child: journals!.isEmpty
+                    ? Center(
+                        child: Text(
+                          'Belum ada jurnal',
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: journals.length,
+                        itemBuilder: (context, index) {
+                          int indexEmoji = index % 6 + 1;
+                          String imageUrl = 'assets/icons/emoji$indexEmoji.png';
+                          return JournalWidget(
+                            journal: journals[index],
+                            imageUrl: imageUrl,
+                          );
+                        },
+                      ),
               ),
             ),
           ],

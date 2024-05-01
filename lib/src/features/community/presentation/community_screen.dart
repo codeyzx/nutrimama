@@ -95,10 +95,14 @@ class CommunityScreen extends ConsumerWidget {
                   return PostWidget(
                     post: posts[index],
                     isLiked: true,
-                    onTap: () {
-                      ref.read(goRouterProvider).pushNamed(
-                          Routes.detailPost.name,
-                          extra: Extras(datas: {ExtrasKey.post: posts[index]}));
+                    onTap: () async {
+                      await ref
+                          .read(communityControllerProvider.notifier)
+                          .getPost(posts[index].id);
+
+                      ref
+                          .read(goRouterProvider)
+                          .pushNamed(Routes.detailPost.name);
                     },
                   );
                 },

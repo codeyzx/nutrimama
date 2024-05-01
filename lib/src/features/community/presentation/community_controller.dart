@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
 import 'package:nutrimama/src/features/community/data/community_repository.dart';
+import 'package:nutrimama/src/features/community/domain/comment.dart';
 import 'package:nutrimama/src/features/community/domain/post.dart';
 import 'package:nutrimama/src/features/community/presentation/community_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -21,6 +22,7 @@ class CommunityController extends _$CommunityController {
     return CommunityState(
       titleController: TextEditingController(),
       descriptionController: TextEditingController(),
+      commentController: TextEditingController(),
     );
   }
 
@@ -35,6 +37,23 @@ class CommunityController extends _$CommunityController {
       failure: (error, stackTrace) {
         state = state.copyWith(
           posts: AsyncError(error, stackTrace),
+        );
+      },
+    );
+  }
+
+  //getPost
+  Future<void> getPost(String postId) async {
+    final result = await ref.read(communityRepositoryProvider).getPost(postId);
+    result.when(
+      success: (data) {
+        state = state.copyWith(
+          post: AsyncData(data),
+        );
+      },
+      failure: (error, stackTrace) {
+        state = state.copyWith(
+          post: AsyncError(error, stackTrace),
         );
       },
     );
@@ -143,8 +162,20 @@ class CommunityController extends _$CommunityController {
     );
   }
 
-  // TODO ADD COMMENTS
-  // TODO: flutter build apk --split-per-abi --release --obfuscate --split-debug-info=./symbols/
+  Future<void> addComment(String postId, Comment comment) async {
+    final result =
+        await ref.read(communityRepositoryProvider).addComment(postId, comment);
+    result.when(
+      success: (data) {
+        getPosts();
+      },
+      failure: (error, stackTrace) {
+        state = state.copyWith(
+          posts: AsyncError(error, stackTrace),
+        );
+      },
+    );
+  }
 
   void dispose() {
     state = state.copyWith(

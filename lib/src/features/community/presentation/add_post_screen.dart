@@ -67,83 +67,96 @@ class AddPostScreen extends ConsumerWidget {
                         await showDialog(
                           context: context,
                           builder: (ctx) => AlertDialog(
-                            title: const Text('Choose Image',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                )),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            backgroundColor: Colors.white,
+                            title: const Text(
+                              'Pilih Gambar',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
                             content: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      Navigator.pop(context);
-                                      try {
-                                        await controller.pickImage(
-                                            isCamera: false);
-                                      } catch (e) {
-                                        Future.delayed(
-                                            const Duration(milliseconds: 500),
-                                            () => showSnackBar(context,
-                                                Colors.red, e.toString()));
-                                      }
-                                    },
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        children: [
-                                          WidgetSpan(
-                                            child: Icon(
-                                              Icons.image,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                              text: '  From Gallery',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.black,
-                                              )),
-                                        ],
+                                InkWell(
+                                  onTap: () async {
+                                    Navigator.pop(context);
+                                    try {
+                                      await controller.pickImage(
+                                          isCamera: false);
+                                    } catch (e) {
+                                      Future.delayed(
+                                        const Duration(milliseconds: 500),
+                                        () => showSnackBar(
+                                            context, Colors.red, e.toString()),
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    decoration: BoxDecoration(
+                                      border: Border(
+                                        bottom: BorderSide(
+                                            color: Colors.grey[300]!),
                                       ),
+                                    ),
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.image,
+                                          color: Colors.black,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          'Dari Galeri',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                const SizedBox(
-                                  height: 12,
-                                ),
-                                SizedBox(
-                                  width: double.infinity,
-                                  child: GestureDetector(
-                                    onTap: () async {
-                                      Navigator.pop(context);
-                                      try {
-                                        await controller.pickImage(
-                                            isCamera: true);
-                                      } catch (e) {
-                                        Future.delayed(
-                                            const Duration(milliseconds: 500),
-                                            () => showSnackBar(context,
-                                                ColorApp.red, e.toString()));
-                                      }
-                                    },
-                                    child: RichText(
-                                      text: const TextSpan(
-                                        children: [
-                                          WidgetSpan(
-                                            child: Icon(
-                                              Icons.camera_alt,
-                                            ),
+                                InkWell(
+                                  onTap: () async {
+                                    Navigator.pop(context);
+                                    try {
+                                      await controller.pickImage(
+                                          isCamera: true);
+                                    } catch (e) {
+                                      Future.delayed(
+                                        const Duration(milliseconds: 500),
+                                        () => showSnackBar(
+                                            context, Colors.red, e.toString()),
+                                      );
+                                    }
+                                  },
+                                  child: Container(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    child: const Row(
+                                      children: [
+                                        Icon(
+                                          Icons.camera_alt,
+                                          color: Colors.black,
+                                        ),
+                                        SizedBox(width: 10),
+                                        Text(
+                                          'Dari Kamera',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400,
                                           ),
-                                          TextSpan(
-                                              text: '  From Camera',
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                color: Colors.black,
-                                              )),
-                                        ],
-                                      ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -266,10 +279,10 @@ class AddPostScreen extends ConsumerWidget {
                       QuickAlert.show(
                           context: context,
                           type: QuickAlertType.success,
-                          title: 'Success',
+                          title: 'Berhasil Menambahkan Post',
                           showCancelBtn: false,
                           barrierDismissible: false,
-                          confirmBtnText: 'Go to Home',
+                          confirmBtnText: 'Kembali ke Beranda',
                           onConfirmBtnTap: () {
                             ref
                                 .read(goRouterProvider)
