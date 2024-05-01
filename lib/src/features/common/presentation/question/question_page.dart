@@ -63,6 +63,7 @@ class QuestionPage extends ConsumerWidget {
                               InputFormWidget(
                                 controller: state.heightController,
                                 onChanged: (value) {},
+                                keyboardType: TextInputType.number,
                                 hintText: 'Height',
                                 prefixIcon: Icons.leaderboard,
                                 validator: controller.validateHeight,
@@ -81,6 +82,7 @@ class QuestionPage extends ConsumerWidget {
                               InputFormWidget(
                                 controller: state.weightController,
                                 onChanged: (value) {},
+                                keyboardType: TextInputType.number,
                                 hintText: 'Weight',
                                 prefixIcon: Icons.monitor_weight,
                                 validator: controller.validateWeight,

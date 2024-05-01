@@ -21,7 +21,7 @@ class QuestionState {
     required this.ageController,
     this.isLastPage = false,
     this.age = '20',
-  }) : ageList = List.generate(91, (index) => index + 20)
+  }) : ageList = List.generate(51, (index) => index + 20)
             .map((e) => {'value': e.toString(), 'text': e.toString()})
             .toList();
 
