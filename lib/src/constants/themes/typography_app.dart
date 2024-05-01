@@ -416,4 +416,22 @@ class TypographyApp {
     fontWeight: FontWeight.w700,
     fontSize: 14.sp,
   );
+
+  static TextStyle appBarFoodSearch = TextStyle(
+    color: HexColor('#001C34'),
+    fontWeight: FontWeight.w800,
+    fontSize: 16.sp,
+  );
+
+  static TextStyle hintFoodSearch = TextStyle(
+    color: HexColor('#8E9195'),
+    fontWeight: FontWeight.w400,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle txtFoodSearch = TextStyle(
+    color: HexColor('#001C34'),
+    fontWeight: FontWeight.w500,
+    fontSize: 14.sp,
+  );
 }
