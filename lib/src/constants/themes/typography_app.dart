@@ -434,4 +434,53 @@ class TypographyApp {
     fontWeight: FontWeight.w500,
     fontSize: 14.sp,
   );
+
+  static TextStyle foodNameDetail = TextStyle(
+    color: HexColor('#000000'),
+    fontWeight: FontWeight.w700,
+    fontSize: 18.sp,
+  );
+
+  static TextStyle addOnBtnDetail = TextStyle(
+    color: HexColor('#FFFFFF'),
+    fontWeight: FontWeight.w600,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle switchOnBtnDetail = TextStyle(
+    color: HexColor('#000000'),
+    fontWeight: FontWeight.w600,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle switchOffBtnDetail = TextStyle(
+    color: HexColor('#8E8E8E'),
+    fontWeight: FontWeight.w600,
+    fontSize: 14.sp,
+  );
+
+  static TextStyle panduanTitleDetail = TextStyle(
+    color: HexColor('#001C34'),
+    fontWeight: FontWeight.w700,
+    fontSize: 14.sp,
+    decoration: TextDecoration.underline
+  );
+
+  static TextStyle panduanBahanDetail = TextStyle(
+      color: HexColor('#393939'),
+      fontWeight: FontWeight.w500,
+      fontSize: 14.sp,
+  );
+
+  static TextStyle panduanStepsDetail = TextStyle(
+    color: HexColor('#000000'),
+    fontWeight: FontWeight.w500,
+    fontSize: 13.sp,
+  );
+
+  static TextStyle panduanStepsDescDetail = TextStyle(
+    color: HexColor('#393939'),
+    fontWeight: FontWeight.w400,
+    fontSize: 12.sp,
+  );
 }
