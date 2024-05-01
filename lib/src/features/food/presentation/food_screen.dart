@@ -37,6 +37,7 @@ class _FoodScreenState extends State<FoodScreen> {
         ),
         centerTitle: true,
         backgroundColor: HexColor('#3692FF'),
+        leadingWidth: 78.w,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
