@@ -41,7 +41,7 @@ Nutrimama is a mobile application that helps users track their daily nutrition i
 
 ## Features
 
-<img  src="assets/images/mockup.png"  alt="Nutrimama App">
+<!-- <img  src="assets/images/mockup.png"  alt="Nutrimama App"> -->
 
 <!-- ### 1. Nutritional Analysis
 
