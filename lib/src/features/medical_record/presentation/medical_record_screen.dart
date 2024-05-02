@@ -6,11 +6,13 @@ import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart
 import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/auth/domain/user.dart';
+import 'package:nutrimama/src/features/common/presentation/common_controller.dart';
 import 'package:nutrimama/src/features/medical_record/domain/fetal.dart';
 import 'package:nutrimama/src/features/medical_record/presentation/medical_record_controller.dart';
 import 'package:nutrimama/src/routes/app_routes.dart';
 import 'package:nutrimama/src/routes/extras.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
+import 'package:quickalert/quickalert.dart';
 
 class MedicalRecordScreen extends ConsumerWidget {
   final User user;
@@ -79,8 +81,6 @@ class MedicalRecordScreen extends ConsumerWidget {
                         Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              // TODO: dinamis image when it trimester 1/2/3 (differents)
-                              // TODO: flutter build apk --split-per-abi --release --obfuscate --split-debug-info=./symbols/
                               Image.asset(
                                 'assets/images/baby_img.png',
                                 width: 86.w,
@@ -126,7 +126,7 @@ class MedicalRecordScreen extends ConsumerWidget {
                           SizedBox(
                               width: 300.w,
                               child: Text(
-                                'Trimester ${trimester?.week}: ${trimester?.tips}',
+                                'Trimester ${trimester?.type}: ${trimester?.tips}',
                                 style: TypographyApp.tipsMedrec,
                                 textAlign: TextAlign.justify,
                               )),
@@ -382,12 +382,17 @@ class MedicalRecordScreen extends ConsumerWidget {
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.grey,
-                        width: 1.0,
+                        width: .3.w,
                       ),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    margin: const EdgeInsets.all(20.0),
-                    padding: const EdgeInsets.all(20.0),
+                    margin: EdgeInsets.only(
+                      bottom: 20.h,
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 20.w,
+                      vertical: 40.h,
+                    ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -468,9 +473,8 @@ class MedicalRecordScreen extends ConsumerWidget {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemCount: fetals.length,
-                          reverse: true,
                           itemBuilder: (context, index) {
-                            final fetal = data[index];
+                            final fetal = fetals[index];
                             return InkWell(
                               onTap: () {
                                 ref.read(goRouterProvider).pushNamed(
@@ -488,6 +492,9 @@ class MedicalRecordScreen extends ConsumerWidget {
                               child: Container(
                                 width: 374.w,
                                 height: 192.h,
+                                margin: fetals.length == 1
+                                    ? EdgeInsets.zero
+                                    : EdgeInsets.only(bottom: 20.h),
                                 padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
                                     color: Colors.white,
@@ -506,9 +513,36 @@ class MedicalRecordScreen extends ConsumerWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'Data Janin',
-                                      style: TypographyApp.dataTitleMedrec,
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Data Janin ${fetals.length == 1 ? '' : index + 1}',
+                                          style: TypographyApp.dataTitleMedrec,
+                                        ),
+                                        if (fetal.isBorn)
+                                          Container(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 10.0,
+                                              vertical: 5.0,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.green,
+                                              borderRadius:
+                                                  BorderRadius.circular(5.0),
+                                            ),
+                                            child: Text(
+                                              'Sudah Lahir',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 12.sp,
+                                              ),
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                     SizedBox(
                                       height: 10.h,
@@ -674,12 +708,139 @@ class MedicalRecordScreen extends ConsumerWidget {
                                               SizedBox(
                                                 height: 12.h,
                                               ),
-                                              Text(
-                                                fetal.date == null
-                                                    ? '-'
-                                                    : fetal.date!.dateMonthYear,
-                                                style: TypographyApp
-                                                    .dataDateMedrec,
+                                              SizedBox(
+                                                width: 280.w,
+                                                child: Row(
+                                                  mainAxisAlignment: (fetal.date
+                                                              .isNotNull() &&
+                                                          fetal.fetalDate
+                                                              .add(
+                                                                  const Duration(
+                                                                      days:
+                                                                          280))
+                                                              .isBefore(DateTime
+                                                                  .now()) &&
+                                                          !fetal.isBorn)
+                                                      ? MainAxisAlignment
+                                                          .spaceBetween
+                                                      : MainAxisAlignment.end,
+                                                  children: [
+                                                    if (fetal.date.isNotNull())
+                                                      if (fetal.fetalDate
+                                                              .add(
+                                                                  const Duration(
+                                                                      days:
+                                                                          280))
+                                                              .isBefore(DateTime
+                                                                  .now()) &&
+                                                          !fetal.isBorn)
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            border: Border.all(
+                                                                color: Colors
+                                                                    .green,
+                                                                width: 1.0),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.r),
+                                                          ),
+                                                          child: Material(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10.r),
+                                                            child: InkWell(
+                                                              overlayColor:
+                                                                  MaterialStateProperty
+                                                                      .all(Colors
+                                                                          .green
+                                                                          .withOpacity(
+                                                                              0.2)),
+                                                              onTap: () {
+                                                                QuickAlert.show(
+                                                                  context:
+                                                                      context,
+                                                                  type: QuickAlertType
+                                                                      .confirm,
+                                                                  title:
+                                                                      'Konfirmasi Kelahiran',
+                                                                  text:
+                                                                      'Apakah janin ini sudah lahir?',
+                                                                  confirmBtnText:
+                                                                      "Ya",
+                                                                  cancelBtnText:
+                                                                      "Tidak",
+                                                                  onConfirmBtnTap:
+                                                                      () async {
+                                                                    await controller
+                                                                        .setBorn(
+                                                                            fetal.fetalId,
+                                                                            user);
+                                                                    await ref
+                                                                        .read(commonControllerProvider
+                                                                            .notifier)
+                                                                        .getProfile();
+                                                                    final conceptionDate = ref
+                                                                            .read(
+                                                                                commonControllerProvider)
+                                                                            .userValue
+                                                                            .asData
+                                                                            ?.value
+                                                                            .fetalDate ??
+                                                                        DateTime
+                                                                            .now();
+                                                                    ref
+                                                                        .read(medicalRecordControllerProvider
+                                                                            .notifier)
+                                                                        .getTrimester(
+                                                                            conceptionDate);
+                                                                    ref
+                                                                        .read(
+                                                                            goRouterProvider)
+                                                                        .goNamed(Routes
+                                                                            .botNavBar
+                                                                            .name);
+                                                                  },
+                                                                );
+                                                              },
+                                                              child: Container(
+                                                                padding: const EdgeInsets
+                                                                    .symmetric(
+                                                                    horizontal:
+                                                                        10.0,
+                                                                    vertical:
+                                                                        5.0),
+                                                                child: Center(
+                                                                  child: Text(
+                                                                    'Sudah Lahir?',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          14.sp,
+                                                                      color: Colors
+                                                                          .green,
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                    Text(
+                                                      fetal.isBorn
+                                                          ? fetal.fetalDate
+                                                              .dateMonthYear
+                                                          : fetal.date == null
+                                                              ? '-'
+                                                              : fetal.date!
+                                                                  .dateMonthYear,
+                                                      style: TypographyApp
+                                                          .dataDateMedrec,
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -776,9 +937,13 @@ class MedicalRecordScreen extends ConsumerWidget {
                                     ExtrasKey.user: user,
                                     ExtrasKey.isNewFetal:
                                         user.fetalId.isEmpty &&
-                                            state.allFetals.asData?.value
-                                                    ?.isEmpty ==
-                                                true,
+                                                state.allFetals.asData?.value
+                                                        ?.isEmpty ==
+                                                    true ||
+                                            user.fetalId.isEmpty &&
+                                                state.allFetals.asData?.value
+                                                        ?.isNotEmpty ==
+                                                    true
                                   },
                                 ),
                               );

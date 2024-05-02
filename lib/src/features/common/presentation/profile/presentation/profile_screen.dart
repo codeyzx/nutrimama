@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:nutrimama/gen/assets.gen.dart';
 import 'package:nutrimama/src/common_widgets/async_value/async_value_widget.dart';
@@ -12,6 +13,7 @@ import 'package:nutrimama/src/features/common/presentation/profile/presentation/
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:quickalert/quickalert.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
@@ -218,7 +220,7 @@ class ProfileScreen extends ConsumerWidget {
                     height: 18.h,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: _sendEmail,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -262,7 +264,7 @@ class ProfileScreen extends ConsumerWidget {
                     height: 18.h,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: _sendEmail,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -313,7 +315,9 @@ class ProfileScreen extends ConsumerWidget {
                     height: 18.h,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      context.pushNamed(Routes.snk.name);
+                    },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -425,5 +429,17 @@ class ProfileScreen extends ConsumerWidget {
         ),
       ),
     );
+  }
+}
+
+void _sendEmail() async {
+  final Uri emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: 'orbit.dev@gmail.com',
+  );
+  if (await canLaunchUrl(Uri.parse(emailLaunchUri.toString()))) {
+    await launchUrl(Uri.parse(emailLaunchUri.toString()));
+  } else {
+    throw 'Could not launch email';
   }
 }

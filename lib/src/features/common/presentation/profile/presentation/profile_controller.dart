@@ -62,6 +62,7 @@ class ProfileController extends _$ProfileController {
 
     final result = await ref.read(authRepositoryProvider).updateProfile(user);
     await ref.read(communityRepositoryProvider).updateUserPost(userPost);
+    await ref.read(communityRepositoryProvider).updateUserComments(userPost);
 
     result.when(
       success: (data) {

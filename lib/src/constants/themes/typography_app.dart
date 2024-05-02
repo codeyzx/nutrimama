@@ -336,7 +336,7 @@ class TypographyApp {
   static TextStyle babyWeightMedrec = TextStyle(
     color: ColorApp.black,
     fontWeight: FontWeight.w600,
-    fontSize: 18.sp,
+    fontSize: 16.sp,
   );
 
   static TextStyle babyWeightUnitMedrec = TextStyle(
@@ -460,16 +460,15 @@ class TypographyApp {
   );
 
   static TextStyle panduanTitleDetail = TextStyle(
-    color: HexColor('#001C34'),
-    fontWeight: FontWeight.w700,
-    fontSize: 14.sp,
-    decoration: TextDecoration.underline
-  );
+      color: HexColor('#001C34'),
+      fontWeight: FontWeight.w700,
+      fontSize: 14.sp,
+      decoration: TextDecoration.underline);
 
   static TextStyle panduanBahanDetail = TextStyle(
-      color: HexColor('#393939'),
-      fontWeight: FontWeight.w500,
-      fontSize: 14.sp,
+    color: HexColor('#393939'),
+    fontWeight: FontWeight.w500,
+    fontSize: 14.sp,
   );
 
   static TextStyle panduanStepsDetail = TextStyle(

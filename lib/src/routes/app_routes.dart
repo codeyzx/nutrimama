@@ -8,6 +8,7 @@ import 'package:nutrimama/src/features/chatbot/presentation/chatbot_screen.dart'
 import 'package:nutrimama/src/features/common/presentation/botnavbar/botnavbar_page.dart';
 import 'package:nutrimama/src/features/common/presentation/onboard/onboard_page.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_edit_screen.dart';
+import 'package:nutrimama/src/features/common/presentation/profile/presentation/terms_and_conditions_screen.dart';
 import 'package:nutrimama/src/features/common/presentation/question/question_page.dart';
 import 'package:nutrimama/src/features/common/presentation/splash/splash_screen.dart';
 import 'package:nutrimama/src/features/community/presentation/add_post_screen.dart';
@@ -58,6 +59,7 @@ enum Routes {
   journal,
   detailJournal,
   addJournal,
+  snk,
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -250,6 +252,11 @@ GoRouter goRouter(GoRouterRef ref) {
           final user = extras.datas[ExtrasKey.user] as User;
           return AddJournalScreen(user: user);
         },
+      ),
+      GoRoute(
+        path: '/snk',
+        name: Routes.snk.name,
+        builder: (context, state) => const TermsAndConditionsScreen(),
       ),
     ],
     errorBuilder: (context, state) => ErrorPage(

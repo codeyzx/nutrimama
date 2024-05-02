@@ -74,7 +74,46 @@ class CommunityRepository {
         batch.update(post.reference, user);
       }
 
-      batch.commit();
+      await batch.commit();
+
+      return const Result.success(null);
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
+
+  Future<Result<void>> updateUserComments(Map<String, String> user) async {
+    try {
+      final resultPosts = await postDb.get();
+      final posts = resultPosts.docs.map((e) => e.data()).toList();
+
+      final batch = postDb.firestore.batch();
+
+      for (final post in posts) {
+        Comment comment = Comment(
+          createdAt: DateTime.now(),
+          postId: post.id,
+          text: '',
+          userId: user['userId'] ?? '',
+          userName: user['userName'] ?? '',
+          userPhoto: user['userPhoto'] ?? '',
+        );
+        List<Comment> comments = post.comments;
+        for (final temp in comments) {
+          if (temp.userId == user['userId']) {
+            comment = temp.copyWith(
+              userName: user['userName'] ?? '',
+              userPhoto: user['userPhoto'] ?? '',
+            );
+            comments[comments.indexOf(temp)] = comment;
+          }
+        }
+        batch.update(postDb.doc(post.id),
+            {'comments': comments.map((e) => e.toJson()).toList()});
+      }
+
+      await batch.commit();
 
       return const Result.success(null);
     } catch (e) {

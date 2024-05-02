@@ -9,6 +9,7 @@ import 'package:nutrimama/src/shared/extensions/extensions.dart';
 
 //TODO: Terjadi error ketika chat lebih dari 2x
 //TODO: kayanya ubah package kaya AI Buddy jadinya
+// TODO: flutter build apk --split-per-abi --release --obfuscate --split-debug-info=./symbols/
 class ChatbotScreen extends StatefulWidget {
   const ChatbotScreen({super.key});
 

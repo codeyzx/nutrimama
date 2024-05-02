@@ -60,6 +60,27 @@ class MedicalRecordRepository {
     }
   }
 
+  Future<Result<String>> setBorn(String fetalId, String uid) async {
+    try {
+      final result = await userDb
+          .doc(uid)
+          .collection('fetal')
+          .where('fetalId', isEqualTo: fetalId)
+          .get();
+      final docs = result.docs;
+      final batch = userDb.doc(uid).collection('fetal').firestore.batch();
+      for (final post in docs) {
+        batch.update(post.reference, {'isBorn': true});
+      }
+      batch.commit();
+      await userDb.doc(uid).update({'fetalId': '', 'fetalDate': null});
+      return const Result.success('Success');
+    } catch (e) {
+      return Result.failure(
+          NetworkExceptions.getFirebaseException(e), StackTrace.current);
+    }
+  }
+
   Future<Result<List<Mother>>> getMother(User user) async {
     try {
       final resultMother = await userDb

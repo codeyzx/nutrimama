@@ -220,10 +220,10 @@ class FormFetalWidget extends ConsumerWidget {
                         QuickAlert.show(
                             context: context,
                             type: QuickAlertType.success,
-                            title: 'Success',
+                            title: 'Berhasil Menambahkan Data Janin',
                             showCancelBtn: false,
                             barrierDismissible: false,
-                            confirmBtnText: 'Go to Home',
+                            confirmBtnText: 'Kembali ke Beranda',
                             onConfirmBtnTap: () {
                               ref.read(goRouterProvider).pop();
                               ref.read(goRouterProvider).pop();
@@ -349,6 +349,16 @@ class FormNewFetalWidget extends ConsumerWidget {
                       await ref
                           .read(commonControllerProvider.notifier)
                           .getProfile();
+                      final conceptionDate = ref
+                              .read(commonControllerProvider)
+                              .userValue
+                              .asData
+                              ?.value
+                              .fetalDate ??
+                          DateTime.now();
+                      ref
+                          .read(medicalRecordControllerProvider.notifier)
+                          .getTrimester(conceptionDate);
                       Future.delayed(const Duration(seconds: 1), () {
                         QuickAlert.show(
                             context: context,

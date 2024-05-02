@@ -101,6 +101,22 @@ class MedicalRecordController extends _$MedicalRecordController {
     );
   }
 
+  Future<void> setBorn(String fetalId, User user) async {
+    final result = await ref
+        .read(medicalRecordRepositoryProvider)
+        .setBorn(fetalId, user.id);
+    result.when(
+      success: (data) {
+        getFetal(user);
+      },
+      failure: (error, stackTrace) {
+        state = state.copyWith(
+          fetals: AsyncError(error, stackTrace),
+        );
+      },
+    );
+  }
+
   List<Fetal> getFetalsById(String fetalId, List<Fetal> fetals) {
     return fetals.where((element) => element.fetalId == fetalId).toList();
   }
@@ -178,7 +194,11 @@ class MedicalRecordController extends _$MedicalRecordController {
     DateTime currentDate = DateTime.now();
     Duration difference = currentDate.difference(conceptionDate);
     int week = (difference.inDays / 7).floor();
-    int trimester = (week / 12).ceil();
+    int trimester = week <= 12
+        ? 1
+        : week <= 27
+            ? 2
+            : 3;
     String trimesterDesc = '';
     String trimesterTips = '';
     switch (week) {
@@ -432,6 +452,11 @@ class MedicalRecordController extends _$MedicalRecordController {
         trimesterTips =
             'Pastikan tas persalinan sudah siap dan bersiaplah untuk kelahiran yang menyenangkan.';
         break;
+      default:
+        trimesterDesc =
+            'Anda telah melampaui masa kehamilan normal. Segera konsultasikan dengan dokter kandungan Anda.';
+        trimesterTips =
+            'Jangan panik dan segera hubungi dokter kandungan untuk pemeriksaan lebih lanjut.';
     }
 
     state = state.copyWith(

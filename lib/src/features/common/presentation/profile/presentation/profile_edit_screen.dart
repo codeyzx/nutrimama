@@ -10,7 +10,7 @@ import 'package:nutrimama/src/common_widgets/common_widgets.dart';
 import 'package:nutrimama/src/common_widgets/input_form/dropdown_form_widget.dart';
 import 'package:nutrimama/src/constants/constants.dart';
 import 'package:nutrimama/src/features/common/presentation/profile/presentation/profile_controller.dart';
-import 'package:nutrimama/src/features/community/data/community_repository.dart';
+import 'package:nutrimama/src/features/community/presentation/community_controller.dart';
 import 'package:nutrimama/src/features/nutrition/presentation/nutrition_controller.dart';
 import 'package:nutrimama/src/routes/routes.dart';
 import 'package:nutrimama/src/shared/extensions/extensions.dart';
@@ -368,7 +368,9 @@ class ProfileEditScreen extends ConsumerWidget {
                   await controller.getProfile();
                   await nutritionController.updateNutrition(
                       state.user.asData?.value?.id.toString() ?? '');
-                  await ref.read(communityRepositoryProvider).getPosts();
+                  await ref
+                      .read(communityControllerProvider.notifier)
+                      .getPosts();
 
                   Future.delayed(const Duration(seconds: 1), () {
                     QuickAlert.show(

@@ -267,7 +267,6 @@ class DetailPostScreen extends ConsumerWidget {
                             children: [
                               comment.userPhoto.isEmpty
                                   ? CircleAvatar(
-                                      radius: 30.r,
                                       backgroundImage:
                                           Assets.images.profileDefaultImg
                                               .image(
@@ -315,11 +314,14 @@ class DetailPostScreen extends ConsumerWidget {
                                       ),
                                     ],
                                   ),
-                                  Text(
-                                    comment.text,
-                                    style: TextStyle(
-                                      fontSize: 14.sp,
-                                      fontWeight: FontWeight.normal,
+                                  SizedBox(
+                                    width: 300.w,
+                                    child: Text(
+                                      comment.text,
+                                      style: TextStyle(
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                     ),
                                   ),
                                 ],
